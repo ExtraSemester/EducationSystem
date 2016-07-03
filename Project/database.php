@@ -27,10 +27,6 @@ class database{
     		die();
 		}
 	}
-	public function database_do($command)
-	{
-		$this->connect->exec($command);
-	}
 
 	/**
 	 * 插入数据的方法
@@ -105,6 +101,19 @@ class database{
 		$value = $result->fetchAll(PDO::FETCH_ASSOC);
 		return $value;
 	}
+
+	public function database_do($command)
+	{
+		$this->connect->exec($command);
+	}
+	public function database_get($command)
+	{
+		$result = $this->connect->prepare($command);
+		$result->execute();
+		$value = $result->fetchAll(PDO::FETCH_ASSOC);
+		return $value;
+	}
+	
 	private function insert_data_to_student($name,$password,$student_id,$sex,$grade){
 		$this->connect->exec("INSERT INTO student(name,password,student_id,sex,grade) VALUES".
 			"('$name','$password','$student_id','$sex','$grade')");
