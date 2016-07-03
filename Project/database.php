@@ -10,7 +10,7 @@ class database{
 		$this->mysql_host = 'localhost';
 		$this->mysql_db = 'edu_sys';
 		$this->mysql_user = 'root';
-		$this->mysql_password = 'your_password';
+		$this->mysql_password = '1994610';
 		$this->mysql_port = 3306;
 		$this -> connect_to_db();
 	}
@@ -31,7 +31,57 @@ class database{
 	{
 		$this->connect->exec($command);
 	}
-	
+
+	/**
+	 * 插入数据的方法
+	 * @param $table_name 表名
+	 * @param $values 字段名和值的数组
+	 */
+	public function insert_to_db($table_name,$values){
+
+		extract($values);
+
+		switch ($table_name){
+			case 'admin':
+				break;
+			case 'teacher':
+				break;
+			case 'student':
+				break;
+			case 'class':
+				$this->insert_data_to_class($name,$start_week,$end_week,$time,$place,$state);
+				break;
+			case 'class_student':
+				$this->insert_data_class_student($class_id,$student_id);
+				break;
+			case 'class_teacher':
+				$this->insert_data_class_teacher($class_id,$teacher_id);
+				break;
+			case 'team':
+				$this->insert_data_to_team($name,$admin_id,$class_id,$stat);
+				break;
+			case 'data':
+				$this->insert_data_to_data($class_id,$position);
+				break;
+			case 'team_student':
+				$this->insert_data_team_student($team_id,$student_id);
+				break;
+			case 'work':
+				$this->insert_data_to_work($content,$class_id,$kind,$start_time,$end_time);
+				break;
+			case 'student_work':
+				$this->insert_data_student_work($work_id,$student_id,$comment,$grade);
+				break;
+			case 'team_work':
+				$this->insert_data_team_work($work_id,$team_id,$comment,$grade);
+				break;
+			case 'talk':
+				$this->insert_data_to_talk($class_id,$comment,$time);
+				break;
+		}
+
+	}
+
 	public function database_get($command)
 	{
 		$result = $this->connect->prepare($command);
@@ -39,6 +89,48 @@ class database{
 		$value = $result->fetchAll(PDO::FETCH_ASSOC);
 		return $value;
 	}
+	
+	private function insert_data_to_class($name,$start_week,$end_week,$time,$place,$state){
+		$this->connect->exec("INSERT INTO class(name,start_week,end_week,time,place,state) VALUES".
+			"('$name','$start_week','$end_week','$time','$place','$state')");
+	}
+	private function insert_data_class_student($class_id,$student_id){
+		$this->connect->exec("INSERT INTO class_student(class_id,student_id) VALUES"
+			."('$class_id','$student_id')");
+	}
+	private function insert_data_class_teacher($class_id,$teacher_id){
+		$this->connect->exec("INSERT INTO class_teacher(class_id,student_id) VALUES"
+			. "('$class_id','$teacher_id')");
+	}
+	private function insert_data_to_team($name,$admin_id,$class_id,$stat){
+		$this->connect->exec("INSERT INTO team(name,admin_id,class_id,stat) VALUES"
+			. "('$name','$admin_id','$class_id','$stat')");
+	}
+	private function insert_data_to_data($class_id,$position){
+		$this->connect->exec("INSERT INTO team(class_id,postiton) VALUES"
+			. "('$class_id','$position')");
+	}
+	private function insert_data_team_student($team_id,$student_id){
+		$this->connect->exec("INSERT INTO team_student(team_id,student_id) VALUES"
+			."('$team_id','$student_id')");
+	}
+	private function insert_data_to_work($content,$class_id,$kind,$start_time,$end_time){
+		$this->connect->exec("INSERT INTO work(content,class_id,kind,start_time,end_time) VALUES"
+			."('$content','$class_id','$kind','$start_time','$end_time')");
+	}
+	private function insert_data_student_work($work_id,$student_id,$comment,$grade){
+		$this->connect->exec("INSERT INTO student_work(work_id,student_id,comment,grade) VALUES"
+			."('$work_id','$student_id','$comment','$grade')");
+	}
+	private function insert_data_team_work($work_id,$team_id,$comment,$grade){
+		$this->connect->exec("INSERT INTO team_work(work_id,team_id,comment,grade) VALUES"
+			."('$work_id','$team_id','$comment','$grade')");
+	}
+	private function insert_data_to_talk($class_id,$comment,$time){
+		$this->connect->exec("INSERT INTO talk(class_id,comment,time) VALUES"
+			."('$class_id','$comment','$time')");
+	}
+
 }
 
 ?>
