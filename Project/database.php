@@ -3,14 +3,14 @@ class database{
 	private $mysql_db,
 			$mysql_host,
 			$mysql_password,
-			$mysql_port,
 			$mysql_user,
+			$mysql_port,
 			$connect;
 	public function __construct(){
 		$this->mysql_host = 'localhost';
-		$this->mysql_db = 'jiaowudb';
-		$this->mysql_user = 'jiaowu';
-		$this->mysql_password = 'mima';
+		$this->mysql_db = 'edu_sys';
+		$this->mysql_user = 'root';
+		$this->mysql_password = 'your_password';
 		$this->mysql_port = 3306;
 		$this -> connect_to_db();
 	}

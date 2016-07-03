@@ -1,12 +1,12 @@
 #以mysql root用户身份运行
 #清理（第一次运行会报错，无影响）
-DROP USER 'jiaowu'@'localhost';
-drop database jiaowudb;
+
+drop database edu_sys;
 #创建
-CREATE USER 'jiaowu'@'localhost' IDENTIFIED BY 'mima';
-create database jiaowudb;
-GRANT ALL ON jiaowudb.* TO 'jiaowu'@'localhost';
-use jiaowudb;
+
+create database edu_sys;
+
+use edu_sys;
 
 create table admin
 (
