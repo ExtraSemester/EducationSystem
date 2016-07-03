@@ -1,0 +1,131 @@
+#以mysql root用户身份运行
+#清理（第一次运行会报错，无影响）
+DROP USER 'jiaowu'@'localhost';
+drop database jiaowudb;
+#创建
+CREATE USER 'jiaowu'@'localhost' IDENTIFIED BY 'mima';
+create database jiaowudb;
+GRANT ALL ON jiaowudb.* TO 'jiaowu'@'localhost';
+use jiaowudb;
+
+create table admin
+(
+    id int primary key AUTO_INCREMENT,
+    name varchar(50),
+    password varchar(50)
+);
+
+create table teacher
+(
+    id int primary key AUTO_INCREMENT,
+    name varchar(50),
+    password varchar(50)
+);
+
+create table student
+(
+    id int primary key AUTO_INCREMENT,
+    name varchar(50),
+    password varchar(50),
+    student_id varchar(50),
+    sex varchar(50),
+    grade int
+);
+
+create table class
+(
+	    id int primary key AUTO_INCREMENT,
+	    name varchar(100),
+	    start_week int,
+	    end_week int,
+	    time varchar(100),
+	    place varchar(100),
+	    state int
+);
+
+create table class_student
+(
+    class_id int,
+    student_id int,
+    PRIMARY KEY(class_id,student_id),
+    foreign key(class_id) references class(id),
+    foreign key(student_id)references student(id)
+);
+
+create table class_teacher
+(
+    class_id int,
+    teacher_id int,
+    PRIMARY KEY(class_id,teacher_id),
+    foreign key(class_id) references class(id),
+    foreign key(teacher_id)references teacher(id)
+);
+
+create table team
+(
+    id int primary key AUTO_INCREMENT,
+	name varchar(200),
+    admin_id int,
+	class_id int,
+	stat int,
+    foreign key(class_id) references class(id),
+    foreign key(admin_id) references student(id)
+);
+
+create table data
+(
+    id int primary key AUTO_INCREMENT,
+    class_id int,
+	position varchar(250),
+    foreign key(class_id) references class(id)
+);
+
+create table team_student
+(
+    team_id int,
+    student_id int,
+    PRIMARY KEY(team_id,student_id),
+    foreign key(team_id) references team(id),
+    foreign key(student_id)references student(id)
+);
+
+create table work
+(
+    id int primary key AUTO_INCREMENT,
+	content varchar(2000),
+	class_id int,
+	kind int,
+	start_time datetime,
+	end_time datetime,
+    foreign key(class_id) references class(id)
+);
+
+create table student_work
+(
+    work_id int,
+    student_id int,
+	comment varchar(500),
+	grade int,
+    PRIMARY KEY(work_id,student_id),
+    foreign key(work_id) references work(id),
+    foreign key(student_id)references student(id)
+);
+
+create table team_work
+(
+    work_id int,
+    team_id int,
+	comment varchar(500),
+	grade int,
+    PRIMARY KEY(work_id,team_id),
+    foreign key(work_id) references work(id),
+    foreign key(team_id)references team(id)
+);
+
+create table talk
+(
+    class_id int,
+	content varchar(500),
+	time datetime
+);
+
