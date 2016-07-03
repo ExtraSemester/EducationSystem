@@ -10,7 +10,7 @@ class database{
 		$this->mysql_host = 'localhost';
 		$this->mysql_db = 'edu_sys';
 		$this->mysql_user = 'root';
-		$this->mysql_password = '1994610';
+		$this->mysql_password = '';//你的MySQL密码
 		$this->mysql_port = 3306;
 		$this -> connect_to_db();
 	}
@@ -47,6 +47,7 @@ class database{
 			case 'teacher':
 				break;
 			case 'student':
+				$this->insert_data_to_student($name,$password,$student_id,$sex,$grade);
 				break;
 			case 'class':
 				$this->insert_data_to_class($name,$start_week,$end_week,$time,$place,$state);
@@ -82,14 +83,32 @@ class database{
 
 	}
 
-	public function database_get($command)
+	/**
+	 * 数据库查询方法
+	 * @param $table 表名
+	 * @param $field 要查询的字段
+	 * @param $keys  查询条件的数组
+	 * @return mixed 返回查询结果
+	 */
+	public function select_data($table,$field,$keys)
 	{
-		$result = $this->connect->prepare($command);
+		$keys_index = array_keys($keys);
+		$str = 'WHERE ';
+		foreach ($keys_index as $key){
+			$str = $str."$key like '$keys[$key]' AND ";
+		}
+		
+		$str = substr($str,0,-4);
+		
+		$result = $this->connect->prepare("SELECT $field FROM $table ".$str);
 		$result->execute();
 		$value = $result->fetchAll(PDO::FETCH_ASSOC);
 		return $value;
 	}
-	
+	private function insert_data_to_student($name,$password,$student_id,$sex,$grade){
+		$this->connect->exec("INSERT INTO student(name,password,student_id,sex,grade) VALUES".
+			"('$name','$password','$student_id','$sex','$grade')");
+	}
 	private function insert_data_to_class($name,$start_week,$end_week,$time,$place,$state){
 		$this->connect->exec("INSERT INTO class(name,start_week,end_week,time,place,state) VALUES".
 			"('$name','$start_week','$end_week','$time','$place','$state')");
