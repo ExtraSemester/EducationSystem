@@ -1,13 +1,13 @@
-@@ -0,0 +1,55 @@
 <html>
 <meta charset="utf-8"/>
 <?php
-include('login.html');
 //登录
 require_once './database.php';
-$username = $_POST['username'];
-$password = $_POST['password'];
-$role = $_POST['role'];
+
+$username = $_GET['username'];
+$password = $_GET['password'];
+$role = $_GET['role'];
+echo $username;
 $my_db=new database();
 
 if($username == "") {
