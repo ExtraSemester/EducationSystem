@@ -69,6 +69,7 @@ create table team
 	name varchar(200),
     admin_id int,
 	class_id int,
+	number int,
 	stat int,
     foreign key(class_id) references class(id),
     foreign key(admin_id) references student(id)

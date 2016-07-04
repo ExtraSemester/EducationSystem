@@ -269,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 	<h3 style="margin-left:10px;color:#FFF">已选课程</h3>
                 </div>
                 <ul class="nav nav-second-level" style="width:300px">
-                <form name="formc" method="post" action="class.php">
+                <form name="formc" method="get" action="class.php">
                         <input type="hidden" id="cname" name="class_name" value="value">
                 </form>
 
