@@ -9,10 +9,10 @@ $password = $_GET['password'];
 $role = $_GET['role'];
 $my_db=new database();
 
-if($username == "") {
+if($username == "职工号") {
     echo"<script type='text/javascript'>alert('请填写用户名');location='login.html';</script>";
 }
-elseif($password == "") {
+elseif($password == "password") {
     echo"<script type='text/javascript'>alert('请填写密码');location='login.html';</script>";
 }
 elseif ($role == "") {
