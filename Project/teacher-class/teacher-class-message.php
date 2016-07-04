@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">BUAA协同教学平台</a>
+            <a class="navbar-brand" href="">BUAA协同教学平台</a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-nav navbar-right">
@@ -103,7 +103,7 @@
                     <h3>课程信息</h3>
                     <div class="bs-example4" data-example-id="contextual-table">
                         <?php
-                        require_once './database.php';
+                        require_once '../database.php';
 
                         $my_db=new database();
                         $class_name=$_GET['class_name'];

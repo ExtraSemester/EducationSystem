@@ -198,6 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$db = new database();
 		$class_name=$_POST['class_name'];
 		$user_name=$_POST['user_name'];
+		
 		$class_data=$db->database_get("select * from class where name='$class_name'");
 		if($class_data==null)
 		{
