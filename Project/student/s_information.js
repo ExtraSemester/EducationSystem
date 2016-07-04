@@ -1,9 +1,22 @@
 // JavaScript Document
-var name,id;
-name=document.getElementById('s_name');
-id=document.getElementById('s_id');
-setInfo(name,id);
-function setInfo(name,id){
+setSInfo();
+function setSInfo(){
+	var sname,sid;
+	var xmlHttp;
+	var response;
+	sname=document.getElementById('s_name');
+	sid=document.getElementById('s_id');
 	
+	xmlHttp=new XMLHttpRequest();
+	xmlHttp.onreadystatechange=function(){
+		response=eval(xmlHttp.response);
+		
+		sname.innerHTML=response.name;
+		sid.innerHTML=response.student_id;
+	}
+	xmlHttp.open("GET","s_infomation.php",true);
+	xmlHttp.send();
 	
 }
+
+
