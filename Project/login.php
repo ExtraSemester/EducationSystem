@@ -7,7 +7,6 @@ require_once './database.php';
 $username = $_GET['username'];
 $password = $_GET['password'];
 $role = $_GET['role'];
-echo $username;
 $my_db=new database();
 
 if($username == "") {
