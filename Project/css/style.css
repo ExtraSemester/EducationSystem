@@ -598,7 +598,7 @@ h4.pull-left{
 	text-align:center;
 	padding:1.5em 0;
 }
-.copy p, .copy_layout p{
+. p, .copy_layout p{
 	font-size:0.85em;
 	color:#555;
 }
@@ -852,6 +852,12 @@ i.dollar1{
   margin-bottom: 1em;
 }
 /*-- graphs --*/
+.tablegraphs
+{
+	padding: 2em 0em ;
+  background: #f2f4f8;
+  font-family: 'Roboto', sans-serif;
+ }
 .graphs{
   padding: 2em 1em;
   background: #f2f4f8;
@@ -1643,10 +1649,10 @@ blockquote {
   border-left: 5px solid #eee;
 }
 .copy_layout{
-  padding:1.5em 0;
-  background:#fff;
+  padding:1.5em 0 1.5em;
+  background:#f2f4f8;
   text-align:center;
-  margin: 4em 0 0em 0;
+  margin: 0em 0em 0em 0;
 }
 .login{
 	background:none;
@@ -2481,7 +2487,9 @@ span.badge {
   padding: 1em;
 }
 .copy_layout {
-  margin: 1em 0 0em 0;
+	margin: 1em 0 0em 0;
+	color: #f2f4f8;
+	background-color: #333;
 }
 .login-social-link a.facebook {
   margin-right: 10px;
@@ -2619,7 +2627,7 @@ button.btn.btn-success {
 }
 .xs h3, .widget_head {
   font-size: 1.5em;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .follow {
   padding: 1em 0;
@@ -2728,3 +2736,4 @@ span.btn_7{
   font-size: 64%;
 }
 }
+
