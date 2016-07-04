@@ -6,6 +6,12 @@
  * Time: 9:57
  */
 
+    //防止显示到浏览器时乱码
+    header('Content-Type:text/html; charset=utf-8;');
+
+    header('Content-Type:text/json');
+
+    //session_start();
     require_once './database.php';
     //防止显示到浏览器时乱码
     header('Content-Type:text/html; charset=utf-8;');
@@ -21,7 +27,7 @@
     for ($i=0;$i<$count;$i++) {
 
         //echo json_encode($result);
-        $course_data[$i] = array($result[$i]['id'], $result[$i]['name']);
+        $course_data[$i] = array("id"=>$result[$i]['id'], "name"=>$result[$i]['name']);
         echo json_encode($course_data[$i]);
     }
 

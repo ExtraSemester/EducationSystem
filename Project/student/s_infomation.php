@@ -5,7 +5,6 @@
  * Date: 2016/7/4
  * Time: 15:21
  */
-
     //防止显示到浏览器时乱码
     header('Content-Type:text/html; charset=utf-8;');
 
