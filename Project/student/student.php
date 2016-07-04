@@ -1,4 +1,7 @@
-<!DOCTYPE HTML>
+<?php 
+
+$html_a = <<<HTML
+			<!DOCTYPE HTML>
 <html>
 <head>
 <title>BUAA协同教学平台</title>
@@ -17,7 +20,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
 <!----webfonts--->
-<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<link href='' rel='stylesheet' type='text/css'>
 <!---//webfonts--->  
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
@@ -267,10 +270,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <form name="formc" method="post" action="class.php">
                         <input type="hidden" id="cname" name="class_name" value="value">
                 </form>
-                	<li><a href="javascript:class_jump('离散数学');">离散数学</a></li>
-                    <li><a href="javascript:class_jump('软件工程');">软件工程</a></li>
-                    <li><a href="javascript:class_jump('高级语言程序设计');">高级语言程序设计</a></li>
-               	</ul>
+
+
+HTML;
+
+$html_b = <<<HTML
+			</ul>
             </div>
             <div class="col-md-4 span_7" style="float:right">	
 		    	<div class="cal1 cal_2">
@@ -322,7 +327,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 		<div class="copy" >
-            <p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">沉迷学习</a></p>
+            <p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="" target="_blank" >沉迷学习</a></p>
 	    </div>
 		</div>
        </div>
@@ -333,3 +338,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+HTML;
+
+		session_start();
+
+		if (isset($_SESSION["userid"]))
+		{
+			require_once '../database.php';
+		
+			$db = new database();
+			$user_name="蒋鲜花";
+			$user_id=$_SESSION["userid"];
+			$class_data=$db->database_get("select class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
+			echo $html_a;
+			for($i=0;$i<count($class_data);$i++)
+			{
+				echo "<li><a href=\"javascript:class_jump('".$class_data[$i]['name']."');\">".$class_data[$i]['name']."</a></li>";
+			}
+			echo $html_b;
+		}
+		else
+		{
+			echo "未登陆";
+		}
+?>
