@@ -8,25 +8,25 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="../css/style.css" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
-<link href="css/lines.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/lines.css" rel='stylesheet' type='text/css' />
+<link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
-<script src="js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <!----webfonts--->
 <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 <!---//webfonts--->  
 <!-- Nav CSS -->
-<link href="css/custom.css" rel="stylesheet">
+<link href="../css/custom.css" rel="stylesheet">
 <!-- Metis Menu Plugin JavaScript -->
-<script src="js/metisMenu.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="../js/metisMenu.min.js"></script>
+<script src="../js/custom.js"></script>
 <!-- Graph JavaScript -->
-<script src="js/d3.v3.js"></script>
-<script src="js/rickshaw.js"></script>
+<script src="../js/d3.v3.js"></script>
+<script src="../js/rickshaw.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -52,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/1.png" alt=""/>
+								<img src="../images/1.png" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 								<span class="label label-info">NEW</span>
@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						<!--<li class="avatar">
 							<a href="#">
-								<img src="images/2.png" alt=""/>
+								<img src="../images/2.png" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 								<span class="label label-info">NEW</span>
@@ -68,28 +68,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/3.png" alt=""/>
+								<img src="../images/3.png" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/4.png" alt=""/>
+								<img src="../images/4.png" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/5.png" alt=""/>
+								<img src="../images/5.png" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/pic1.png" alt=""/>
+								<img src="../images/pic1.png" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		</ul>
 	      		</li>
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png"></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
 	        		<ul class="dropdown-menu">
 						<!--<li class="dropdown-menu-header text-center">
 							<strong>Account</strong>
@@ -192,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
         <?php 
-		require_once 'database.php';
+		require_once '../database.php';
 		
 		$db = new database();
 		$class_name=$_POST['class_name'];
@@ -260,11 +260,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  <div class="span_11">
 		
 		  <!----Calender -------->
-			<link rel="stylesheet" href="css/clndr.css" type="text/css" />
-			<script src="js/underscore-min.js" type="text/javascript"></script>
-			<script src= "js/moment-2.2.1.js" type="text/javascript"></script>
-			<script src="js/clndr.js" type="text/javascript"></script>
-			<script src="js/site.js" type="text/javascript"></script>
+			<link rel="stylesheet" href="../css/clndr.css" type="text/css" />
+			<script src="../js/underscore-min.js" type="text/javascript"></script>
+			<script src= "../js/moment-2.2.1.js" type="text/javascript"></script>
+			<script src="../js/clndr.js" type="text/javascript"></script>
+			<script src="../js/site.js" type="text/javascript"></script>
 			<!----End Calender -------->
 		</div>
 		
@@ -277,6 +277,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    </div>
     <!-- /#wrapper -->
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
