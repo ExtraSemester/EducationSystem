@@ -128,42 +128,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-male fa-fw nav_icon"></i>个人信息</a>
+						<li>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>资料</a>
                         </li>
                         <li>
-                            <a href="#" onclick="show('course_list');"><i class="fa fa-indent nav_icon"></i>已选课程<span class="fa arrow"></span></a>
-                            <!--<ul class="nav nav-second-level">
-                                <li>
-                                    <a href="grids.html">离散数学</a>
-                                </li>
-                            </ul>-->
-                            <!-- /.nav-second-level -->
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业</a>
+                        </li>
+						<li>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>成绩</a>
+                        </li>
+						<li>
+                            <a href="#"><i class="fa fa-comments nav_icon"></i>团队</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">沉迷学习小组</a>
-                                </li>
-                                <li>
-                                    <a href="#"></a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="#"><i class="fa fa-comments nav_icon"></i>讨论</a>
                         </li>
-                        <!--<li>
-                            <a href="#"><i class="fa fa-envelope nav_icon"></i>Mailbox<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="inbox.html">Inbox</a>
-                                </li>
-                                <li>
-                                    <a href="compose.html">Compose email</a>
-                                </li>
-                            </ul>
-                           
-                        </li>-->
                         <li>
                             <a href="widgets.html"><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
@@ -209,7 +188,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="copyrights">Collect from <a href="#" ></a></div>
         <div id="page-wrapper">
         <div class="graphs">
-        
+
+
+
+        <?php 
+		require_once 'database.php';
+		
+		$db = new database();
+		$class_name=$_POST['class_name'];
+		$user_name=$_POST['user_name'];
+		$class_data=$db->database_get("select * from class where name='$class_name'");
+		if($class_data==null)
+		{
+			echo $class_name.':未找到此课程相关信息！';
+		}
+		else
+		{
+			echo "<br/>课程名称：".$class_data[0]['name']."<br/>开始周次：".$class_data[0]['start_week']."<br/>结束周次：".$class_data[0]['end_week']."<br/>上课时间：".$class_data[0]['time']."<br/>上课地点：".$class_data[0]['place']."<br/>课程状态：";
+			if($class_data[0]['name']==1)
+			{
+				echo '进行中<br/>';
+			}
+			else
+			{
+				echo '已结束<br/>';
+			}
+		}
+ ?>
+
+
+
      	<!--<div class="col_3">
         	<div class="col-md-3 widget widget1">
         		<div class="r3_counter_box">
@@ -249,67 +257,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	 </div>
         	<div class="clearfix"> </div>
       </div>-->
-<script>
-	function class_jump(nam)
-	{
-		var nickname = document.getElementById("cname");
-		nickname.value = nam;
-		document.formc.submit();
-	}
-</script>
-      	<div class="col_1">
-        	<div></div>
-			<div class="" id="course_list" style="float:left;display:block;width:auto;height:auto;border:1px solid #CCC">
-            	<div style="width:auto;height:40px;background:#3C9">
-                	<h3 style="margin-left:10px;color:#FFF">已选课程</h3>
-                </div>
-				<form name="formc" method="post" action="class.php">
-                <ul class="nav nav-second-level" style="width:300px">
-					<input type="hidden" id="cname" name="class_name" value="value">
-                	<li><a href="javascript:class_jump('离散数学');">离散数学</a></li>
-                    <li><a href="javascript:class_jump('软件工程');">软件工程</a></li>
-                    <li><a href="javascript:class_jump('高级语言程序设计');">高级语言程序设计</a></li>
-               	</ul>
-				</form>
-            </div>
-            <div class="col-md-4 span_7" style="float:right">	
-		    	<div class="cal1 cal_2">
-                	<div class="clndr" >
-                    	<div class="clndr-controls">
-                        	<div class="clndr-control-button">
-                            	<p class="clndr-previous-button">previous</p>
-                           	</div>
-                            <div class="month">July 2016</div>
-                            <div class="clndr-control-button rightalign">
-                            	<p class="clndr-next-button">next</p>
-                           	</div>
-                       	</div>
-                        <table class="clndr-table" border="0" cellspacing="0" cellpadding="0">
-                        	<thead>
-                        	<tr class="header-days">
-                            	<td class="header-day">S</td>
-                                <td class="header-day">M</td><td class="header-day">T</td>
-                                <td class="header-day">W</td><td class="header-day">T</td>
-                                <td class="header-day">F</td><td class="header-day">S</td>
-                          	</tr>
-                            </thead>
-                          	<tbody>
-                            <tr>
-                            	<td class="day adjacent-month last-month calendar-day-2015-06-28"><div class="day-contents">28</div></td>
-                                <td class="day adjacent-month last-month calendar-day-2015-06-29"><div class="day-contents">29</div></td>
-                                <td class="day adjacent-month last-month calendar-day-2015-06-30"><div class="day-contents">30</div></td>
-                                <td class="day calendar-day-2015-07-01"><div class="day-contents">1</div></td>
-                                <td class="day calendar-day-2015-07-02"><div class="day-contents">2</div></td>
-                                <td class="day calendar-day-2015-07-03"><div class="day-contents">3</div></td>
-                                <td class="day calendar-day-2015-07-04"><div class="day-contents">4</div></td>
-                             </tr>
-                             <tr><td class="day calendar-day-2015-07-05"><div class="day-contents">5</div></td><td class="day calendar-day-2015-07-06"><div class="day-contents">6</div></td><td class="day calendar-day-2015-07-07"><div class="day-contents">7</div></td><td class="day calendar-day-2015-07-08"><div class="day-contents">8</div></td><td class="day calendar-day-2015-07-09"><div class="day-contents">9</div></td><td class="day calendar-day-2015-07-10"><div class="day-contents">10</div></td><td class="day calendar-day-2015-07-11"><div class="day-contents">11</div></td></tr><tr><td class="day calendar-day-2015-07-12"><div class="day-contents">12</div></td><td class="day calendar-day-2015-07-13"><div class="day-contents">13</div></td><td class="day calendar-day-2015-07-14"><div class="day-contents">14</div></td><td class="day calendar-day-2015-07-15"><div class="day-contents">15</div></td><td class="day calendar-day-2015-07-16"><div class="day-contents">16</div></td><td class="day calendar-day-2015-07-17"><div class="day-contents">17</div></td><td class="day calendar-day-2015-07-18"><div class="day-contents">18</div></td></tr><tr><td class="day calendar-day-2015-07-19"><div class="day-contents">19</div></td><td class="day calendar-day-2015-07-20"><div class="day-contents">20</div></td><td class="day calendar-day-2015-07-21"><div class="day-contents">21</div></td><td class="day calendar-day-2015-07-22"><div class="day-contents">22</div></td><td class="day calendar-day-2015-07-23"><div class="day-contents">23</div></td><td class="day calendar-day-2015-07-24"><div class="day-contents">24</div></td><td class="day calendar-day-2015-07-25"><div class="day-contents">25</div></td></tr><tr><td class="day calendar-day-2015-07-26"><div class="day-contents">26</div></td><td class="day calendar-day-2015-07-27"><div class="day-contents">27</div></td><td class="day calendar-day-2015-07-28"><div class="day-contents">28</div></td><td class="day calendar-day-2015-07-29"><div class="day-contents">29</div></td><td class="day calendar-day-2015-07-30"><div class="day-contents">30</div></td><td class="day calendar-day-2015-07-31"><div class="day-contents">31</div></td><td class="day adjacent-month next-month calendar-day-2015-08-01"><div class="day-contents">1</div></td></tr></tbody></table>
-           		</div>
-         		</div>
-    		</div>
-        
-         <div class="clearfix"> </div>
-	  </div>
 	  <div class="span_11">
 		
 		  <!----Calender -------->
