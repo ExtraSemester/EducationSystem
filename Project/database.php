@@ -41,6 +41,7 @@ class database{
 			case 'admin':
 				break;
 			case 'teacher':
+				$this->insert_data_to_teacher($name,$password,$employee_id);
 				break;
 			case 'student':
 				$this->insert_data_to_student($name,$password,$student_id,$sex,$grade);
@@ -113,7 +114,10 @@ class database{
 		$value = $result->fetchAll(PDO::FETCH_ASSOC);
 		return $value;
 	}
-	
+	private function insert_data_to_teacher($name,$password,$employee_id){
+		$this->connect->exec("INSERT INTO teacher(name,password,employee_id) VALUES".
+			"('$name','$password','$employee_id')");
+	}
 	private function insert_data_to_student($name,$password,$student_id,$sex,$grade){
 		$this->connect->exec("INSERT INTO student(name,password,student_id,sex,grade) VALUES".
 			"('$name','$password','$student_id','$sex','$grade')");

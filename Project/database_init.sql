@@ -12,14 +12,16 @@ create table admin
 (
     id int primary key AUTO_INCREMENT,
     name varchar(50),
-    password varchar(50)
+    password varchar(50),
+    employee_id varchar(50)
 );
 
 create table teacher
 (
     id int primary key AUTO_INCREMENT,
     name varchar(50),
-    password varchar(50)
+    password varchar(50),
+    employee_id varchar(50)
 );
 
 create table student
