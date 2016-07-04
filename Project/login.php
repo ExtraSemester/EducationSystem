@@ -58,7 +58,7 @@ elseif($role == 'admin')
         session_start();
         $_SESSION["username"] = $username;
         $_SESSION["userid"] = $result[0]['id'];
-        echo "<script type='text/javascript'>location='student/student.php';</script>";
+        echo "<script type='text/javascript'>location='student/admin.php';</script>";
     }
     else {
         echo "<script type='text/javascript'>alert('用户名或密码错误');location='login.html';</script>";
