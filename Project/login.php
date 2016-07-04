@@ -39,10 +39,10 @@ else
                 echo "<script type='text/javascript'>location='student.html';</script>";
                 break;
             case 'teacher';
-                echo "<script type='text/javascript'>location='login.html';</script>";
+                echo "<script type='text/javascript'>location='teacher.html';</script>";
                 break;
             case 'admin';
-                echo "<script type='text/javascript'>location='login.html';</script>";
+                echo "<script type='text/javascript'>location='admin.html';</script>";
                 break;
         }
     }
