@@ -3,6 +3,7 @@
 $html_a = <<<HTML
 			<!DOCTYPE HTML>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
 <title>BUAA协同教学平台</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
