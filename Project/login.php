@@ -41,10 +41,9 @@ elseif($role == 'teacher')
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["role"] = $role;
-        $_SESSION["user_id"] = $result[0]['id'];
-        echo "<script type='text/javascript'>alert('fuck');</script>";
-        echo "<script type='text/javascript'>location='teacher.html';</script>";
+        $_SESSION["username"] = $username;
+        $_SESSION["userid"] = $result[0]['id'];
+        echo "<script type='text/javascript'>location='student/teacher.php';</script>";
     }
     else {
         echo "<script type='text/javascript'>alert('用户名或密码错误');location='login.html';</script>";

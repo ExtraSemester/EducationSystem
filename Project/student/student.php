@@ -1,8 +1,8 @@
 <?php 
-
 $html_a = <<<HTML
 			<!DOCTYPE HTML>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
 <title>BUAA协同教学平台</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -349,7 +349,6 @@ HTML;
 			require_once '../database.php';
 		
 			$db = new database();
-			$user_name="蒋鲜花";
 			$user_id=$_SESSION["userid"];
 			$class_data=$db->database_get("select class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
 			echo $html_a;
