@@ -19,6 +19,7 @@
     $result = $db->database_get("SELECT id,name FROM class WHERE id in (SELECT class_id FROM class_student WHERE student_id=13212000)");
     $count = count($result);
     for ($i=0;$i<$count;$i++) {
+
         //echo json_encode($result);
         $course_data[$i] = array($result[$i]['id'], $result[$i]['name']);
         echo json_encode($course_data[$i]);
