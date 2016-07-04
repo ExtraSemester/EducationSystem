@@ -1,5 +1,4 @@
 <?php 
-
 $html_a = <<<HTML
 			<!DOCTYPE HTML>
 <html>
@@ -348,7 +347,6 @@ HTML;
 			require_once '../database.php';
 		
 			$db = new database();
-			$user_name="蒋鲜花";
 			$user_id=$_SESSION["userid"];
 			$class_data=$db->database_get("select class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
 			echo $html_a;
