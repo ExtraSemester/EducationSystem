@@ -34,22 +34,22 @@ if($role == 'student')
         echo "<script type='text/javascript'>alert('用户名或密码错误');location='login.html';</script>";
     }
 }
-elseif($role == 'teacher')
+elseif($role == 'teacheer')
 {
     $result = $my_db->database_get("select id from teacher where employee_id='$id'and password='$password'");
     if(count($result)!=0) {
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["username"] = $username;
-        $_SESSION["userid"] = $result[0]['id'];
-        echo "<script type='text/javascript'>location='student/teacher.php';</script>";
+        $_SESSION["role"] = $username;
+        $_SESSION["user_id"] = $result[0]['id'];
+        echo "<script type='text/javascript'>location='teacher.html';</script>";
     }
     else {
         echo "<script type='text/javascript'>alert('用户名或密码错误');location='login.html';</script>";
     }
 }
-elseif($role == 'admin')
+elseif($role == 'Admin')
 {
     $result = $my_db->database_get("select id from admin where employee_id='$id'and password='$password'");
     if(count($result)!=0) {

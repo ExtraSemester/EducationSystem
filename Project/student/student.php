@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                            
                         </li>-->
                         <li>
-                            <a href="widgets.html"><i class="fa fa-question nav_icon"></i>帮助</a>
+                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
                          <!--<li>
                             <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
@@ -344,12 +344,12 @@ HTML;
 
 		session_start();
 
-		if (isset($_SESSION["userid"]))
+		if (isset($_SESSION["user_id"]))
 		{
 			require_once '../database.php';
 		
 			$db = new database();
-			$user_id=$_SESSION["userid"];
+			$user_id=$_SESSION["user_id"];
 			$class_data=$db->database_get("select class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
 			echo $html_a;
 			for($i=0;$i<count($class_data);$i++)
