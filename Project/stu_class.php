@@ -10,11 +10,18 @@
     //防止显示到浏览器时乱码
     header('Content-Type:text/html; charset=utf-8;');
 
+    //告诉接收数据的对象此页面输出的是json数据
+    header('Content-Type:text/json');
+
     $db = new database();
     //$db->connect_to_db();
 
     $result = $db->database_get("SELECT id,name FROM class WHERE id in (SELECT class_id FROM class_student WHERE student_id=13212000)");
-    echo $result[0]['id'];
+    $count = count($result);
+    for ($i=0;$i<$count;$i++) {
+        echo json_encode($result);
+    }
+
 
     /*
     //课程-学生表
