@@ -19,28 +19,18 @@ elseif ($role == "") {
     echo"<script type='text/javascript'>alert('请选择用户种类');location='login.html';</script>";
 }
 else {
-    $table = $role;
-    $field = $password;
-    $keys = array('name'=>$username);
-    $result = $my_db->select_data($table,$field,$keys);
+    $result = $my_db->database_get("select id from $role where name='$username'and password='$password'");
 
-    if($role=="student") {
-        $id = $my_db->select_data($table, 'student_id', $keys);
-    }
-    else {
-        $id = $id = $my_db->select_data($table, 'employee_id', $keys);
-    }
-
-    if($result == $password) {
+    if(count($result)!=0) {
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
         $_SESSION["username"] = $username;
-        $_SESSION["id"] = $id;
+        $_SESSION["userid"] = $result[0]['id'];
         switch ($role)
         {
             case 'student';
-                echo "<script type='text/javascript'>location='student.html';</script>";
+                echo "<script type='text/javascript'>location='student/student.php';</script>";
                 break;
             case 'teacher';
                 echo "<script type='text/javascript'>location='teacher.html';</script>";
