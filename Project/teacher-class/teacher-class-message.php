@@ -110,6 +110,8 @@
                         $class_id=$my_db->database_get("select id from class where class_name=$class_name");
                         $class_teacher=$my_db->database_get("select name from teacher where id=select teacher_id from class_teacher and class_id=$class_id");
                         $class_state=$my_db->database_get("select state from class where class_name=$class_name")
+                        
+                        
                         ?>
                         <table class="table">
                             <thead>
@@ -143,22 +145,22 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <th scope="row"><?php echo 'asd'?></th>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                                <th scope="row"><?php echo 'dsa'?></th>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
+                                <th scope="row"><?php ?></th>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
+                                <td><?php ?></td>
                             </tr>
                             </tbody>
                         </table>
