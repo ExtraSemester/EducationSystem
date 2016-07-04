@@ -257,7 +257,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	{
 		var nickname = document.getElementById("cname");
 		nickname.value = nam;
+
 		document.formc.submit();
+
 	}
 </script>
       	<div class="col_1">
@@ -327,7 +329,7 @@ $html_b = <<<HTML
 		</div>
 		
 		<div class="copy" >
-            <p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="" target="_blank" >沉迷学习</a></p>
+            <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">沉迷学习</a></p>
 	    </div>
 		</div>
        </div>

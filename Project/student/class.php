@@ -39,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">BUAA协同教学平台</a>
+                <a class="navbar-brand" href="">BUAA协同教学平台</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header">
 							<strong>Messages</strong>
-							
+
 						</li>
 						<li class="avatar">
 							<a href="#">
@@ -118,13 +118,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="m_2"><a href="#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
 						<li class="divider"></li>
 						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Lock Profile</a></li>-->
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
+						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>
+                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>
+                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>
 	        		</ul>
 	      		</li>
 			</ul>
-			
+
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -144,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#"><i class="fa fa-comments nav_icon"></i>讨论</a>
                         </li>
                         <li>
-                            <a href="widgets.html"><i class="fa fa-question nav_icon"></i>帮助</a>
+                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
                          <!--<li>
                             <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
@@ -156,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="validation.html">Validation</a>
                                 </li>
                             </ul>
-                            
+
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-table nav_icon"></i>Tables<span class="fa arrow"></span></a>
@@ -165,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="basic_tables.html">Basic Tables</a>
                                 </li>
                             </ul>
-                            
+
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>Css<span class="fa arrow"></span></a>
@@ -177,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <a href="login.html">Login</a>
                                 </li>
                             </ul>
-                           
+
                         </li>-->
                     </ul>
                 </div>
@@ -258,7 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<div class="clearfix"> </div>
       </div>-->
 	  <div class="span_11">
-		
+
 		  <!----Calender -------->
 			<link rel="stylesheet" href="../css/clndr.css" type="text/css" />
 			<script src="../js/underscore-min.js" type="text/javascript"></script>
@@ -267,9 +267,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<script src="../js/site.js" type="text/javascript"></script>
 			<!----End Calender -------->
 		</div>
-		
+
 		<div class="copy" >
-            <p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="" target="_blank">沉迷学习</a></p>
+            <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="" target="_blank" title="模板之家">沉迷学习</a></p>
 	    </div>
 		</div>
        </div>

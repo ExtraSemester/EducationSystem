@@ -56,17 +56,36 @@
 //    }
 
     //插入课程数据
-    for($i = 0;$i<count($class_name);$i++){
-        $name = $class_name[$i];
-        $start_week = 1;
-        $end_week = 16;
-        $time = $class_time[mt_rand(0,3)];
-        $place = $class_place[mt_rand(0,9)];
-        $state = 1;
+//    for($i = 0;$i<count($class_name);$i++){
+//        $name = $class_name[$i];
+//        $start_week = 1;
+//        $end_week = 16;
+//        $time = $class_time[mt_rand(0,3)];
+//        $place = $class_place[mt_rand(0,9)];
+//        $state = 1;
+//
+//        $values = array('name'=>$name,'start_week'=>$start_week,'end_week'=>$end_week,
+//            'time'=>$time,'place'=>$place,'state'=>$state);
+//        $db->insert_to_db($class,$values);
+//        //var_dump($values);
+//    }
 
-        $values = array('name'=>$name,'start_week'=>$start_week,'end_week'=>$end_week,
-            'time'=>$time,'place'=>$place,'state'=>$state);
-        $db->insert_to_db($class,$values);
+    //插入学生选课表
+//    for($i = 0;$i <30;$i++){
+//        $class_id = mt_rand(1,16);
+//        $student_id1 = mt_rand(2,32);
+//
+//        $values = array('class_id'=>$class_id,'student_id'=>$student_id1);
+//        $db->insert_to_db('class_student',$values);
+//    }
+
+    //插入教师授课表
+    for($i = 0;$i < 30;$i++){
+        $class_id = mt_rand(1,16);
+        $teacher_id = mt_rand(1,8);
+
+        $values = array('class_id'=>$class_id,'teacher_id'=>$teacher_id);
         //var_dump($values);
+        $db->insert_to_db('class_teacher',$values);
     }
     echo '插入成功';

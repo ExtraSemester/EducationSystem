@@ -9,7 +9,7 @@ $password = $_GET['password'];
 $role = $_GET['role'];
 $my_db=new database();
 
-if($username == "职工号") {
+if($id == "职工号") {
     echo"<script type='text/javascript'>alert('请填写用户ID');location='login.html';</script>";
 }
 elseif($password == "password") {
@@ -26,8 +26,8 @@ if($role == 'student')
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["username"] = $username;
-        $_SESSION["userid"] = $result[0]['id'];
+        $_SESSION["role"] = $role;
+        $_SESSION["user_id"] = $result[0]['id'];
         echo "<script type='text/javascript'>location='student/student.php';</script>";
     }
     else {
@@ -41,9 +41,10 @@ elseif($role == 'teacher')
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["username"] = $username;
-        $_SESSION["userid"] = $result[0]['id'];
-        echo "<script type='text/javascript'>location='student/teacher.php';</script>";
+        $_SESSION["role"] = $role;
+        $_SESSION["user_id"] = $result[0]['id'];
+        echo "<script type='text/javascript'>alert('fuck');</script>";
+        echo "<script type='text/javascript'>location='teacher.html';</script>";
     }
     else {
         echo "<script type='text/javascript'>alert('用户名或密码错误');location='login.html';</script>";
@@ -56,8 +57,8 @@ elseif($role == 'admin')
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["username"] = $username;
-        $_SESSION["userid"] = $result[0]['id'];
+        $_SESSION["role"] = $role;
+        $_SESSION["user_id"] = $result[0]['id'];
         echo "<script type='text/javascript'>location='student/student.php';</script>";
     }
     else {
