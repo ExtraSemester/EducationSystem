@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>作业列表</h4>
                     <?php
 
-                        session_start();
+                    session_start();
                     if(isset($_SESSION['user_id'])) {
 
                         require_once '../database.php';
