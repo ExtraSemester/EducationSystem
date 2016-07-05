@@ -157,7 +157,7 @@ function review()
             
             
             <div class="copy_layout" >
-            	<p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a target="_blank" title="模板之家">沉迷学习</a></p>
+                <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 	    	</div>
       	</div>
         

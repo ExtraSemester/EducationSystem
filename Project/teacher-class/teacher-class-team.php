@@ -149,7 +149,7 @@ $html_part_b = <<<HTML
   
 <!-------------边底栏信息-------------->
   <div class="copy_layout">
-      <p>&copy; 2015.Company name All rights reserved.More CopyrightTemplates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+      <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
   </div>
 <!-------------边底栏信息-------------->
 

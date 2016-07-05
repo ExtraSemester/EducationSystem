@@ -140,7 +140,7 @@ $html_b = <<<HTML
             
             
             <div class="copy_layout" >
-            	<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">沉迷学习</a></p>
+            	<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 	    	</div>
       	</div>
         
@@ -157,11 +157,13 @@ $html_b = <<<HTML
 HTML;
 
     require_once '../database.php';
-    
+    require_once 'class_info.php';
+
     $conn = new database();
 
-    //$class_name = ClassInfo::$class_name;
-    $class_name = '高等数学';
+    $class_name = ClassInfo::$class_name;
+    //$class_name = '高等数学';
+    echo "<script type='text/javascript'>alert(\"$class_name\")</script>";
 
     $sql = "SELECT id,title,content,end_time FROM work 
 WHERE class_id=(SELECT id FROM class WHERE name='$class_name');";
