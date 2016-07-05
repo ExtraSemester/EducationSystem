@@ -1,3 +1,4 @@
+session_start();
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -36,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">BUAA协同教学平台</a>
+            <a class="navbar-brand" href="index.html">BUAA协同教学平台</a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-nav navbar-right">
@@ -74,10 +75,10 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="teacher.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>教师信息</a>
+                        <a href="../teacher-class/teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>教师信息</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-dashboard fa-fw nav_icon"></i>帮助</a>
+                        <a href="../teacher-class/teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>帮助</a>
                 </ul>
             </div>
         </div>
@@ -90,16 +91,15 @@
                     <!------------所属课程--------------->
                     <?php
                     require_once '../database.php';
-                    
+                    $user_id = $_SESSION["user_id"];
                     $my_db = new database();
-                    $user_id=$_GET['username'];
                     $class_data=$my_db->database_get("select * from class where id=select class_id from class_teacher where teacher_id=$user_id");
                     $teacher_data=$my_db->database_get("select * from teacher where id=$user_id");
                     $count=count($class_data);
                     $i=0;
-                    
-                    ?>
-                    <table class="table">
+                    $html=<<<html
+
+                        <table class="table">
                         <thead>
                         <tr>
                             <th>课程编号</th>
@@ -108,68 +108,54 @@
 
                         </tr>
                         </thead>
-                        <tbody>
-                        <?php
-
+                        <tbody>'
+html;
+echo $html;
                         $html_01=<<<html
 <tr>
-html;
-                        $html_02=<<<html
 <th scope="row">
 html;
-                        $html_03=<<<html
+                        $html_02=<<<html
 </th>
-html;
-                        $html_04=<<<html
 <td>
-html;
-                        $html_05=<<<html
 <form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number1"><button type="submit" class="btn-inverse btn" ><p id="classnumber1">
 html;
-                        $html_06=<<<html
+                        $html_03=<<<html
                         </p></button></form></td>
                             <script type="text/javascript">
                                 document.getElementById('number1').value=document.getElementById('classnumber1').value;
                             </script>
+                            <td>
 html;
-                        $html_07=<<<html
-<td>
-html;
-                        $html_08=<<<html
+                        $html_04=<<<html
 </td>
-html;
-                        $html_09=<<<html
 </tr>
 html;
 //开始执行
                         for($i=0;$i<$count;$i++)
                         {
                             echo $html_01;
-                            echo $html_02;
+                            echo 'asdwadsadwadsa';
                             echo $class_data[$i]['id'];
-                            echo $html_03;
-                            echo $html_04;
-                            echo $html_05;
+                            echo $html_02;
                             echo $class_data[$i]['name'];
-                            echo $html_06;
-                            echo $html_07;
+                            echo $html_03;
                             echo $class_data[$i]['time'];
-                            echo $html_08;
-                            echo $html_09;
+                            echo $html_04;
                         }
                         ?>
                         <!-----
                         <tr>
-                            <th scope="row"><?php echo $class_data[$i]['id']; ?></th>
-                            <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number1"><button type="submit" class="btn-inverse btn" ><p id="classnumber1"><?php echo $class_data[$i]['name']; ?></p></button></form></td>
+                            <th scope="row"></th>
+                            <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number1"><button type="submit" class="btn-inverse btn" ><p id="classnumber1"></p></button></form></td>
                             <script type="text/javascript">
                                 document.getElementById('number1').value=document.getElementById('classnumber1').value;
                             </script>
 
-                            <td><?php echo $class_data[$i]['time'];$i++;?></td>
+                            <td></td>
                         </tr>
 
-
+z
                         </tbody>
                     </table>
                     ---->

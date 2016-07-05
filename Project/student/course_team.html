@@ -1,8 +1,7 @@
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>课程作业</title>
+<title>我的团队</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -85,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="s_homework_grade.html"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
-                            <a href="course_team.html"><i class="fa fa-comments nav_icon"></i>我的团队</a>
+                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
@@ -103,52 +102,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<div id="page-wrapper">
        			<div class="graphs">
                 	<div class="xs">
-  	       				<h3>作业详情</h3>
-  	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">标题：</label>
-								<label  class=" control-label" id="s_w_title"></label>
-							</div>
-                            <div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">作业要求：</label>
-								<label  class=" control-label" id="s_w_content"></label>
-							</div>
-                            <div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">截止时间：</label>
-								<label  class=" control-label" id="s_w_deadline"></label>
-							</div>
-                       	</div>
-                        <div class="bs-example4" data-example-id="contextual-table">
-                        	<h4>提交作业</h4>
-                            <div class="form-group panel-footer" style="height:auto;min-height:70px;">
-                                <form id="" enctype="" method="post" action="" >
-                                    <div class="row" style="margin-left:10px;">
-                                    	<label class=" ">从计算机中选择文件：</label>
-                                        <input  type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
-                                    </div>
-                                    <div id="fileName"></div>
-                                    <div id="fileSize"></div>
-                                    <div id="fileType"></div>
-                                    <div class="row" style="margin-left:10px;margin-top:10px;margin-bottom:10px">
-                                    	<input type="button" onclick="uploadFile()" value="提交作业" />
-                                        <input type="button" onclick="uploadFile()" value="取消" />
-                                   	</div>
-                                    <!--<div class="panel-footer">
-                                        <div class="row">
-                                            <div class="col-sm-8 col-sm-offset-2">
-                                                <button class="btn-inverse btn" style="width:100px">确定</button>
-                                                
-                                            </div>
-                                        </div>
-                                     </div>-->
-
-                                    <div id="progressNumber"></div>
-                               	</form>
+  	       				<h3>团队信息</h3>
+  	         			<div class="tab-content">
+							<div class="tab-pane active" id="horizontal-form">
+								<form class="form-horizontal">
+                                	<div class="form-group">
+										<label for="focusedinput" class="col-sm-2 control-label">团队名称：</label>
+										<label  class=" control-label" id="s_name">沉迷学习</label>
+									</div>
+                                    <div class="form-group">
+										<label for="focusedinput" class="col-sm-2 control-label">团队编号：</label>
+										<label  class=" control-label" id="s_name">03</label>
+									</div>
+                                    <div class="form-group">
+										<label for="focusedinput" class="col-sm-2 control-label">队长：</label>
+										<label  class=" control-label" id="s_name">王支书</label>
+									</div>
+                                    <div class="form-group">
+										<label for="focusedinput" class="col-sm-2 control-label">团队状态：</label>
+										<label  class=" control-label" id="s_name">组队中</label>
+									</div>
+                                </form>
                            	</div>
-                        </div>
-                        
+						</div>
+                        <div class="bs-example" data-example-id="form-validation-states-with-icons">
+                        	<form>                              
+                              <!--<div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block">Example block-level help text here.</p>
+                              </div>-->
+                             <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
+                                        <input type=button class="btn-inverse btn" style="width:100px" onclick="window.open('')" value="加入团队">
+                                    </div>
+                                </div>
+                             </div>
+                             <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
+                                        <input type=button class="btn-inverse btn" style="width:100px" onclick="show();" value="创建团队">
+                                    </div>
+                                    <div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
+                                    	<div class="form-group">
+                                            <label for="txtarea1" class="col-sm-2 control-label">团队名称：</label>
+                                            <div class="col-sm-8"><input name="txtarea1" id="txtarea1" cols="50" rows="4" class="form-control1"></div>
+                                            <input type=button class="btn-inverse btn" style="width:100px" onclick="" value="提交">
+                                        </div>
+                                    </div>
+                                    <script>
+										function show(){
+										document.getElementById("team_setup").style.display="";
+										//alert(document.getElementById("div").style.display)
+										}
+										
+									</script>
+                                </div>
+                             </div>
+                             
+                            </form>
+                          </div>
+
+                            
+                            
+                       	</div>
                     </div>
-                    
 				</div>
        		</div>
       <!-- /#page-wrapper -->
