@@ -95,7 +95,7 @@ session_start();
                     $user_id = $_SESSION["user_id"];
 					echo $user_id;
                     $my_db = new database();
-                    $class_data=$my_db->database_get("select * from class where id=select class_id from class_teacher where teacher_id=$user_id");
+                    $class_data=$my_db->database_get("select * from class where id in(select class_id from class_teacher where teacher_id=$user_id)");
                     $teacher_data=$my_db->database_get("select * from teacher where id=$user_id");
                     $count=count($class_data);
                     $i=0;
