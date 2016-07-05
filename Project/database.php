@@ -10,7 +10,7 @@ class database{
 		$this->mysql_host = 'localhost';
 		$this->mysql_db = 'edu_sys';
 		$this->mysql_user = 'root';
-		$this->mysql_password = '';//你的MySQL密码
+		$this->mysql_password = '123456';//你的MySQL密码
 		$this->mysql_port = 3306;
 		$this -> connect_to_db();
 	}
@@ -65,7 +65,7 @@ class database{
 				$this->insert_data_team_student($team_id,$student_id);
 				break;
 			case 'work':
-				$this->insert_data_to_work($content,$class_id,$kind,$start_time,$end_time);
+				$this->insert_data_to_work($content,$title,$class_id,$kind,$start_time,$end_time);
 				break;
 			case 'student_work':
 				$this->insert_data_student_work($work_id,$student_id,$comment,$grade);
@@ -146,9 +146,9 @@ class database{
 		$this->connect->exec("INSERT INTO team_student(team_id,student_id) VALUES"
 			."('$team_id','$student_id')");
 	}
-	private function insert_data_to_work($content,$class_id,$kind,$start_time,$end_time){
-		$this->connect->exec("INSERT INTO work(content,class_id,kind,start_time,end_time) VALUES"
-			."('$content','$class_id','$kind','$start_time','$end_time')");
+	private function insert_data_to_work($content,$title,$class_id,$kind,$start_time,$end_time){
+		$this->connect->exec("INSERT INTO work(content,title,class_id,kind,start_time,end_time) VALUES"
+			."('$content','$title','$class_id','$kind','$start_time','$end_time')");
 	}
 	private function insert_data_student_work($work_id,$student_id,$comment,$grade){
 		$this->connect->exec("INSERT INTO student_work(work_id,student_id,comment,grade) VALUES"
