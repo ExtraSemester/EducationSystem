@@ -97,8 +97,8 @@
                     $teacher_data=$my_db->database_get("select * from teacher where id=$user_id");
                     $count=count($class_data);
                     $i=0;
-                    
-                    ?>
+
+                    echo '
                     <table class="table">
                         <thead>
                         <tr>
@@ -108,8 +108,7 @@
 
                         </tr>
                         </thead>
-                        <tbody>
-                        <?php
+                        <tbody>'
 
                         $html_01=<<<html
 <tr>
@@ -146,6 +145,7 @@ html;
                         {
                             echo $html_01;
                             echo $html_02;
+                            echo"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
                             echo $class_data[$i]['id'];
                             echo $html_03;
                             echo $html_04;
