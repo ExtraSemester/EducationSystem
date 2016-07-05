@@ -132,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="fa fa-male fa-fw nav_icon"></i>个人信息</a>
+                            <a href="s_information.php"><i class="fa fa-male fa-fw nav_icon"></i>个人信息</a>
                         </li>
                         <li>
                             <a href="#" onclick="show('course_list');"><i class="fa fa-indent nav_icon"></i>已选课程<span class="fa arrow"></span></a>
