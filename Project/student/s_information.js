@@ -11,8 +11,8 @@ function setSInfo(){
 	xmlHttp.onreadystatechange=function(){
 		response=eval(xmlHttp.response);
 		
-		sname.innerHTML=response.name;
-		sid.innerHTML=response.student_id;
+		sname.innerHTML=response[0]['name'];
+		sid.innerHTML=response[0]['student_id'];
 	}
 	xmlHttp.open("GET","s_infomation.php",true);
 	xmlHttp.send();
