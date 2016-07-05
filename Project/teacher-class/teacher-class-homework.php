@@ -116,33 +116,21 @@ function select_change(value)
                             </tr>
                           </thead>
                           <tbody>
+						  
+						  
 						  <tr class="success">
                               <th scope="row">3</th>
                               <td>Column content</td>
                               <td>Column content</td>
                               <td>Column content</td>
-                                <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
-							<tr class="success">
-                              <th scope="row">3</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                                <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
-							<tr class="success">
-                              <th scope="row">3</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                                <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
+							  <td>
+								<button type="button" class="btn-inverse btn" onclick="javascript:window.location.href='homework/p.rar'">下载</button>
+								<button type="button" name="grade1" onclick="grade()" class="btn-inverse btn" >评分</button>
+								<button type="button" name="review1" onclick="review()" class="btn-inverse btn">评价</button>
+							  </td>
+						   </tr>
+						   
+						   
                           </tbody>
                         </table>
 <button class="btn-inverse btn" onClick="location='teacher-class-homework-r.html'">发布新作业</button>
