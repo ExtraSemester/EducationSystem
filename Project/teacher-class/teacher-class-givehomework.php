@@ -29,7 +29,7 @@ $html_a = <<<HTML
 
 <script>
     function toWorkDetail(id) {
-      window.location.href = "teacher-class-homework-s.html?id="+id;
+      window.location.href = "teacher-class-homework-s.php?id="+id;
     }
 </script>
 </head>
@@ -160,8 +160,8 @@ HTML;
     
     $conn = new database();
 
-    $class_name = ClassInfo::$class_name;
-    //$class_name = '高等数学';
+    //$class_name = ClassInfo::$class_name;
+    $class_name = '高等数学';
 
     $sql = "SELECT id,title,content,end_time FROM work 
 WHERE class_id=(SELECT id FROM class WHERE name='$class_name');";

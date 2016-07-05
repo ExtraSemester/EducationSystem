@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: whx
+ * Date: 2016/7/5
+ * Time: 16:10
+ */
+
+$html_partA = <<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -71,16 +80,16 @@
 <!------------侧边栏-----------------> 
 			<div class="navbar-default sidebar" role="navigation">
             
-               <div class="sidebar-nav navbar-collapse">
+                <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
+                            <a href="teacher-class-message.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
                         </li>
                            <li>
-                            <a href="teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
+                            <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                         </li>
                            <li>
-                            <a href="teacher-class-givehomework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                            <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
                             <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
@@ -100,35 +109,39 @@
   	    <h3>作业详情</h3>
   	    <div class="tab-content">
         <div class="tab-pane active" id="horizontal-form">
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="teacher-class-homework-r.php" method="get">
         <div class="form-group">
         <label for="smallinput" class="col-sm-2 control-label label-input-sm">作业类型</label>
         <div class="col-sm-8">
-        <select class=" input-sm" id="homewortype" disabled>
-        <option>团队作业</option>
-        <option>个人作业</option>
-        </select>
-        </div>
+HTML;
+
+$html_partB = <<< HTML
+</div>
         </div>
         <div class="form-group">
-      <label for="smallinput" class="col-sm-2 control-label label-input-sm">作业标题</label>
+      <p for="smallinput" class="col-sm-2 control-label label-input-sm">作业标题</p>
         <div class="col-sm-8">
-	   <input type="text" class="form-control1 input-sm" id="tasktitle" name="tasktitle" readonly>
-       </div>
+HTML;
+
+$html_partC = <<<HTML
+</div>
        </div>  
        <div class="form-group">
-      <label for="smallinput" class="col-sm-2 control-label label-input-sm">作业要求</label>
+      <p for="smallinput" class="col-sm-2 control-label label-input-sm">作业要求</p>
       <div class="col-sm-8">
-       <textarea class="form-control1 input-sm" id="taskask" style="height:auto;min-height:100px" name="taskask" readonly></textarea>
-									</div>
+HTML;
+
+$html_partD = <<<HTML
+</div>
                                	</div>
                                 <div class="form-group">
                                     <label for="smallinput" class="col-sm-2 control-label label-input-sm" >截止时间</label>
                         			<div class="col-sm-8">
-										<input type="text" class="form-control1 input-sm" id="taskdeadline" name="taskdeadline" placeholder="" readonly>
-									</div>
+HTML;
+
+$html_partE = <<<HTML
+</div>
                                	</div>                             
-                </form>
                             
                 </div>
 				</div>
@@ -182,3 +195,47 @@ function change()
 <script src="../js/custom.js"></script>
 </body>
 </html>
+HTML;
+
+
+$id = $_GET['id'];
+
+require_once '../database.php';
+
+$conn = new database();
+
+$sql = "SELECT kind,title,content,end_time FROM work WHERE id=$id";
+
+$result = $conn->database_get($sql);
+
+$kind = $result[0]['kind'];
+$title = $result[0]['title'];
+$content = $result[0]['content'];
+$end_time = $result[0]['end_time'];
+
+echo $html_partA;
+
+if($kind == 1){
+    echo "<select class=\" input-sm\" id=\"homewortype\" disabled>
+        <option>团队作业</option>
+        <option selected='selected'>个人作业</option>
+        </select>";
+}else{
+    echo "<select class=\" input-sm\" id=\"homewortype\" disabled>
+        <option>团队作业</option>
+        <option>个人作业</option>
+        </select>";
+}
+
+echo $html_partB;
+echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"tasktitle\" 
+name=\"tasktitle\" value='$title' readonly>";
+
+echo $html_partC;
+echo "<textarea class=\"form-control1 input-sm\" id=\"taskask\" 
+style=\"height:auto;min-height:100px\" name=\"taskask\" readonly>$content</textarea>";
+
+echo $html_partD;
+echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" name=\"taskdeadline\" placeholder=\"\" readonly>";
+
+echo $html_partE;

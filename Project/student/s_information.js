@@ -18,7 +18,7 @@ function setSInfo(){
 			sid.innerHTML = response[0]['student_id'];
 		}
 	}
-	xmlHttp.open("GET","s_infomation.php",true);
+	xmlHttp.open("GET","s_information.php",true);
 	xmlHttp.send();
 	
 }
