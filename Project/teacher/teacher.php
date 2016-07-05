@@ -90,9 +90,9 @@
                     <!------------所属课程--------------->
                     <?php
                     require_once '../database.php';
-                    
+                    session_start();
+                    $user_id = $_SESSION["user_id"];                    
                     $my_db = new database();
-                    $user_id=$_GET['username'];
                     $class_data=$my_db->database_get("select * from class where id=select class_id from class_teacher where teacher_id=$user_id");
                     $teacher_data=$my_db->database_get("select * from teacher where id=$user_id");
                     $count=count($class_data);
@@ -169,7 +169,7 @@ html;
                             <td><?php echo $class_data[$i]['time'];$i++;?></td>
                         </tr>
 
-
+z
                         </tbody>
                     </table>
                     ---->
