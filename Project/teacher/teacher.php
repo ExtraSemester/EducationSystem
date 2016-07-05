@@ -89,20 +89,14 @@ session_start();
             <div class="col-md-12 graphs">
                 <div class="xs">
                     <!------------所属课程--------------->
-					qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
                     <?php
                     require_once '../database.php';
                     $user_id = $_SESSION["user_id"];
-					echo $user_id;
                     $my_db = new database();
-                    $class_id=$my_db->database_get("select class_id from class_teacher where teacher_id=$user_id");
-                    $class_data=$my_db->database_get("select * from class where id=$class_id[0]['class_id']");
+                    $class_data=$my_db->database_get("select * from class_teacher,class where class_teacher.class_id=class.id and class_teacher.teacher_id=$user_id");
                     $teacher_data=$my_db->database_get("select * from teacher where id=$user_id");
                     $count=count($class_data);
-                    $i=0;
-					echo "SSSSSSS".$count;
                     $html=<<<html
-
                         <table class="table">
                         <thead>
                         <tr>

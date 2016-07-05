@@ -75,23 +75,6 @@ create table team
     foreign key(admin_id) references student(id)
 );
 
-create table data
-(
-    id int primary key AUTO_INCREMENT,
-    class_id int,
-	position varchar(250),
-    foreign key(class_id) references class(id)
-);
-
-create table team_student
-(
-    team_id int,
-    student_id int,
-    PRIMARY KEY(team_id,student_id),
-    foreign key(team_id) references team(id),
-    foreign key(student_id)references student(id)
-);
-
 create table work
 (
     id int primary key AUTO_INCREMENT,
@@ -102,6 +85,25 @@ create table work
 	start_time datetime,
 	end_time datetime,
     foreign key(class_id) references class(id)
+);
+
+create table work_file
+(
+    id int primary key AUTO_INCREMENT,
+    student_id int,
+    title varchar(250),
+    work_id int,
+    foreign key(student_id) references student(id),
+    foreign key(work_id) references work(id)
+);
+
+create table team_student
+(
+    team_id int,
+    student_id int,
+    PRIMARY KEY(team_id,student_id),
+    foreign key(team_id) references team(id),
+    foreign key(student_id)references student(id)
 );
 
 create table student_work

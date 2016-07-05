@@ -78,7 +78,7 @@
                             <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
                         </li>
                         <li>
-                            <a href="teacher-class-homework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
+                            <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                         </li>
                             </ul>
                 </div>
@@ -87,11 +87,9 @@
 <!------------侧边栏----------------->   
 <!------------上传文件部分------------>
 <div id="page-wrapper">
-<div class="tablegraphs">
-   <div class="col-md-12 graphs">
-	   <div class="xs">
-
-	
+<div class="graphs">
+	     		<div class="xs">
+	<h3>资源管理</h3>
 	<div class="bs-example4" data-example-id="contextual-table">
 	<?php 
 $html_a=<<<HTML
