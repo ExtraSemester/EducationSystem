@@ -92,18 +92,18 @@
 	   <div class="xs">
 
 	
-	
+	<div class="bs-example4" data-example-id="contextual-table">
 	<?php 
 $html_a=<<<HTML
-<table WIDTH=800>
+<table class="table">
 				<tr>
-				<th WIDTH=8% HEIGHT=50>类型</th>
-				<th WIDTH=44% HEIGHT=50>文件名</th>
-				<th WIDTH=20% HEIGHT=50>更新日期</th>
-				<th WIDTH=8% HEIGHT=50>删除</th>
-				<th WIDTH=20% HEIGHT=50>重命名
+				<th>类型</th>
+				<th>文件名</th>
+				<th>更新日期</th>
+				<th>删除</th>
+				<th>重命名
 				
-				
+	<form>			
 	<input type="text" id="com_add2" name="com_add2" placeholder="文件(夹)新名称">
 </form>
 				
