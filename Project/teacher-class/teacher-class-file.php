@@ -95,11 +95,19 @@
 	
 	<?php 
 $html_a=<<<HTML
-<table WIDTH=600>
+<table WIDTH=800>
 				<tr>
-				<th WIDTH=12% HEIGHT=50>文件类型</th>
-				<th WIDTH=60% HEIGHT=50>文件名</th>
-				<th WIDTH=28% HEIGHT=50>更新日期</th>
+				<th WIDTH=8% HEIGHT=50>类型</th>
+				<th WIDTH=44% HEIGHT=50>文件名</th>
+				<th WIDTH=20% HEIGHT=50>更新日期</th>
+				<th WIDTH=8% HEIGHT=50>删除</th>
+				<th WIDTH=20% HEIGHT=50>重命名
+				
+				
+	<input type="text" id="com_add2" name="com_add2" placeholder="文件(夹)新名称">
+</form>
+				
+				</th>
 				</tr>
 HTML;
 $html_b=<<<HTML
@@ -169,8 +177,6 @@ else if($command=='in')
 else if($command=='return')
 {
 	$bef=substr($route,0,-1);
-	echo "---route--".$route;
-	echo "--bef---".$bef;
 	$pos=strrpos($bef,'/');
 	if($pos>0)
 	{
@@ -180,16 +186,23 @@ else if($command=='return')
 	{
 		$route=null;
 	}
-	echo "---route--".$route;
+	
 	$real_route="./data/".$class_name."/$route";
 }
 else if($command=='rename')
 {
-	
+	rename($real_route.$com_add,$real_route.$com_add2);
 }
 else if($command=='delete')
 {
-	
+	if(is_dir($real_route.$com_add))
+	{
+		rmdir($real_route.$com_add);
+	}
+	else
+	{
+		unlink($real_route.$com_add);
+	}
 }
 ?>
 <script>
@@ -212,6 +225,38 @@ else if($command=='delete')
 	}
 </script>
 
+<script>
+	function my_rename(choose)
+	{
+		var nickname = document.getElementById('command');
+		nickname.value = 'rename';
+		var nickname2 = document.getElementById('com_add');
+		nickname2.value = choose;
+		if(document.getElementById('com_add2').value.length==0)
+		{
+			confirm("请输入新的文件(夹)名称");
+		}
+		else
+		{
+			document.datas.submit();
+		}
+	}
+</script>
+
+<script>	
+	function my_delete(choose)
+	{
+		var nickname = document.getElementById('command');
+		nickname.value = 'delete';
+		var nickname2 = document.getElementById('com_add');
+		nickname2.value = choose;
+		document.datas.submit();
+	}
+</script>
+
+<a href="javascript:class_jump('command','add');">新建文件夹</a>
+<a href="javascript:class_jump('command','return');">返回</a>
+
 <form name="datas" method="get" action="teacher-class-file.php">
 	<input type="hidden" id="class_name" name="class_name" >
 	<input type="hidden" id="route" name="route"
@@ -221,13 +266,6 @@ echo "value=\"$route\"";
  >
 	<input type="hidden" id="command" name="command">
 	<input type="hidden" id="com_add" name="com_add" >
-	<input type="hidden" id="com_add2" name="com_add2">
-</form>
-
-<a href="javascript:class_jump('command','add');">新建文件夹</a>
-<a href="javascript:class_jump('command','return');">返回</a>
-<a href="javascript:class_jump('command','delete');">删除</a>
-<a href="javascript:class_jump('command','rename');">重命名</a>
 
 <?php 
 echo $html_a;
@@ -239,7 +277,12 @@ for($i=2;$i<count($files);$i++)
 	{
 		echo "<tr><td><img src='../images/folder.png'/></td>
           <td><a href=\"javascript:in_folder('".$files[$i]."');\">".$files[$i]."</a></td>
-          <td>26 minutes ago</td></tr>";
+          <td>26 minutes ago</td>
+		  
+		  <td><a href=\"javascript:my_delete('".$files[$i]."');\">删除</a></td>
+		  <td><a href=\"javascript:my_rename('".$files[$i]."');\">重命名</a></td>
+		  
+		  </tr>";
 	}
 }
 for($i=2;$i<count($files);$i++)
@@ -248,7 +291,11 @@ for($i=2;$i<count($files);$i++)
 	{
 		echo "<tr><td><img src='../images/file.jpg'/></td>
           <td><a href='".$real_route.$files[$i]."'>".$files[$i]."</a></td>
-          <td>26 minutes ago</td></tr>";
+          <td>26 minutes ago</td>
+		  
+		  <td><a href=\"javascript:my_delete('".$files[$i]."');\">删除</a></td>
+		  <td><a href=\"javascript:my_rename('".$files[$i]."');\">重命名</a></td>
+		  </tr>";
 	}
 }
 echo $html_b;
@@ -273,10 +320,7 @@ echo "value=\"$route\"".'"';
 </div>
 </div>
 </div>
-<!------------上传文件部分------------>
-  
-  
-<!-------------边底栏信息-------------->
+
   <div class="copy_layout">
       <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
   </div>
@@ -284,11 +328,6 @@ echo "value=\"$route\"".'"';
       </div>
       <!-- /#page-wrapper -->
    </div>
-<!-------------边底栏信息-------------->
-
-
-
-
 
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
