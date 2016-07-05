@@ -23,9 +23,12 @@ if(isset($_SESSION['user_id'])) {
     $content = $_GET['content'];
     $end_time = $_GET['end_time'];
     $start_time = "2016-7-5 16:11:20";
+
 //    $dt = new datetime();
 //    $start_time = $dt->format('Y-m-d H;m;s');
     $db = new database();
+    $class_ids = $db->database_get("SELECT class_id FROM class_teacher WHERE teacher_id= 3");
+    $class_id = $class_ids[0]['class_id'];
 
     /*
     $kind = '团队作业';
@@ -45,7 +48,7 @@ if(isset($_SESSION['user_id'])) {
 
         }
        else {
-            $values = array('kind' => 2, 'title' => $title, 'content' => $content, 'class_id' => 1,
+            $values = array('kind' => 2, 'title' => $title, 'content' => $content, 'class_id' => $class_id,
                 'start_time' => $start_time, 'end_time' => $end_time);
             $db->insert_to_db('work', $values);
             //$values= $db->database_get("select id from work");
