@@ -108,7 +108,7 @@
 
                         $my_db=new database();
                         $class_name=$_GET['class_name'];
-                        $class_data=$my_db->database_get("select * from class where name=$class_name");
+                        $class_data=$my_db->database_get("select * from class where name='$class_name' ");
                         $class_teacher_data=$my_db->database_get("select * from teacher where id=select teacher_id from class_teacher where class_id=$class_data[0]['id']");
 
                         ?>
