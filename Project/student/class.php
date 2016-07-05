@@ -137,16 +137,16 @@ function cookie_jump()
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>资料</a>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
-                            <a href="javascript:cookie_jump()"><i class="fa fa-indent nav_icon"></i>作业</a>
+                            <a href="javascript:cookie_jump()"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>成绩</a>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>团队</a>
+                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-comments nav_icon"></i>讨论</a>
