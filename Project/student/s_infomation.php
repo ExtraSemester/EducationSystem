@@ -16,9 +16,10 @@
         $db = new database();
         $username = "王支书";
         $user_id = $_SESSION["user_id"];
-        $student_info = $db->database_get("SELECT name, student_id FROM student WHERE student_id=$user_id");
+        $student_info = $db->database_get("SELECT name, student_id FROM student WHERE id=$user_id");
         //echo $student_info[0]['name'], $student_info[0]['student_id'];
-        $stu_data = array("name"=>$student_info[0]['name'],"student_id"=>$student_info[0]['student_id']);
+        $stu_data = array("name"=>$student_info[0]['name'],"student_id"=>$student_info[0]['student_id']
+                            ,"sex"=>$student_info[0]['sex']);
         echo json_encode($stu_data);
         
     }
