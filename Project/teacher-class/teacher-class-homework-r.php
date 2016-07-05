@@ -13,9 +13,9 @@
         require_once '../database.php';
         $id = $_POST['id'];
 
-        $kind = $_POST['title'];
-        $content = $_POST['content'];
-        $db = new database();
+        //$kind = $_POST['title'];
+        //$content = $_POST['content'];
+        //$db = new database();
 
         $kind = $_POST['kind'];
         $title = $_POST['title'];
@@ -38,7 +38,7 @@
                 echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.html';</script>";
             }
         }
-        
+
         //判断是否为个人作业
         elseif ($kind == '个人作业') {
             //$values = array('kind'=>$kind, 'title'=>$title);
