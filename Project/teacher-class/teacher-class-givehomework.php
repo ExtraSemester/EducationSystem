@@ -97,10 +97,10 @@ $html_a = <<<HTML
                             <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
-                            <a href="teacher-class-file.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
+                            <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
                         </li>
                         <li>
-                            <a href="teacher-class-homework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
+                            <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                         </li>
                             </ul>
                 </div>
@@ -161,12 +161,13 @@ HTML;
 
     $conn = new database();
 
-    $class_name = ClassInfo::$class_name;
+    session_start();
+    $class_id = $_SESSION['class_id'];
     //$class_name = '高等数学';
-    echo "<script type='text/javascript'>alert(\"$class_name\")</script>";
+    //echo "<script type='text/javascript'>alert(\"$class_name\")</script>";
 
-    $sql = "SELECT id,title,content,end_time FROM work 
-WHERE class_id=(SELECT id FROM class WHERE name='$class_name');";
+    $sql = "SELECT title,content,end_time FROM work 
+WHERE class_id=$class_id;";
 
     $result = $conn->database_get($sql);
 
@@ -175,7 +176,7 @@ WHERE class_id=(SELECT id FROM class WHERE name='$class_name');";
     if($result) {
         for ($i = 0; $i < count($result); $i++) {
 
-            $id = $result[$i]['id'];
+            $id = $class_id;
             $title = $result[$i]['title'];
             $content = substr($result[$i]['content'], 0, 20);
             $end_time = $result[$i]['end_time'];
@@ -191,7 +192,7 @@ WHERE class_id=(SELECT id FROM class WHERE name='$class_name');";
 
         echo $html_b;
     }else{
-        echo "<td>$sql</td>";
+        echo "<td>暂无作业信息</td>";
         echo $html_b;
     }
 

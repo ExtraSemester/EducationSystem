@@ -97,19 +97,19 @@ $html_part_a = <<<HTML
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
+                            <a href="teacher-class-message.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
                         </li>
                            <li>
-                            <a href="teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
+                            <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                         </li>
                            <li>
-                            <a href="teacher-class-givehomework"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                            <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
-                            <a href="teacher-class-file.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
+                            <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
                         </li>
                         <li>
-                            <a href="teacher-class-homework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
+                            <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                         </li>
                             </ul>
                 </div>
@@ -167,13 +167,14 @@ $html_part_b = <<<HTML
 </html>
 HTML;
 
-    $class_name = ClassInfo::$class_name;
+    session_start();
+    $class_id = $_SESSION['class_id'];
 
     require_once '../database.php';
     $conn = new database();
 
     $team_info = $conn->database_get("SELECT id,name,stat,admin_id FROM team ".
-        "WHERE team.class_id = (SELECT id FROM class WHERE name='$class_name');");
+        "WHERE team.class_id = $class_id;");
 
     echo $html_part_a;
 

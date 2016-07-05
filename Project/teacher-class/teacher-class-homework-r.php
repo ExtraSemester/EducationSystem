@@ -54,7 +54,7 @@ if(isset($_SESSION['user_id'])) {
             $db->insert_to_db('work', $values);
             //$values= $db->database_get("select id from work");
             //echo count($values);
-            echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.html';</script>";
+            echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.php';</script>";
             //echo "作业发布成功!";
        }
     //}
@@ -70,7 +70,7 @@ if(isset($_SESSION['user_id'])) {
             $values = array('kind' => 1, 'title' => $title, 'content' => $content, 'class_id' => 1,
                 'start_time' => $start_time, 'end_time' => $end_time);
             $db->insert_to_db('work', $values);
-            echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.html';</script>";
+            echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.php';</script>";
         }
     //}
 

@@ -29,10 +29,9 @@ $html_partA = <<<HTML
 
 <script>
     
-    function toClass(name) {
+    function toClass(id) {
     
-      window.location.href = "../teacher-class/teacher-class-message.php?class_name="+name;
-      $.get("../teacher-class/class_info.php?class_name="+name)
+      window.location.href = "../teacher-class/teacher-class-message.php?class_id="+id;
       
     }
 </script>
@@ -92,10 +91,10 @@ $html_partA = <<<HTML
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="../teacher-class/teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>教师信息</a>
+                            <a href="teacher.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>教师信息</a>
                         </li>
                            <li>
-                            <a href="../teacher-class/teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>帮助</a>
+                            <a href=""><i class="fa fa-dashboard fa-fw nav_icon"></i>帮助</a>
                             </ul>
                 </div>
             </div>
@@ -160,13 +159,13 @@ $html_partC = <<<HTML
 HTML;
 
 require_once '../database.php';
-
+session_start();
 $user_id = $_SESSION['user_id'];
-$user_id = 1;
-
+//$user_id = 1;
+echo "<script type='text/javascript'>alert(\"$user_id\")</script>";
 $conn = new database();
 
-$sql = "SELECT name ,time FROM class,class_teacher WHERE class_id = id and teacher_id = $user_id";
+$sql = "SELECT id, name, time FROM class,class_teacher WHERE class_id = id and teacher_id = $user_id";
 
 $classes = $conn->database_get($sql);
 
@@ -175,12 +174,13 @@ $i = 0;
 if($classes) {
     for ($i = 0; $i < count($classes); $i++) {
 
+        $class_id = $classes[$i]['id'];
         $class_name = $classes[$i]['name'];
         $class_time = $classes[$i]['time'];
 
         echo "<tr class=\"active\">
                               <th scope=\"row\">" . ($i + 1) . "</th>
-                              <td><button class=\"btn-inverse btn\" onclick='toClass(\"$class_name\")'>$class_name</button></td>
+                              <td><button class=\"btn-inverse btn\" onclick='toClass(\"$class_id\")'>$class_name</button></td>
 
                               <td>$class_time</td>
                             </tr>";

@@ -84,10 +84,10 @@
                         <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
+                        <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
+                        <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                     </li>
                 </ul>
             </div>
@@ -105,11 +105,19 @@
                     <div class="bs-example4" data-example-id="contextual-table">
                         <?php
                         require_once '../database.php';
-
+                        
                         $my_db=new database();
-                        $class_name=$_GET['class_name'];
-                        $class_data=$my_db->database_get("select * from class where name='$class_name' ");
-                        $class_teacher_data=$my_db->database_get("select * from teacher where id in (select teacher_id from class_teacher where class_id=$class_data[0]['id'])");
+                        $class_id=$_GET['class_id'];
+
+                        session_start();
+                        if($class_id == null){
+                            $class_id = $_SESSION['class_id'];
+                        }else{
+                            $_SESSION['class_id'] = $class_id;
+                        }
+
+                        $class_data=$my_db->database_get("select * from class where id='$class_id' ");
+                        $class_teacher_data=$my_db->database_get("select * from teacher where id in (select teacher_id from class_teacher where class_id=$class_id)");
 
                         ?>
                         <table class="table">
