@@ -28,7 +28,12 @@ if($role == 'student')
         session_start();
         $_SESSION["role"] = $role;
         $_SESSION["user_id"] = $result[0]['id'];
-        echo "<script type='text/javascript'>location='student/student.php';</script>";
+		
+		echo '<form name="cookie" method="get" action="student/student.php">
+                        <input type="hidden" id="cname" name="user_id" value="'.$result[0]['id'].'">
+                </form>';
+				
+        echo "<script type='text/javascript'>document.cookie.submit();</script>";
     }
     else {
         echo "<script type='text/javascript'>alert('用户名或密码错误');location='login.html';</script>";

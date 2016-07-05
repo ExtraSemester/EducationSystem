@@ -88,15 +88,18 @@
             <div class="col-md-12 graphs">
                 <div class="xs">
                     <!------------所属课程--------------->
+					qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
                     <?php
                     require_once '../database.php';
                     session_start();
                     $user_id = $_SESSION["user_id"];
+					echo $user_id;
                     $my_db = new database();
                     $class_data=$my_db->database_get("select * from class where id=select class_id from class_teacher where teacher_id=$user_id");
                     $teacher_data=$my_db->database_get("select * from teacher where id=$user_id");
                     $count=count($class_data);
                     $i=0;
+					echo "SSSSSSS".$count;
                     $html=<<<html
 
                         <table class="table">
@@ -135,7 +138,6 @@ html;
                         for($i=0;$i<$count;$i++)
                         {
                             echo $html_01;
-                            echo 'asdwadsadwadsa';
                             echo $class_data[$i]['id'];
                             echo $html_02;
                             echo $class_data[$i]['name'];

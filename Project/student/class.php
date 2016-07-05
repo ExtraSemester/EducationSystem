@@ -30,6 +30,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/rickshaw.js"></script>
 </head>
 <body>
+<script>
+function cookie_jump()
+{
+	document.cookie.submit();
+}
+</script>
+
 <div id="wrapper">
      <!-- Navigation -->
         <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -133,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#"><i class="fa fa-indent nav_icon"></i>资料</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业</a>
+                            <a href="javascript:cookie_jump()"><i class="fa fa-indent nav_icon"></i>作业</a>
                         </li>
 						<li>
                             <a href="#"><i class="fa fa-indent nav_icon"></i>成绩</a>
@@ -197,7 +204,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		$db = new database();
 		$class_name=$_GET['class_name'];
-		$user_name=$_POST['user_name'];
+		$user_id=$_GET['user_id'];
+		
+		echo '<form name="cookie" method="get" action="s_homework.html">
+                        <input type="hidden" id="cname" name="user_id" value="'.$user_id.'">
+                </form>';
 		
 		$class_data=$db->database_get("select * from class where name='$class_name'");
 		if($class_data==null)
