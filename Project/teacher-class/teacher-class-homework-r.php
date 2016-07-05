@@ -59,7 +59,7 @@ if(isset($_SESSION['user_id'])) {
        }
     //}
 
-    //判断是否为个人作业
+     //判断是否为个人作业
     elseif ($kind == '个人作业') {
 //        //$values = array('kind'=>$kind, 'title'=>$title);
 //        $result = $db->database_get("SELECT id FROM work WHERE kind=1");
