@@ -28,6 +28,7 @@ if(isset($_SESSION['user_id'])) {
 //    $start_time = $dt->format('Y-m-d H;m;s');
     $db = new database();
     $class_ids = $db->database_get("SELECT class_id FROM class_teacher WHERE teacher_id= 3");
+    
     $class_id = $class_ids[0]['class_id'];
 
     /*
