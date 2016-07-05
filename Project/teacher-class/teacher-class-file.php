@@ -13,19 +13,11 @@
 <link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
-<!----webfonts--->
-<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
 </head>
 
-
-
-
 <body>
-
-
  <!------------ 顶边栏 ------------->
  <div id="wrapper">
         <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -83,7 +75,7 @@
                             <a href="teacher-class-givehomework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
-                            <a href="teacher-class-file.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
+                            <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
                         </li>
                         <li>
                             <a href="teacher-class-homework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
@@ -99,72 +91,183 @@
    <div class="col-md-12 graphs">
 	   <div class="xs">
 
-<!--------判断文件名字，大小，类型-------->   <script type="text/javascript">
-      function fileSelected() {
-        var file = document.getElementById('fileToUpload').files[0];
-        if (file) {
-          var fileSize = 0;
-          if (file.size > 1024 * 1024)
-            fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
-          else
-            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+	
+	
+	<?php 
+$html_a=<<<HTML
+<table WIDTH=600>
+				<tr>
+				<th WIDTH=12% HEIGHT=50>文件类型</th>
+				<th WIDTH=60% HEIGHT=50>文件名</th>
+				<th WIDTH=28% HEIGHT=50>更新日期</th>
+				</tr>
+HTML;
+$html_b=<<<HTML
+</table>
+HTML;
 
-          document.getElementById('fileName').innerHTML = 'Name: ' + file.name;
-          document.getElementById('fileSize').innerHTML = 'Size: ' + fileSize;
-          document.getElementById('fileType').innerHTML = 'Type: ' + file.type;
-        }
-      }
 
-      function uploadFile() {
-        var fd = new FormData();
-        fd.append("fileToUpload", document.getElementById('fileToUpload').files[0]);
-        var xhr = new XMLHttpRequest();
-        xhr.upload.addEventListener("progress", uploadProgress, false);
-        xhr.addEventListener("load", uploadComplete, false);
-        xhr.addEventListener("error", uploadFailed, false);
-        xhr.addEventListener("abort", uploadCanceled, false);
-        xhr.open("POST", "teacher-class-file.php");
-        xhr.send(fd);
-      }
+$class_name=$_GET['class_name'];
+$route=$_GET['route'];
+$command=$_GET['command'];
+$com_add=$_GET['com_add'];
+$com_add2=$_GET['com_add2'];
 
-      function uploadProgress(evt) {
-        if (evt.lengthComputable) {
-          var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-          document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
-        }
-        else {
-          document.getElementById('progressNumber').innerHTML = 'unable to compute';
-        }
-      }
+if($class_name==null)
+{
+	$class_name="生产实习";
+}
+$real_route="./data/".$class_name."/$route";
+if(file_exists($real_route)==false)
+{
+	mkdir($real_route,0777);
+}
 
-      function uploadComplete(evt) {
-        /* This event is raised when the server send back a response */
-        alert(evt.target.responseText);
-      }
+if($command=='add')
+{
+	if(file_exists($real_route."新建文件夹"))
+	{
+		for($i=1;$i<10;$i++)
+		{
+			if(!file_exists($real_route."新建文件夹".$i))
+			{
+				mkdir($real_route."新建文件夹".$i,0777);
+				break;
+			}
+		}
+	}
+	else
+	{
+		mkdir($real_route."新建文件夹",0777);
+	}
+}
+else if($command=='upload')
+{
+		if ($_FILES["fileToUpload"]["error"] > 0)
+    {
+		echo "Return Code: " . $_FILES["fileToUpload"]["error"] . "<br />";
+    }
+	else
+    {
+		$class_name=$_POST['class_name'];
+		$route=$POST['route'];
 
-      function uploadFailed(evt) {
-        alert("There was an error attempting to upload the file.");
-      }
+		if($class_name==null)
+		{
+			$class_name="生产实习";
+		}
+		$real_route="./data/".$class_name."/$route";
 
-      function uploadCanceled(evt) {
-        alert("The upload has been canceled by the user or the browser dropped the connection.");
-      }
-    </script>
-<!--------判断文件名字，大小，类型-------->    
-    <form id="form1" enctype="multipart/form-data" method="post" action="upload.php">
-<div class="row">
-      <label for="fileToUpload">Select a File to Upload</label>
-<input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
-    </div>
-<div id="fileName"></div>
-<div id="fileSize"></div>
-<div id="fileType"></div>
-<div class="row">
-<input type="button" onclick="uploadFile()" value="Upload" />
-    </div>
-<div id="progressNumber"></div>
+		move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$real_route.$_FILES["fileToUpload"]["name"]);
+    }
+}
+else if($command=='in')
+{
+	$route=$route.$com_add."/";
+	$real_route="./data/".$class_name."/$route";
+}
+else if($command=='return')
+{
+	$bef=substr($route,0,-1);
+	echo "---route--".$route;
+	echo "--bef---".$bef;
+	$pos=strrpos($bef,'/');
+	if($pos>0)
+	{
+		$route=substr($bef,0,$pos+1);
+	}
+	else
+	{
+		$route=null;
+	}
+	echo "---route--".$route;
+	$real_route="./data/".$class_name."/$route";
+}
+else if($command=='rename')
+{
+	
+}
+else if($command=='delete')
+{
+	
+}
+?>
+<script>
+	function class_jump(choose,nam)
+	{
+		var nickname = document.getElementById(choose);
+		nickname.value = nam;
+		document.datas.submit();
+	}
+</script>
+
+<script>
+	function in_folder(choose)
+	{
+		var nickname = document.getElementById('command');
+		nickname.value = 'in';
+		var nickname2 = document.getElementById('com_add');
+		nickname2.value = choose;
+		document.datas.submit();
+	}
+</script>
+
+<form name="datas" method="get" action="teacher-class-file.php">
+	<input type="hidden" id="class_name" name="class_name" >
+	<input type="hidden" id="route" name="route"
+<?php 
+echo "value=\"$route\"";
+ ?>
+ >
+	<input type="hidden" id="command" name="command">
+	<input type="hidden" id="com_add" name="com_add" >
+	<input type="hidden" id="com_add2" name="com_add2">
 </form>
-    
+
+<a href="javascript:class_jump('command','add');">新建文件夹</a>
+<a href="javascript:class_jump('command','return');">返回</a>
+<a href="javascript:class_jump('command','delete');">删除</a>
+<a href="javascript:class_jump('command','rename');">重命名</a>
+
+<?php 
+echo $html_a;
+$files=scandir($real_route);
+
+for($i=2;$i<count($files);$i++)
+{
+	if(is_dir($real_route.$files[$i]))
+	{
+		echo "<tr><td><img src='../images/folder.png'/></td>
+          <td><a href=\"javascript:in_folder('".$files[$i]."');\">".$files[$i]."</a></td>
+          <td>26 minutes ago</td></tr>";
+	}
+}
+for($i=2;$i<count($files);$i++)
+{
+	if(is_dir($real_route.$files[$i])==false)
+	{
+		echo "<tr><td><img src='../images/file.jpg'/></td>
+          <td><a href='".$real_route.$files[$i]."'>".$files[$i]."</a></td>
+          <td>26 minutes ago</td></tr>";
+	}
+}
+echo $html_b;
+echo "当前位置:".$real_route;
+
+ ?>
+
+<form action="upload.php" method="post"
+enctype="multipart/form-data">
+<label for="file">上传到当前文件夹</label>
+<input type="hidden" id="route2" name="route2"
+<?php 
+echo "value=\"$route\"".'"';
+ ?>
+ />
+<input type="file" name="file" id="file" /> 
+<br />
+<input type="submit" name="submit" value="Submit" />
+</form>
     
 </div>
 </div>
