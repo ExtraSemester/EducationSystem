@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>团队审核</title>
+<title>已发作业</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -22,8 +22,10 @@
 
 
 
+
 <body>
-<div class="total">
+
+
  <!------------ 顶边栏 ------------->
  <div id="wrapper">
         <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -68,6 +70,7 @@
             
 <!------------侧边栏-----------------> 
 			<div class="navbar-default sidebar" role="navigation">
+            
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -77,7 +80,7 @@
                             <a href="teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                         </li>
                            <li>
-                            <a href="teacher-class-givehomework"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                            <a href="teacher-class-givehomework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
                             <a href="teacher-class-file.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
@@ -89,69 +92,79 @@
                 </div>
             </div>
         </nav>
-<!------------侧边栏----------------->   
-      
-      
-<!---------课程信息表格----------->
-<div id="page-wrapper">
-<div class="tablegraphs">
-   <div class="col-md-12 graphs">
-	   <div class="xs">
-  	 <h3>团队申请</h3>
-   <div class="panel-body1">
-   <table class="table">
-     <thead>
-        <tr>
-          <th>团队编号</th>
-          <th>团队名称</th>
-          <th>团队状态</th>
-          <th>操作<th>
-          <th>团队成员</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td align="centre"><form action="teacher-class-team.php" method="get"><input type="hidden" name="prove1" value="1"><button type="submit" class="btn-inverse btn">通过</button>					          <form action="teacher-class-team.php" method="get"><input type="hidden" name="prove1" value="0"><button type="submit" class="btn-inverse btn">拒绝</button><td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-           <td align="centre"><form action="teacher-class-team.php" method="get"><input type="hidden" name="prove2" value="1"><button type="submit" class="btn-inverse btn">通过</button>					          <form action="teacher-class-team.php" method="get"><input type="hidden" name="prove2" value="0"><button type="submit" class="btn-inverse btn">拒绝</button><td>
-          <td>@fat</td>
-         
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td align="centre"><form action="teacher-class-team.php" method="get"><input type="hidden" name="prove3" value="1"><button type="submit" class="btn-inverse btn">通过</button>					          <form action="teacher-class-team.php" method="get"><input type="hidden" name="prove3" value="0"><button type="submit" class="btn-inverse btn">拒绝</button><td>
-          <td>@twitter</td>
-          
-        </tr>
-      </tbody>
-    </table>
-    </div>
-    </div><!-- /.table-responsive -->
-  </div>
-  </div>
-<!------------课程信息表格------------->
-  
-  
-<!-------------边底栏信息-------------->
-  <div class="copy_layout">
-      <p>&copy; 2015.Company name All rights reserved.More CopyrightTemplates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-  </div>
-<!-------------边底栏信息-------------->
-
-
-
-
-
+<!------------侧边栏----------------->
+        
+        
+<!------------作业列表----------------> 
+        <div id="page-wrapper">
+        	<div class="graphs">
+	     		<div class="xs">
+  	       			<h3>作业</h3>
+  	         		<div class="bs-example4" data-example-id="contextual-table">
+                    	<h4>已发作业列表</h4>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>作业标题</th>
+                              <th>作业要求</th>
+                              <th>截止时间</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="active">
+                              <th scope="row">1</th>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                            </tr>
+                            <tr class="success">
+                              <th scope="row">3</th>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">4</th>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                            </tr>
+                            <tr class="info">
+                              <th scope="row">5</th>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">6</th>
+                              <td>Column content</td>
+                              <td>Column content</td>
+                              <td>Column content</td>
+							  <td></td>                        
+                            </tr>
+                          </tbody>
+                        </table>
+<button class="btn-inverse btn" onClick="location='teacher-class-givehomework-r.html'">发布新作业</button>
+                    </div>
+               	</div>
+           	</div>
+<!------------作业列表----------------> 
+            
+            
+            
+            <div class="copy_layout" >
+            	<p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">沉迷学习</a></p>
+	    	</div>
+      	</div>
+        
+</div>
+    <!-- /#wrapper -->
 
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
