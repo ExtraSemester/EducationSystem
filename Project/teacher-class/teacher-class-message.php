@@ -75,10 +75,10 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
+                        <a href="teacher-class-message.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
+                        <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                     </li>
                     <li>
                         <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>

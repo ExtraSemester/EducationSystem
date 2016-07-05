@@ -169,7 +169,6 @@ HTML;
 
     $class_name = $_GET['class_name'];
 
-    $class_name = "系统分析";
     require_once '../database.php';
     $conn = new database();
 
