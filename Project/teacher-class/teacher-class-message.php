@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -107,11 +108,9 @@
 
                         $my_db=new database();
                         $class_name=$_GET['class_name'];
-                        $class_id=$my_db->database_get("select id from class where class_name=$class_name");
-                        $class_teacher=$my_db->database_get("select name from teacher where id=select teacher_id from class_teacher and class_id=$class_id");
-                        $class_state=$my_db->database_get("select state from class where class_name=$class_name")
-                        
-                        
+                        $class_data=$my_db->database_get("select * from class where name='$class_name' ");
+                        $class_teacher_data=$my_db->database_get("select * from teacher where id=select teacher_id from class_teacher where class_id=$class_data[0]['id']");
+
                         ?>
                         <table class="table">
                             <thead>
@@ -124,15 +123,21 @@
                             </thead>
                             <tbody>
                             <tr class="active">
-                                <th scope="row"><?php echo $class_id[0]['id'] ?></th>
-                                <td><?php echo $class_name?></td>
-                                <td><?php echo $class_teacher[0]['name']?></td>
-                                <td><?php echo $class_state[0]['state']?></td>
+                                <th scope="row"><?php echo $class_data[0]['id'] ?></th>
+                                <td><?php echo $class_data[0]['name']?></td>
+                                <td><?php echo $class_teacher_data[0]['name']?></td>
+                                <td><?php echo $class_data[0]['state']?></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
+                    <?php
+                    require_once '../database.php';
 
+                    $my_db=new database();
+                    $team_data=$my_db->database_get("select * from team where class_id=$class_data[0]['id']");
+                    $i=0;
+                    ?>
                     <div class="panel-body1">
                         <table class="table">
                             <thead>
@@ -145,22 +150,22 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row"><?php echo 'asd'?></th>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
+                                <th scope="row"><?php echo $team_data[$i]['id'];?></th>
+                                <td><?php echo $team_data[$i]['name'];?></td>
+                                <td><?php echo $team_data[$i]['number'];?></td>
+                                <td><?php echo $team_data[$i]['id'];$i++;?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?php echo 'dsa'?></th>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
+                                <th scope="row"><?php echo $team_data[$i]['id'];?></th>
+                                <td><?php echo $team_data[$i]['name'];?></td>
+                                <td><?php echo $team_data[$i]['number'];?></td>
+                                <td><?php echo $team_data[$i]['id'];$i++;?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?php ?></th>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
-                                <td><?php ?></td>
+                                <th scope="row"><?php echo $team_data[$i]['id'];?></th>
+                                <td><?php echo $team_data[$i]['name'];?></td>
+                                <td><?php echo $team_data[$i]['number'];?></td>
+                                <td><?php echo $team_data[$i]['id'];$i++;?></td>
                             </tr>
                             </tbody>
                         </table>
