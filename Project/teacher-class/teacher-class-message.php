@@ -81,7 +81,7 @@
                         <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                        <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                     </li>
                     <li>
                         <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
