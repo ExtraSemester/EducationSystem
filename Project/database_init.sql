@@ -95,6 +95,7 @@ create table team_student
 create table work
 (
     id int primary key AUTO_INCREMENT,
+    title varchar(255),
 	content varchar(2000),
 	class_id int,
 	kind int,

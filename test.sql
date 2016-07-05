@@ -57,7 +57,7 @@ CREATE TABLE `class` (
   `place` varchar(100) DEFAULT NULL,
   `state` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,13 +267,14 @@ CREATE TABLE `team` (
   `name` varchar(200) DEFAULT NULL,
   `admin_id` int(11) DEFAULT NULL,
   `class_id` int(11) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
   `stat` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `class_id` (`class_id`),
   KEY `admin_id` (`admin_id`),
   CONSTRAINT `team_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
   CONSTRAINT `team_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -282,6 +283,7 @@ CREATE TABLE `team` (
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
+INSERT INTO `team` VALUES (1,'日渐消瘦',8,10,15,1),(2,'沉迷学习',5,2,10,2);
 /*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,6 +350,7 @@ DROP TABLE IF EXISTS `work`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `work` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
   `content` varchar(2000) DEFAULT NULL,
   `class_id` int(11) DEFAULT NULL,
   `kind` int(11) DEFAULT NULL,
@@ -377,4 +380,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-04 16:16:27
+-- Dump completed on 2016-07-05 10:34:18
