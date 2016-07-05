@@ -26,7 +26,7 @@ if($role == 'student')
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["role"] = $role;
+        //$_SESSION["role"] = $role;
         $_SESSION["user_id"] = $result[0]['id'];
 		
 		echo '<form name="cookie" method="get" action="student/student.php">
@@ -46,7 +46,7 @@ elseif($role == 'teacheer')
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["role"] = $username;
+        //$_SESSION["role"] = $username;
         $_SESSION["user_id"] = $result[0]['id'];
         echo "<script type='text/javascript'>location='teacher/teacher.php';</script>";
     }
@@ -61,7 +61,7 @@ elseif($role == 'Admin')
         $lifeTime = 120;
         session_set_cookie_params($lifeTime);
         session_start();
-        $_SESSION["role"] = $role;
+        //$_SESSION["role"] = $role;
         $_SESSION["user_id"] = $result[0]['id'];
         echo "<script type='text/javascript'>location='student/student.php';</script>";
     }

@@ -147,7 +147,7 @@ $html_partB = <<<HTML
   </div>
   </div>
   <div class="copy_layout" >
-            <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="" target="_blank" title="沉迷学习">沉迷学习</a></p>
+            <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 	    </div>
   </div>
       </div>

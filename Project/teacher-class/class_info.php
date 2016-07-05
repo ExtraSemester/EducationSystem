@@ -10,11 +10,18 @@ $class_name = $_GET['class_name'];
 
 ClassInfo::$class_name = $class_name;
 
+echo ClassInfo::$class_name;
+
 class ClassInfo{
     
     public static $class_name;
     public static $class_id;
 
+    public static $user_class = array();
+
+    public static function test(){
+        self::$user_class['test'] = 'fuck';
+    }
     /**
      * @param mixed $class_id
      */
