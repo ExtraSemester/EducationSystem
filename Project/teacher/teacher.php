@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">BUAA协同教学平台</a>
+            <a class="navbar-brand" href="">BUAA协同教学平台</a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-nav navbar-right">
@@ -74,10 +74,10 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="../teacher-class/teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>教师信息</a>
+                        <a href="teacher.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>教师信息</a>
                     </li>
                     <li>
-                        <a href="../teacher-class/teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>帮助</a>
+                        <a href=""><i class="fa fa-dashboard fa-fw nav_icon"></i>帮助</a>
                 </ul>
             </div>
         </div>
@@ -95,6 +95,7 @@
                     $user_id=$_GET['username'];
                     $class_data=$my_db->database_get("select * from class where id=select class_id from class_teacher where teacher_id=$user_id");
                     $teacher_data=$my_db->database_get("select * from teacher where id=$user_id");
+                    $count=count($class_data);
                     $i=0;
                     
                     ?>
@@ -108,7 +109,57 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="active">
+                        <?php
+
+                        $html_01=<<<html
+<tr>
+html;
+                        $html_02=<<<html
+<th scope="row">
+html;
+                        $html_03=<<<html
+</th>
+html;
+                        $html_04=<<<html
+<td>
+html;
+                        $html_05=<<<html
+<form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number1"><button type="submit" class="btn-inverse btn" ><p id="classnumber1">
+html;
+                        $html_06=<<<html
+                        </p></button></form></td>
+                            <script type="text/javascript">
+                                document.getElementById('number1').value=document.getElementById('classnumber1').value;
+                            </script>
+html;
+                        $html_07=<<<html
+<td>
+html;
+                        $html_08=<<<html
+</td>
+html;
+                        $html_09=<<<html
+</tr>
+html;
+//开始执行
+                        for($i=0;$i<$count;$i++)
+                        {
+                            echo $html_01;
+                            echo $html_02;
+                            echo $class_data[$i]['id'];
+                            echo $html_03;
+                            echo $html_04;
+                            echo $html_05;
+                            echo $class_data[$i]['name'];
+                            echo $html_06;
+                            echo $html_07;
+                            echo $class_data[$i]['time'];
+                            echo $html_08;
+                            echo $html_09;
+                        }
+                        ?>
+                        <!-----
+                        <tr>
                             <th scope="row"><?php echo $class_data[$i]['id']; ?></th>
                             <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number1"><button type="submit" class="btn-inverse btn" ><p id="classnumber1"><?php echo $class_data[$i]['name']; ?></p></button></form></td>
                             <script type="text/javascript">
@@ -117,48 +168,11 @@
 
                             <td><?php echo $class_data[$i]['time'];$i++;?></td>
                         </tr>
-                        <tr>
-                            <th scope="row"><?php echo $class_data[$i]['id']; ?></th>
-                            <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number2"><button type="submit" class="btn-inverse btn" ><p id="classnumber2"><?php echo $class_data[$i]['name']; ?></p></button></form></td>
-                            <script type="text/javascript">
-                                document.getElementById('number2').value=document.getElementById('classnumber1').value;
-                            </script>
-                            <td><?php echo $class_data[$i]['time'];$i++;?></td>
-                        </tr>
-                        <tr class="success">
-                            <th scope="row"><?php echo $class_data[$i]['id']; ?></th>
-                            <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number3"><button type="submit" class="btn-inverse btn" ><p id="classnumber3"><?php echo $class_data[$i]['name']; ?></p></button></form></td>
-                            <script type="text/javascript">
-                                document.getElementById('number3').value=document.getElementById('classnumber1').value;
-                            </script>
-                            <td><?php echo $class_data[$i]['time'];$i++;?></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number4"><button type="submit" class="btn-inverse btn"><p id="classnumber4">Column content</p></button></form></td>
-                            <script type="text/javascript">
-                                document.getElementById('number4').value=document.getElementById('classnumber4').value;
-                            </script>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="info">
-                            <th scope="row">5</th>
-                            <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number5"><button type="submit" class="btn-inverse btn"><p id="classnumber5">Column content</p></button></form></td>
-                            <script type="text/javascript">
-                                document.getElementById('number5').value=document.getElementById('classnumber5').value;
-                            </script>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td><form action="teacher-class-message.php" method="get" name="class_name"><input type="hidden" id="number6"><button type="submit" class="btn-inverse btn" onClick="location='../teacher-class-message.html'"><p id="classnumber6">Column content</p></button></form></td>
-                            <script type="text/javascript">
-                                document.getElementById('number6').value=document.getElementById('classnumber6').value;
-                            </script>
-                            <td>Column content</td>
-                        </tr>
+
+
                         </tbody>
                     </table>
+                    ---->
                     <!------------所属课程--------------->
                     <!------------教师信息--------------->
                     <table class="table">

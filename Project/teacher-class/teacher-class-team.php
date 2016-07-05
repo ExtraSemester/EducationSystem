@@ -167,7 +167,7 @@ $html_part_b = <<<HTML
 </html>
 HTML;
 
-    $class_name = $_GET['class_name'];
+    $class_name = ClassInfo::$class_name;
 
     require_once '../database.php';
     $conn = new database();

@@ -1,15 +1,31 @@
+<html>
+<meta http-equiv="refresh" content="1; url=teacher-class-file.php"> 
 <?php 
-	if ($_FILES["fileToUpload"]["error"] > 0)
+	if ($_FILES["file"]["error"] > 0)
     {
-		echo "Return Code: " . $_FILES["fileToUpload"]["error"] . "<br />";
+		echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
     }
 	else
     {
-		echo "Upload: " . $_FILES["fileToUpload"]["name"] . "<br />";
-		echo "Type: " . $_FILES["fileToUpload"]["type"] . "<br />";
-		echo "Size: " . ($_FILES["fileToUpload"]["size"] / 1024) . " Kb<br />";
-		echo "Temp file: " . $_FILES["fileToUpload"]["tmp_name"] . "<br />";
+		$route=$_POST['route2'];
+		
 
-		move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],"data/".$_FILES["fileToUpload"]["name"]);
+		//if($class_name==null)
+		{
+			$class_name="生产实习";
+		}
+		$real_route="./data/".$class_name."/$route";
+
+		move_uploaded_file($_FILES["file"]["tmp_name"],$real_route.$_FILES["file"]["name"]);
+
+		if(file_exists($real_route.$_FILES["file"]["name"]))
+		{
+			echo "上传成功";
+		}
+		else
+		{
+			echo "上传失败";
+		}
     }
 ?>
+</html>

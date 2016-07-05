@@ -43,7 +43,7 @@ elseif($role == 'teacheer')
         session_start();
         $_SESSION["role"] = $username;
         $_SESSION["user_id"] = $result[0]['id'];
-        echo "<script type='text/javascript'>location='teacher/teacher.html';</script>";
+        echo "<script type='text/javascript'>location='teacher/teacher.php';</script>";
     }
     else {
         echo "<script type='text/javascript'>alert('用户名或密码错误');location='login.html';</script>";

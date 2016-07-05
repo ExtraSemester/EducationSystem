@@ -81,7 +81,7 @@
                         <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                        <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                     </li>
                     <li>
                         <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
@@ -136,8 +136,10 @@
 
                     $my_db=new database();
                     $team_data=$my_db->database_get("select * from team where class_id=$class_data[0]['id']");
+                    $count=count($team_data);
                     $i=0;
-                    ?>
+                    $html= <<<HTML
+                    <tr>
                     <div class="panel-body1">
                         <table class="table">
                             <thead>
@@ -148,31 +150,45 @@
                                 <th>团队负责人</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row"><?php echo $team_data[$i]['id'];?></th>
-                                <td><?php echo $team_data[$i]['name'];?></td>
-                                <td><?php echo $team_data[$i]['number'];?></td>
-                                <td><?php echo $team_data[$i]['id'];$i++;?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><?php echo $team_data[$i]['id'];?></th>
-                                <td><?php echo $team_data[$i]['name'];?></td>
-                                <td><?php echo $team_data[$i]['number'];?></td>
-                                <td><?php echo $team_data[$i]['id'];$i++;?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><?php echo $team_data[$i]['id'];?></th>
-                                <td><?php echo $team_data[$i]['name'];?></td>
-                                <td><?php echo $team_data[$i]['number'];?></td>
-                                <td><?php echo $team_data[$i]['id'];$i++;?></td>
-                            </tr>
-                            </tbody>
+                            
                         </table>
                     </div>
                 </div><!-- /.table-responsive -->
             </div>
         </div>
+                     </tr>
+        
+HTML;
+echo $html;
+                    $html_1=<<<HTML
+                            <tbody>
+HTML;
+                    $html_2=<<<HTML
+                            <tr>
+HTML;
+                    $html_3=<<<HTML
+                            <td>
+HTML;
+                    $html_4=<<<HTML
+                            </td>
+HTML;
+                    $html_5=<<<HTML
+                            </tr>
+HTML;
+                    $html_6=<<<HTML
+                            </tbody>
+HTML;
+                    echo $html_1;
+                    echo $html_2;
+for($i=0;$i<$count;$i++)
+{
+    echo $html_3,$team_data[$i]['id'],$html_4,$html_3,$team_data[$i]['name'],$html_4,$html_3,$team_data[$i]['number'],$html_4,$html_3,$team_data[$i]['admin_id'],$html_4;
+}
+                    echo $html_5;
+                    echo $html_6;
+                    
+                    ?>
+
         <!------------课程信息表格------------->
 
 

@@ -1,3 +1,11 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: whx
+ * Date: 2016/7/5
+ * Time: 11:46
+ */
+$html_a = <<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -18,6 +26,12 @@
 <!---//webfonts--->  
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
+
+<script>
+    function toWorkDetail(id) {
+      window.location.href = "teacher-class-homework-s.html?id="+id;
+    }
+</script>
 </head>
 
 
@@ -74,13 +88,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
+                            <a href="teacher-class-message.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
                         </li>
                            <li>
-                            <a href="teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
+                            <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                         </li>
                            <li>
-                            <a href="teacher-class-givehomework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                            <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
                             <a href="teacher-class-file.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
@@ -112,59 +126,15 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr class="active">
-                              <th scope="row">1</th>
-                              <td>Column content</td>
-                              <td>
-                              <button class="btn-inverse btn">
-                              查看作业详情</button>
-                              </td>
-                              <td>Column content</td>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Column content</td>
-                              <td><button class="btn-inverse btn">查看作业详情</button></td>
-                              <td>Column content</td>
-                            </tr>
-                            <tr class="success">
-                              <th scope="row">3</th>
-                              <td>Column content</td>
-                              <td><button class="btn-inverse btn">查看作业详情</button></td>
-                              <td>Column content</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">4</th>
-                              <td>Column content</td>
-                              <td><button class="btn-inverse btn">查看作业详情</button></td>
-                              <td>Column content</td>
-                            </tr>
-                            <tr class="info">
-                              <th scope="row">5</th>
-                              <td>Column content</td>
-                              <td><button class="btn-inverse btn">查看作业详情</button></td>
-                              <td>Column content</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">6</th>
-                              <td>Column content</td>
-                              <td><button class="btn-inverse btn">查看作业详情</button></td>
-                              <td>Column content</td>
-							  <td></td>                        
-                            </tr>
-                          </tbody>
+HTML;
+
+$html_b = <<<HTML
+</tbody>
                         </table>
 <button class="btn-inverse btn" onClick="location='teacher-class-homework-r.html'">发布新作业</button>
                     </div>
                	</div>
            	</div>
-            
-<script type="text/javascript">
-function gethomework()
-{
-    var s=document.getElementById("homework1");
-    this.value=s;
-}
-</script>
 <!------------作业列表----------------> 
             
             
@@ -184,3 +154,43 @@ function gethomework()
 <script src="../js/custom.js"></script>
 </body>
 </html>
+HTML;
+
+    require_once '../database.php';
+    
+    $conn = new database();
+
+    $class_name = ClassInfo::$class_name;
+    //$class_name = '高等数学';
+
+    $sql = "SELECT id,title,content,end_time FROM work 
+WHERE class_id=(SELECT id FROM class WHERE name='$class_name');";
+
+    $result = $conn->database_get($sql);
+
+    echo $html_a;
+
+    if($result) {
+        for ($i = 0; $i < count($result); $i++) {
+
+            $id = $result[$i]['id'];
+            $title = $result[$i]['title'];
+            $content = substr($result[$i]['content'], 0, 20);
+            $end_time = $result[$i]['end_time'];
+
+            echo "<tr class='active'>
+                              <th scope='row'>" . ($i+1) . "</th>
+                              <td>" . $title . "</td>
+                              <td><button class=\"btn-inverse btn\" onclick='toWorkDetail(".$id.")'>
+                              查看作业详情</button></td>
+                              <td>" . $end_time . "</td>
+                            <tr>";
+        }
+
+        echo $html_b;
+    }else{
+        echo "<td>$sql</td>";
+        echo $html_b;
+    }
+
+
