@@ -150,7 +150,8 @@
                          <form action="upload.php" method="post"
 						enctype="multipart/form-data">
                         <input type="hidden" id="route2" name="route2"/>
-                        <button class="btn-inverse btn" type="file" name="file" id="file">选择文件</button>
+                        <input  type="file" name="file" style="display: none;" id="file">
+                        <button type="button" class="btn-inverse btn" name="uploadfile" id="uploadfile" onClick=file.Click()>选择文件</button>
                         <button class="btn-inverse btn" type="submit" name="submit">上传</button><form></div>
 <!---------------------------------文件选择和上传------------------------------------------->
 
