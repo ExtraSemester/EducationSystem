@@ -188,7 +188,10 @@ else if($command=='delete')
 {
 	if(is_dir($real_route.$com_add))
 	{
-		rmdir($real_route.$com_add);
+		if(!rmdir($real_route.$com_add))
+		{
+			echo "ERROR:此文件夹非空！";
+		}
 	}
 	else
 	{
