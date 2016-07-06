@@ -203,6 +203,7 @@ $my_db=new database();
 $user_id = $_SESSION['user_id'];
 
 $student_work_data=$my_db->database_get("select * from work where id in (select work_id from student_work wherer student_id=$user_id)");
+$team_work_data=$my_db->database_get("select * from work where id in (select work_id from team_work where team id in (select team_id from team_student where student_id=$user_id))");
 $count_student_work=count($student_work_data);
 $count_team_work=count($team_work_data);
 if($count_student_work+$count_team_work==0)
