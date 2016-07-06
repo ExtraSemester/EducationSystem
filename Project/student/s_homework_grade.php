@@ -144,7 +144,7 @@ $html_1=<<<HTML
 HTML;
 $html_2=<<<HTML
                                     </th>
-                                    <td><a href="s_homework_sub.html">
+                                    <td>
 
 HTML;
 $html_3=<<<HTML
@@ -204,16 +204,23 @@ $user_id = $_SESSION['user_id'];
 
 $student_work_data=$my_db->database_get("select * from work where id in (select work_id from student_work wherer student_id=$user_id)");
 $count=count($student_work_data);
-for($i=0;$i<$count;$i++)
+if($count==0)
 {
-    echo $html_1;
-    echo $student_work_data[$i]['id'];
-    echo $html_2;
-    echo $student_work_data[$i]['title'];
-    echo $html_3;
-    echo $student_work_data[$i]['grade'];
-    echo $html_4;
-    echo $student_work_data[$i]['comment'];
-    echo $html_5;
+    echo "<td>暂无作业信息</td>";
+}
+else
+{
+    for($i=0;$i<1;$i++)
+    {
+        echo $html_1;
+        echo $student_work_data[$i]['id'];
+        echo $html_2;
+        echo $student_work_data[$i]['title'];
+        echo $html_3;
+        echo $student_work_data[$i]['grade'];
+        echo $html_4;
+        echo $student_work_data[$i]['comment'];
+        echo $html_5;
+    }
 }
 echo $html_B;
