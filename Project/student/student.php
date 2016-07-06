@@ -42,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="font-family:'华文行楷'">北航协同教学平台</a>
+                <a class="navbar-brand" href="" style="font-family:'华文行楷'">北航协同教学平台</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -361,7 +361,8 @@ HTML;
 			require_once '../database.php';
 		
 			$db = new database();
-			$user_id=$_GET["user_id"];
+			//$user_id=$_GET["user_id"];
+			$user_id=$_SESSION['user_id'];
 			$class_data=$db->database_get("select class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
 			echo $html_a;
 			echo $user_id;
