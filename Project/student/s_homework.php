@@ -1,4 +1,7 @@
-
+<?php
+//防止显示到浏览器时乱码
+header('Content-Type:text/html; charset=utf-8;');
+$html_a = <<< HTML
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -41,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="student.php" style="font-family:'华文行楷'">北航协同教学平台</a>
+            <a class="navbar-brand" href="student.php">协同教学平台</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -65,18 +68,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
                 <ul class="dropdown-menu">
 
-                    <li class="m_2"><a href="s_information.php"><i class="fa fa-male"></i> 个人资料</a></li>
+                    <li class="m_2"><a href="s_information.html"><i class="fa fa-male"></i> 个人资料</a></li>
                     <li class="m_2"><a href="#"><i class="fa fa-cog"></i> 设置</a></li>
-                    <li class="m_2"><a href="#" onclick="logout();"><i class="fa fa-lock"></i> 退出</a></li>	
-	        		</ul>
-                    <script>
-						function logout(){
-							if (confirm("确认退出？")){
-							   top.location = "../utils/logout.php";
-						   }
-						  return false;
-						}
-					</script>
+                    <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>
+                </ul>
             </li>
         </ul>
 
@@ -87,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                     </li>
                     <li>
-                        <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
+                        <a href="s_homework.html"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                     </li>
                     <li>
                         <a href="s_homework_grade.html"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
@@ -114,22 +109,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h3>课程作业</h3>
                 <div class="bs-example4" data-example-id="contextual-table">
                     <h4>作业列表</h4>
-                    <?php
-
-                    session_start();
-                    if(isset($_SESSION['user_id'])) {
-
-                        require_once '../database.php';
-                        $db = new database();
-                        $class_name = $_GET['class_name'];
-                        $work_data = $db->database_get("SELECT * FROM work,class WHERE work.class_id=(SELECT id FROM class WHERE name='$class_name')");
-                        $count = count($work_data);
-                        //作业提交状态，1为未提交，2为已提交
-                        $work_state = 1;
-                        $html = <<<HTML
-
-                        <tr>
-                    
                     <table class="table">
                         <thead>
                         <tr>
@@ -141,6 +120,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         </tr>
                         </thead>
+                        <tbody>
+HTML;
+$html_b =<<<HTML
+                        <tr class="active">
+                            <th scope="row">1</th>
+                            <td><a href="s_homework_sub.html">Column content</a></td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>未提交</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td><a href="#">Column content</a></td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+
+                        </tr>
+                        <tr class="success">
+                            <th scope="row">3</th>
+                            <td><a href="#">Column content</a></td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td><a href="#">Column content</a></td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -151,52 +166,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </div>
 <!-- /#wrapper -->
-                        </tr>
-HTML;
-echo $html;
-                        $html1 = <<<HTML
-                            <tbody>
-HTML;
-                        $html2 = <<<HTML
-                            <tr>
-HTML;
-                        $html3 = <<<HTML
-                            <td>
-HTML;
-                        $html4 = <<<HTML
-                            <td>
-HTML;
-                        $html5 = <<<HTML
-                            <tr>
-HTML;
-                        $html6 = <<<HTML
-                            <tbody>
-HTML;
-                        echo $html1, $html2;
-                        for ($i = 0; $i < $count; $i++) {
-                            echo $html3, $work_data[$i]['id'], $html4, $html3, $work_data[$i]['title'], $html4, $html3, $work_data[i]['kind'], $html4, $html3, $work_data[i]['kind'], $html4, $html3, $work_data[i]['end_time'], $html4, $html3, $work_state, $html4;
 
-                        }
-                        echo $html5;
-                        echo $html6;
-                    }
-
-                    else {
-                        echo "用户未登录!";
-                    }
-
-
-
-
-
-
-
-                        ?>
-                    
 
 <!-------------边底栏信息-------------->
 <div class="copy_layout">
-    <p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="#" target="_blank" title="模板之家">沉迷学习</a></p>
+    <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 </div>
 </div>
 </div>
@@ -211,3 +185,36 @@ HTML;
 <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+HTML;
+require_once '../database.php';
+
+    session_start();
+    $class_id = $_SESSION['class_id'];
+    $db = new database();
+    $work_data = $db->database_get("SELECT * FROM work WHERE work.class_id= $class_id");
+    $count = count($work_data);
+    //作业提交状态，默认为未提交
+    $work_state = '未提交';
+    echo $html_a;
+    if ($work_data) {
+        for ($i=0;$i<$count;$i++) {
+            $id = $class_id;
+            $title = $work_data[$i]['title'];
+            $kind = $work_data[$i]['kind'];
+            $end_time = $work_data[$i]['end_time'];
+            $state = $work_state;
+
+            echo "<tr class='active'>
+                              <th scope='row'>" . ($i+1) . "</th>
+                                  <td><a href='s_homework_sub.html'>" . $title . "</a></td>
+                              <td>" . $kind . "</td>
+                              <td>" . $end_time . "</td>
+                              <td>" . $state . "</td>
+                            <tr>";
+
+        }
+    }
+
+
+
+
