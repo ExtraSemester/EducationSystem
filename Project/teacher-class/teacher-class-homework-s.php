@@ -159,6 +159,7 @@ $html_partE = <<<HTML
                <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
               <button type="button" class="btn-inverse btn" onClick="change()">修改</button>
+              <input type="hidden" name="id" value="$id"/>
               <button type="submit" class="btn-inverse btn">确定</button>                     
               </div>
               </div>
