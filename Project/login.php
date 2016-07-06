@@ -23,8 +23,6 @@ if($role == 'student')
 {
     $result = $my_db->database_get("select id from student where student_id='$id'and password='$password'");
     if(count($result)!=0) {
-        $lifeTime = 120;
-        session_set_cookie_params($lifeTime);
         session_start();
         //$_SESSION["role"] = $role;
         $_SESSION["user_id"] = $result[0]['id'];
@@ -43,8 +41,6 @@ elseif($role == 'teacheer')
 {
     $result = $my_db->database_get("select id from teacher where employee_id='$id'and password='$password'");
     if(count($result)!=0) {
-        $lifeTime = 120;
-        session_set_cookie_params($lifeTime);
         session_start();
         //$_SESSION["role"] = $username;
         $_SESSION["user_id"] = $result[0]['id'];
@@ -58,8 +54,6 @@ elseif($role == 'Admin')
 {
     $result = $my_db->database_get("select id from admin where employee_id='$id'and password='$password'");
     if(count($result)!=0) {
-        $lifeTime = 120;
-        session_set_cookie_params($lifeTime);
         session_start();
         //$_SESSION["role"] = $role;
         $_SESSION["user_id"] = $result[0]['id'];

@@ -1,6 +1,7 @@
 <html>
-<meta http-equiv="refresh" content="0; url=teacher-class-file.php"> 
+<meta http-equiv="refresh" content="0; url=teacher-class-file.php
 <?php 
+
 	if ($_FILES["file"]["error"] > 0)
     {
 		echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
@@ -8,6 +9,7 @@
 	else
     {
 		$route=$_POST['route2'];
+		echo '?route='.$route.'">' ;
 		$class_name=$_POST['class_name2'];
 echo "R".$route."S".$class_name;
 		if($class_name==null)
