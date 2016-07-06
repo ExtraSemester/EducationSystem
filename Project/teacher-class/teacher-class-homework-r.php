@@ -26,7 +26,7 @@ if(isset($_SESSION['user_id'])) {
 //        $count = count($_result);
         if ($id!=null) {
             $result = $db->database_get("UPDATE work set kind=2,title=$title,content=$content,class_id=$class_id,
-                                            start_time=$start_time,end_time=$end_time");
+                                          start_time=$start_time,end_time=$end_time");
             echo "<script type='text/javascript'>alert('作业修改成功!');location='teacher-class-givehomework.php';</script>";
 
         }
