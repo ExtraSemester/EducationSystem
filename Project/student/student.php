@@ -271,6 +271,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <ul class="nav nav-second-level" style="width:300px">
                 <form name="formc" method="get" action="class.php">
                         <input type="hidden" id="cname" name="class_name" value="value">
+						<input type="hidden" id="cname" name="user_id" value="
+HTML;
+$html_ab=<<<HTML
+						">
                 </form>
 
 
@@ -329,7 +333,7 @@ $html_b = <<<HTML
 		</div>
 		
 		<div class="copy" >
-            <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">沉迷学习</a></p>
+            <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 	    </div>
 		</div>
        </div>
@@ -349,9 +353,12 @@ HTML;
 			require_once '../database.php';
 		
 			$db = new database();
-			$user_id=$_SESSION["user_id"];
+			$user_id=$_GET["user_id"];
 			$class_data=$db->database_get("select class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
 			echo $html_a;
+			echo $user_id;
+			echo $html_ab;
+			
 			for($i=0;$i<count($class_data);$i++)
 			{
 				echo "<li><a href=\"javascript:class_jump('".$class_data[$i]['name']."');\">".$class_data[$i]['name']."</a></li>";

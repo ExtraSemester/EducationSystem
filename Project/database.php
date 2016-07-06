@@ -10,7 +10,7 @@ class database{
 		$this->mysql_host = 'localhost';
 		$this->mysql_db = 'edu_sys';
 		$this->mysql_user = 'root';
-		$this->mysql_password = '123456';//你的MySQL密码
+		$this->mysql_password = '';//你的MySQL密码
 		$this->mysql_port = 3306;
 		$this -> connect_to_db();
 	}
@@ -131,7 +131,7 @@ class database{
 			."('$class_id','$student_id')");
 	}
 	private function insert_data_class_teacher($class_id,$teacher_id){
-		$this->connect->exec("INSERT INTO class_teacher(class_id,student_id) VALUES"
+		$this->connect->exec("INSERT INTO class_teacher(class_id,teacher_id) VALUES"
 			. "('$class_id','$teacher_id')");
 	}
 	private function insert_data_to_team($name,$admin_id,$class_id,$stat){

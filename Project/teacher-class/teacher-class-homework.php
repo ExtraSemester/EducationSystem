@@ -19,13 +19,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
 </head>
-
-
-
-
 <body>
-
-
  <!------------ 顶边栏 ------------->
  <div id="wrapper">
         <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -74,19 +68,19 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
+                            <a href="teacher-class-message.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
                         </li>
                            <li>
-                            <a href="teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
+                            <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                         </li>
                            <li>
-                            <a href="teacher-class-givehomework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                            <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
-                            <a href="teacher-class-file.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
+                            <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
                         </li>
                         <li>
-                            <a href="teacher-class-homework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
+                            <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                         </li>
                             </ul>
                 </div>
@@ -94,12 +88,21 @@
         </nav>
 <!------------侧边栏----------------->
         
-        
+<script>
+function select_change(value)
+{
+	confirm(value);
+}
+</script>
 <!------------作业列表----------------> 
         <div id="page-wrapper">
         	<div class="graphs">
 	     		<div class="xs">
   	       			<h3>作业</h3>
+					<label>作业选择：</label> <select id="doc-grade-select" name="doctor_level" onchange="select_change(this.options[this.options.selectedIndex].value);">
+							<option value ="第一次作业">第一次作业</option>
+							<option value ="第二次作业">第二次作业</option>
+							</select>	
   	         		<div class="bs-example4" data-example-id="contextual-table">
                     	<h4>作业列表</h4>
                         <table class="table">
@@ -113,60 +116,21 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr class="active">
-                              <th scope="row">1</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                                <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
-                            <tr class="success">
+						  
+						  
+						  <tr class="success">
                               <th scope="row">3</th>
                               <td>Column content</td>
                               <td>Column content</td>
                               <td>Column content</td>
-                                <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">4</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                                <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
-                            <tr class="info">
-                              <th scope="row">5</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                                <td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">6</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
-<td><form><button class="btn-inverse btn">下载</button>
-    <button type="submit" name="grade1" onclick="grade()" class="btn-inverse btn" >     评分</button>
-    <button type="submit" name="review1" onclick="review()" class="btn-inverse btn">评价</button></form></td>                        
-                            </tr>
+							  <td>
+								<button type="button" class="btn-inverse btn" onclick="javascript:window.location.href='homework/p.rar'">下载</button>
+								<button type="button" name="grade1" onclick="grade()" class="btn-inverse btn" >评分</button>
+								<button type="button" name="review1" onclick="review()" class="btn-inverse btn">评价</button>
+							  </td>
+						   </tr>
+						   
+						   
                           </tbody>
                         </table>
 <button class="btn-inverse btn" onClick="location='teacher-class-homework-r.html'">发布新作业</button>
@@ -193,7 +157,7 @@ function review()
             
             
             <div class="copy_layout" >
-            	<p>BUAA<a href="index.html">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">沉迷学习</a></p>
+                <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 	    	</div>
       	</div>
         

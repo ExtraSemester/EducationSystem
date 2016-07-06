@@ -30,6 +30,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/rickshaw.js"></script>
 </head>
 <body>
+<script>
+function cookie_jump()
+{
+	document.cookie.submit();
+}
+</script>
+
 <div id="wrapper">
      <!-- Navigation -->
         <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -130,16 +137,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>资料</a>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业</a>
+                            <a href="javascript:cookie_jump()"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>成绩</a>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>团队</a>
+                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-comments nav_icon"></i>讨论</a>
@@ -197,7 +204,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		$db = new database();
 		$class_name=$_GET['class_name'];
-		$user_name=$_POST['user_name'];
+		$user_id=$_GET['user_id'];
+		
+		echo '<form name="cookie" method="get" action="s_homework.html">
+                        <input type="hidden" id="cname" name="user_id" value="'.$user_id.'">
+                </form>';
 		
 		$class_data=$db->database_get("select * from class where name='$class_name'");
 		if($class_data==null)
@@ -271,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 
 		<div class="copy" >
-            <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.<a href="" target="_blank" title="模板之家">沉迷学习</a></p>
+			<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 	    </div>
 		</div>
        </div>

@@ -3,13 +3,14 @@
  * Created by PhpStorm.
  * User: whx
  * Date: 2016/7/5
- * Time: 11:46
+ * Time: 16:10
  */
-$html_a = <<<HTML
+
+$html_partA = <<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>已发作业</title>
+<title>作业详情</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -22,16 +23,10 @@ $html_a = <<<HTML
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
 <!----webfonts--->
-<link href='' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 <!---//webfonts--->  
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
-
-<script>
-    function toWorkDetail(id) {
-      window.location.href = "teacher-class-homework-s.php?id="+id;
-    }
-</script>
 </head>
 
 
@@ -106,46 +101,92 @@ $html_a = <<<HTML
                 </div>
             </div>
         </nav>
-<!------------侧边栏----------------->
-        
-        
-<!------------作业列表----------------> 
-        <div id="page-wrapper">
-        	<div class="graphs">
-	     		<div class="xs">
-  	       			<h3>作业</h3>
-  	         		<div class="bs-example4" data-example-id="contextual-table">
-                    	<h4>已发作业列表</h4>
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>作业标题</th>
-                              <th>操作</th>
-                              <th>截止时间</th>
-                            </tr>
-                          </thead>
-                          <tbody>
+<!------------侧边栏-----------------> 
+
+        <div id="page-wrapper" style="min-height:1000px">
+        <div class="graphs">
+	    <div class="xs">
+  	    <h3>作业详情</h3>
+  	    <div class="tab-content">
+        <div class="tab-pane active" id="horizontal-form">
+		<form class="form-horizontal" action="teacher-class-homework-r.php" method="get">
+        <div class="form-group">
+        <label for="smallinput" class="col-sm-2 control-label label-input-sm">作业类型</label>
+        <div class="col-sm-8">
 HTML;
 
-$html_b = <<<HTML
-</tbody>
-                        </table>
-<button class="btn-inverse btn" onClick="location='teacher-class-homework-r.html'">发布新作业</button>
-                    </div>
-               	</div>
-           	</div>
-<!------------作业列表----------------> 
-            
-            
-            
-            <div class="copy_layout" >
-            	<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
-	    	</div>
-      	</div>
-        
+$html_partB = <<< HTML
 </div>
-    <!-- /#wrapper -->
+        </div>
+        <div class="form-group">
+      <p for="smallinput" class="col-sm-2 control-label label-input-sm">作业标题</p>
+        <div class="col-sm-8">
+HTML;
+
+$html_partC = <<<HTML
+</div>
+       </div>  
+       <div class="form-group">
+      <p for="smallinput" class="col-sm-2 control-label label-input-sm">作业要求</p>
+      <div class="col-sm-8">
+HTML;
+
+$html_partD = <<<HTML
+</div>
+                               	</div>
+                                <div class="form-group">
+                                    <label for="smallinput" class="col-sm-2 control-label label-input-sm" >截止时间</label>
+                        			<div class="col-sm-8">
+HTML;
+
+$html_partE = <<<HTML
+</div>
+                               	</div>                             
+                            
+                </div>
+				</div>
+  				</div>
+                <div class="bs-example" data-example-id=           "form-validation-states-with-icons">
+               <div class="panel-footer">
+               <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+              <button class="btn-inverse btn" onClick="change()">修改</button>
+              <button type="submit" class="btn-inverse btn">确定</button>                     
+              </div>
+              </div>
+              </div>
+         </form>
+         </div>	
+  	     </div>
+            
+     	</div>
+        
+ <script type="text/javascript">
+function change()
+{
+	document.getElementById("tasktitle").removeAttribute("readonly");
+	document.getElementById("taskask").removeAttribute("readonly");
+	document.getElementById("taskdeadline").removeAttribute("readonly");
+	document.getElementById("homewortype").removeAttribute("disabled");
+   
+}
+</script>>  
+        
+        
+        
+<!-------------边底栏信息-------------->
+  <div class="copy_layout">
+      <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
+  </div>
+   </div>
+      </div>
+      <!-- /#page-wrapper -->
+   </div>
+<!-------------边底栏信息-------------->
+
+
+
+
 
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
@@ -156,44 +197,45 @@ $html_b = <<<HTML
 </html>
 HTML;
 
-    require_once '../database.php';
-    require_once 'class_info.php';
 
-    $conn = new database();
+$id = $_GET['id'];
 
-    session_start();
-    $class_id = $_SESSION['class_id'];
-    //$class_name = '高等数学';
-    //echo "<script type='text/javascript'>alert(\"$class_name\")</script>";
+require_once '../database.php';
 
-    $sql = "SELECT title,content,end_time FROM work 
-WHERE class_id=$class_id;";
+$conn = new database();
 
-    $result = $conn->database_get($sql);
+$sql = "SELECT kind,title,content,end_time FROM work WHERE id=$id";
 
-    echo $html_a;
+$result = $conn->database_get($sql);
 
-    if($result) {
-        for ($i = 0; $i < count($result); $i++) {
+$kind = $result[0]['kind'];
+$title = $result[0]['title'];
+$content = $result[0]['content'];
+$end_time = $result[0]['end_time'];
 
-            $id = $class_id;
-            $title = $result[$i]['title'];
-            $content = substr($result[$i]['content'], 0, 20);
-            $end_time = $result[$i]['end_time'];
+echo $html_partA;
 
-            echo "<tr class='active'>
-                              <th scope='row'>" . ($i+1) . "</th>
-                              <td>" . $title . "</td>
-                              <td><button class=\"btn-inverse btn\" onclick='toWorkDetail(".$id.")'>
-                              查看作业详情</button></td>
-                              <td>" . $end_time . "</td>
-                            <tr>";
-        }
+if($kind == 1){
+    echo "<select class=\" input-sm\" id=\"homewortype\" disabled>
+        <option>团队作业</option>
+        <option selected='selected'>个人作业</option>
+        </select>";
+}else{
+    echo "<select class=\" input-sm\" id=\"homewortype\" disabled>
+        <option>团队作业</option>
+        <option>个人作业</option>
+        </select>";
+}
 
-        echo $html_b;
-    }else{
-        echo "<td>暂无作业信息</td>";
-        echo $html_b;
-    }
+echo $html_partB;
+echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"tasktitle\" 
+name=\"tasktitle\" value='$title' readonly>";
 
+echo $html_partC;
+echo "<textarea class=\"form-control1 input-sm\" id=\"taskask\" 
+style=\"height:auto;min-height:100px\" name=\"taskask\" readonly>$content</textarea>";
 
+echo $html_partD;
+echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" name=\"taskdeadline\" placeholder=\"\" readonly>";
+
+echo $html_partE;
