@@ -113,83 +113,117 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 	<div class="xs">
   	       				<h3>课程资源</h3>
   	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<h4>文件夹</h4>
-                            <table class="table">
-                          		<thead>
-                            		<tr>
-                                      	<th>#</th>
-                                     	<th>文件（夹）名</th>
-                                      	<th>创建者</th>
-                                      	<th>修改时间</th>
-										<th align="center">操作</th>
-                            		</tr>
-                          		</thead>
-                          		<tbody>
-                            		<tr class="active">
-                              			<th scope="row">1</th>
-                                       	<td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                       	<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">2</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr class="success">
-                              			<th scope="row">3</th>
-                             			<td><a href="#">Column content</a></td>
-                              			<td>Column content</td>
-                             			<td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">4</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                           		 	</tr>
-                          		</tbody>
-                        		
-                          		<tbody>
-                                	<tr>
-                              			<th scope="row">文件</th>
-                                       	
-                            		</tr>
-                            		<tr class="active">
-                              			<th scope="row">1</th>
-                                       	<td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                       	<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">2</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr class="success">
-                              			<th scope="row">3</th>
-                             			<td><a href="#">Column content</a></td>
-                              			<td>Column content</td>
-                             			<td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">4</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                           		 	</tr>
-                          		</tbody>
-                        	</table>
+                    		
+							<table class="table">
+                          <thead>
+				<tr>
+                              <th>类型</th>
+                              <th>文件名</th>
+                              <th>更新日期</th>
+							  <th>下载</th>
+                            </tr>
+                          </thead>
+						  
+						  
+<?php 
+
+$class_name=$_GET['class_name'];
+$route=$_GET['route'];
+$command=$_GET['command'];
+$com_add=$_GET['com_add'];
+$com_add2=$_GET['com_add2'];
+
+session_start();
+
+if($class_name==null)
+{
+	$class_name=$_SESSION['class_name'];
+	
+	if($class_name==null)
+	{
+		$class_name="生产实习";
+	}
+}
+$real_route="../teacher-class/data/".$class_name."/$route";
+if(file_exists($real_route)==false)
+{
+	mkdir($real_route,0777);
+}
+
+if($command=='in')
+{
+	$route=$route.$com_add."/";
+	$real_route="../teacher-class/data/".$class_name."/$route";
+}
+else if($command=='return')
+{
+	$bef=substr($route,0,-1);
+	$pos=strrpos($bef,'/');
+	if($pos>0)
+	{
+		$route=substr($bef,0,$pos+1);
+	}
+	else
+	{
+		$route=null;
+	}
+	
+	$real_route="../teacher-class/data/".$class_name."/$route";
+}
+?>
+
+<script>
+	function class_jump(choose,nam)
+	{
+		var nickname = document.getElementById(choose);
+		nickname.value = nam;
+		document.datas.submit();
+	}
+</script>
+<button class="btn-inverse btn" onClick="class_jump('command','return');">返回上一层</button>
+
+<form name="datas" method="get" action="s_resource.php">
+	<input type="hidden" id="class_name" name="class_name" >
+	<input type="hidden" id="route" name="route"
+<?php 
+echo "value=\"$route\"";
+ ?>
+ >
+	<input type="hidden" id="command" name="command">
+	<input type="hidden" id="com_add" name="com_add" >
+	<input type="hidden" id="com_add2" name="com_add2" >
+</form>
+
+<?php 
+$files=scandir($real_route);
+
+for($i=2;$i<count($files);$i++)
+{
+	if(is_dir($real_route.$files[$i]))
+	{
+		echo "<tr><td><img src='../images/folder.png'/></td>
+          <td><a href=\"javascript:in_folder('".$files[$i]."');\">".$files[$i]."</a></td>
+          <td>26 minutes ago</td>
+		  </tr>";
+	}
+}
+for($i=2;$i<count($files);$i++)
+{
+	if(is_dir($real_route.$files[$i])==false)
+	{
+		echo "<tr><td><img src='../images/file.jpg'/></td>
+          <td><a href='".$real_route.$files[$i]."'>".$files[$i]."</a></td>
+          <td>26 minutes ago</td>
+		  <td><button type=\"button\" class=\"btn-inverse btn\" onclick=\"javascript:window.location.href='".$real_route.$files[$i]."'\">下载</button></td>
+		  </tr>";
+	}
+}
+?>
+
+							</table>
+<?php 
+echo "当前位置:./".$route;
+ ?>
                        	</div>
                     </div>
 				</div>

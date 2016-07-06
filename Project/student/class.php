@@ -1,3 +1,8 @@
+<?php 
+session_start();
+ ?>
+
+<!DOCTYPE HTML>
 <!DOCTYPE HTML>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -145,7 +150,7 @@ function cookie_jump()
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 						<li>
-                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="javascript:cookie_jump()"><i class="fa fa-indent nav_icon"></i>课程作业</a>
@@ -212,6 +217,7 @@ function cookie_jump()
 		
 		$db = new database();
 		$class_name=$_GET['class_name'];
+		$_SESSION['class_name']=$class_name;
 		$user_id=$_GET['user_id'];
 		
 		echo '<form name="cookie" method="get" action="s_homework.php">

@@ -263,7 +263,7 @@ file.click();
 }
 </script>
 <button class="btn-inverse btn" onClick="class_jump('command','add');">新建文件夹</button>
-<button class="btn-inverse btn" onClick="class_jump('command','return');">返回</button>
+<button class="btn-inverse btn" onClick="class_jump('command','return');">返回上一层</button>
 
 <form name="datas" method="get" action="teacher-class-file.php">
 	<input type="hidden" id="class_name" name="class_name" >
@@ -308,13 +308,13 @@ for($i=2;$i<count($files);$i++)
 	}
 }
 echo $html_b;
-echo "当前位置:".$real_route;
+echo "当前位置:./".$route;
 
  ?>
 
 <form action="upload.php" method="post"
 enctype="multipart/form-data">
-<label for="file">上传到当前文件夹</label>
+
 <input type="hidden" id="route2" name="route2"
 <?php 
 echo "value=\"$route\"".'"';
@@ -327,8 +327,7 @@ echo "value=\"$class_name\"".'"';
  />
 <input  type="file" name="file" style="display: none;" id="file">
 <button type="button" class="btn-inverse btn" name="uploadfile" id="uploadfile" onClick="file_click()">选择文件</button>
-<br />
-<input class="btn-inverse btn" type="submit" name="submit" value="Submit" />
+<input class="btn-inverse btn" type="submit" name="submit" value="上传到当前文件夹" >
 </form>
     
 </div>

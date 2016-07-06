@@ -167,7 +167,7 @@ for($i=0;$i<count($works);$i++)
                         <table class="table">
                           <thead>
                             <tr>
-							<th> <button class="btn-inverse btn" onclick="sele_all();">全选</button> </th>
+							<th ><button class="btn-inverse btn" onclick="sele_all();">全选</button> </th>
                               <th>#</th>
                               <th>作业标题</th>
                               <th>提交者</th>
@@ -232,8 +232,8 @@ else if($command=='comment')
 		$kind=$db->database_get("select kind from work where id=".$work_id);
 		echo '
 						  <tr class="success">
-						  <th><input type="checkbox" id="cates" name="cates" value="./homework/'.$work_id.'/'.$wfiles[$i]['title'].'"/></th>
-                              <th scope="row">'.$ki.'</th>
+						  <td align="center" width=6><input type="checkbox" id="cates" name="cates" value="./homework/'.$work_id.'/'.$wfiles[$i]['title'].'"/></td>
+                              <td width=6 scope="row">'.$ki.'</td>
                               <td>'.$wfiles[$i]['title'].'</td>
                               <td>'.$name[0]['name'].'</td>
                               <td>';
