@@ -128,9 +128,20 @@ $command=$_GET['command'];
 $com_add=$_GET['com_add'];
 $com_add2=$_GET['com_add2'];
 
+session_start();
+
 if($class_name==null)
 {
-	$class_name="生产实习";
+	$class_id=$_SESSION['class_id'];
+	require_once "../database.php";
+	$db=new database();
+	$ren=$db->database_get('select name from class where id='.$class_id);
+	$class_name=$ren[0]['name'];
+	
+	if($class_name==null)
+	{
+		$class_name="生产实习";
+	}
 }
 $real_route="./data/".$class_name."/$route";
 if(file_exists($real_route)==false)
@@ -307,6 +318,11 @@ enctype="multipart/form-data">
 <input type="hidden" id="route2" name="route2"
 <?php 
 echo "value=\"$route\"".'"';
+ ?>
+ />
+ <input type="hidden" id="class_name2" name="class_name2"
+<?php 
+echo "value=\"$class_name\"".'"';
  ?>
  />
 <input  type="file" name="file" style="display: none;" id="file">
