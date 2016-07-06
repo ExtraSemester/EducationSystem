@@ -203,14 +203,15 @@ $my_db=new database();
 $user_id = $_SESSION['user_id'];
 
 $student_work_data=$my_db->database_get("select * from work where id in (select work_id from student_work wherer student_id=$user_id)");
-$count=count($student_work_data);
-if($count==0)
+$count_student_work=count($student_work_data);
+$count_team_work=count($team_work_data);
+if($count_student_work+$count_team_work==0)
 {
     echo "<td>暂无作业信息</td>";
 }
 else
 {
-    for($i=0;$i<1;$i++)
+    for($i=0;$i<$count_student_work;$i++)
     {
         echo $html_1;
         echo $student_work_data[$i]['id'];
@@ -220,6 +221,18 @@ else
         echo $student_work_data[$i]['grade'];
         echo $html_4;
         echo $student_work_data[$i]['comment'];
+        echo $html_5;
+    }
+    for($i=0;$i<$count_team_work;$i++)
+    {
+        echo $html_1;
+        echo $team_work_data[$i]['id'];
+        echo $html_2;
+        echo $team_work_data[$i]['title'];
+        echo $html_3;
+        echo $team_work_data[$i]['grade'];
+        echo $html_4;
+        echo $team_work_data[$i]['comment'];
         echo $html_5;
     }
 }
