@@ -145,16 +145,16 @@ function cookie_jump()
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="javascript:cookie_jump()"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
+                            <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队</a>
+                            <a href="course_team.html"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
@@ -214,7 +214,7 @@ function cookie_jump()
 		$class_name=$_GET['class_name'];
 		$user_id=$_GET['user_id'];
 		
-		echo '<form name="cookie" method="get" action="s_homework.html">
+		echo '<form name="cookie" method="get" action="s_homework.php">
                         <input type="hidden" id="cname" name="user_id" value="'.$user_id.'">
                 </form>';
 		
