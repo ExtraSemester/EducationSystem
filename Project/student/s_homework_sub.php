@@ -1,4 +1,11 @@
-
+<?php
+/**
+ * Created by PhpStorm.
+ * User: whx
+ * Date: 2016/7/6
+ * Time: 20:21
+ */
+$html_partA = <<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -93,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
-                            <a href="course_team.php"><i class="fa fa-comments nav_icon"></i>我的团队</a>
+                            <a href="course_team.html"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
@@ -115,16 +122,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   	         			<div class="bs-example4" data-example-id="contextual-table">
                     		<div class="form-group">
 								<label for="focusedinput" class="col-sm-2 control-label">标题：</label>
-								<label  class=" control-label" id="s_w_title"></label>
-							</div>
+HTML;
+
+$html_partB = <<<HTML
+</div>
                             <div class="form-group">
 								<label for="focusedinput" class="col-sm-2 control-label">作业要求：</label>
-								<label  class=" control-label" id="s_w_content"></label>
-							</div>
+HTML;
+
+$html_partC = <<<HTML
+</div>
                             <div class="form-group">
 								<label for="focusedinput" class="col-sm-2 control-label">截止时间：</label>
-								<label  class=" control-label" id="s_w_deadline"></label>
-							</div>
+HTML;
+
+$html_partD = <<<HTML
+</div>
                        	</div>
                         <div class="bs-example4" data-example-id="contextual-table">
                         	<h4>提交作业</h4>
@@ -184,3 +197,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+HTML;
+
+require_once '../database.php';
+
+$conn = new database();
+
+$work_id = $_GET['id'];
+//$work_id = 4;
+
+$sql = "SELECT title,content,end_time FROM work WHERE id=$work_id";
+
+$result = $conn->database_get($sql);
+
+$title = $result[0]['title'];
+$content = $result[0]['content'];
+$end_time = $result[0]['end_time'];
+
+echo $html_partA;
+echo "<label  class=\" control-label\" id=\"s_w_title\">$title</label>";
+
+echo $html_partB;
+echo "<label  class=\" control-label\" id=\"s_w_content\">$content</label>";
+
+echo $html_partC;
+echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
+
+echo $html_partD;

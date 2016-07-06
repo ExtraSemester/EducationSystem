@@ -20,14 +20,16 @@ if(isset($_SESSION['user_id'])) {
     $class_id = $_SESSION['class_id'];
     //$teacher_id = $_SESSION['user_id'];
     $id = $_GET['id'];
+
     //判断是否为团队作业
     if ($kind == '团队作业') {
 //        $result = $db->database_get("SELECT * FROM work WHERE class_id=$class_id AND id=$id");
 //        $count = count($_result);
         if ($id!=null) {
-            $result = $db->database_get("UPDATE work set kind=2,title=$title,content=$content,class_id=$class_id,
-                                          start_time=$start_time,end_time=$end_time");
-            echo "<script type='text/javascript'>alert('作业修改成功!');location='teacher-class-givehomework.php';</script>";
+            $db->database_do("UPDATE work set kind=2,title=$title,content=$content,class_id=$class_id,
+                                          start_time=$start_time,end_time=$end_time WHERE id=$id");
+
+            echo "<script type='text/javascript'>alert(\"$sql\");location='teacher-class-givehomework.php';</script>";
 
         }
         else{
@@ -45,9 +47,10 @@ if(isset($_SESSION['user_id'])) {
 //        $result1 = $db->database_get("SELECT * FROM work WHERE class_id=$class_id AND id=$id");
 //        $count = count($_result1);
         if ($id!=null) {
-            $result = $db->database_get("UPDATE work set kind=1,title=$title,content=$content,class_id=$class_id,
-                                            start_time=$start_time,end_time=$end_time");
-            echo "<script type='text/javascript'>alert('作业修改成功!');location='teacher-class-givehomework.php';</script>";
+            $db->database_do("UPDATE work set kind=1,title='$title',content='$content',class_id=$class_id,
+                                            start_time=$start_time,end_time=$end_time WHERE id=$id");
+
+            echo "<script type='text/javascript'>alert('作业修改成功');location='teacher-class-givehomework.php';</script>";
 
         }
         else{

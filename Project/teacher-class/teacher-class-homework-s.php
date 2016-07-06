@@ -159,8 +159,11 @@ $html_partE = <<<HTML
                <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
               <button type="button" class="btn-inverse btn" onClick="change()">修改</button>
-              <input type="hidden" name="id" value="$id"/>
-              <button type="submit" class="btn-inverse btn">确定</button>                     
+              
+HTML;
+
+$html_partF = <<<HTML
+<button type="submit" class="btn-inverse btn">确定</button>                     
               </div>
               </div>
               </div>
@@ -245,6 +248,8 @@ echo "<textarea class=\"form-control1 input-sm\" id=\"taskask\"
 style=\"height:auto;min-height:100px\" name=\"taskask\" readonly>$content</textarea>";
 
 echo $html_partD;
-echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" name=\"taskdeadline\" placeholder=\"\" readonly>";
+echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" name=\"taskdeadline\" placeholder=\"\" value='$end_time' readonly>";
 
 echo $html_partE;
+echo "<input type=\"hidden\" name=\"id\" value=\"$id\"/>";
+echo $html_partF;

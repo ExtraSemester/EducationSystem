@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
                 <ul class="dropdown-menu">
 
-                    <li class="m_2"><a href="s_information.html"><i class="fa fa-male"></i> 个人资料</a></li>
+                    <li class="m_2"><a href="s_information.php"><i class="fa fa-male"></i> 个人资料</a></li>
                     <li class="m_2"><a href="#"><i class="fa fa-cog"></i> 设置</a></li>
                     <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>
                 </ul>
@@ -82,13 +82,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                     </li>
                     <li>
-                        <a href="s_homework.html"><i class="fa fa-indent nav_icon"></i>课程作业</a>
+                        <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                     </li>
                     <li>
                         <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                     </li>
                     <li>
-                        <a href="course_team.html"><i class="fa fa-comments nav_icon"></i>我的团队</a>
+                        <a href="course_team.php"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
