@@ -103,7 +103,8 @@ create table team_student
     student_id int,
     PRIMARY KEY(team_id,student_id),
     foreign key(team_id) references team(id),
-    foreign key(student_id)references student(id)
+    foreign key(student_id)references student(id),
+    static int
 );
 
 create table student_work
