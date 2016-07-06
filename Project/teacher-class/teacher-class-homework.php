@@ -1,3 +1,7 @@
+<?php 
+session_start();
+ ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -30,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">BUAA协同教学平台</a>
+               <p class="navbar-brand" href="" style="font-family:'华文行楷'">北航协同教学平台</p>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -58,6 +62,14 @@
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
+                    <script>
+						function logout(){
+							if (confirm("确认退出？")){
+							   top.location = "../utils/logout.php";
+						   }
+						  return false;
+						}
+					</script>
 	      		</li>
 			</ul>
 <!------------顶边栏----------------->
@@ -99,9 +111,32 @@ function select_change(value)
         	<div class="graphs">
 	     		<div class="xs">
   	       			<h3>作业</h3>
+					
 					<label>作业选择：</label> <select id="doc-grade-select" name="doctor_level" onchange="select_change(this.options[this.options.selectedIndex].value);">
-							<option value ="第一次作业">第一次作业</option>
-							<option value ="第二次作业">第二次作业</option>
+<?php 
+
+require_once "../database.php";
+
+$db= new database();
+
+$class_id=$_SESSION['class_id'];
+if($class_id==null)
+{
+	$class_id==$_GET['class_id'];
+	if($class_id==null)
+{
+	$class_id==3;
+}
+}
+
+$works=$db->database_get("select id,title from work where class_id=".$class_id);
+
+for($i=0;$i<count($works);$i++)
+{
+	echo '<option value ="'.$works[$i]['title'].'">'.$works[$i]['title'].'</option>';
+}
+
+ ?>
 							</select>	
   	         		<div class="bs-example4" data-example-id="contextual-table">
                     	<h4>作业列表</h4>
@@ -117,18 +152,56 @@ function select_change(value)
                           </thead>
                           <tbody>
 						  
-						  
+<?php 
+
+$work_id=$_GET['work_id'];
+if($work_id==null)
+{
+	$work_id=1;
+}
+
+$wfiles=$db->database_get("select * from work_file where work_id=".$work_id);
+
+for($i=0;$i<count($wfiles);$i++)
+{
+	$ki=$i+1;
+	$name=$db->database_get("select name from student where id=".$wfiles[$i]['student_id']);
+	$kind=$db->database_get("select kind from work where id=".$work_id);
+	if($kind==1)
+	{
+		$grade=$db->database_get("select grade from student_work where work_id=".$work_id);
+	}
+	else
+	{
+		$grade=$db->database_get("select grade from team_work where work_id=".$work_id);
+	}
+	
+	echo '
 						  <tr class="success">
-                              <th scope="row">3</th>
-                              <td>Column content</td>
-                              <td>Column content</td>
-                              <td>Column content</td>
+                              <th scope="row">'.$ki.'</th>
+                              <td>'.$wfiles[$i]['title'].'</td>
+                              <td>'.$name[0]['name'].'</td>
+                              <td>';
+							  if($grade==null)
+							  {
+								  echo "未评分";
+							  }
+							  else
+							  {
+								  echo $grade;
+							  }
+							  echo '</td>
 							  <td>
-								<button type="button" class="btn-inverse btn" onclick="javascript:window.location.href='homework/p.rar'">下载</button>
+								<button type="button" class="btn-inverse btn" onclick="javascript:window.location.href=\'.//homework/'.$work_id.'/'.$wfiles[$i]['title'].'\'">下载</button>
 								<button type="button" name="grade1" onclick="grade()" class="btn-inverse btn" >评分</button>
 								<button type="button" name="review1" onclick="review()" class="btn-inverse btn">评价</button>
 							  </td>
 						   </tr>
+	
+	';
+}
+
+ ?>
 						   
 						   
                           </tbody>

@@ -53,7 +53,7 @@ $html_partA = <<<HTML
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">BUAA协同教学平台</a>
+                <p class="navbar-brand" href="" style="font-family:'华文行楷'">北航协同教学平台</p>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -81,6 +81,14 @@ $html_partA = <<<HTML
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
+                    <script>
+						function logout(){
+							if (confirm("确认退出？")){
+							   top.location = "../utils/logout.php";
+						   }
+						  return false;
+						}
+					</script>
 	      		</li>
 			</ul>
 <!------------顶边栏----------------->
