@@ -112,7 +112,7 @@ function select_change(value)
 	     		<div class="xs">
   	       			<h3>作业</h3>
 					
-					<label>作业选择：</label> <select id="doc-grade-select" name="doctor_level" onchange="select_change(this.options[this.options.selectedIndex].value);">
+					<label>作业题目选择：</label> <select id="doc-grade-select" class="select-homework" name="doctor_level" onchange="select_change(this.options[this.options.selectedIndex].value);">
 <?php 
 
 require_once "../database.php";
