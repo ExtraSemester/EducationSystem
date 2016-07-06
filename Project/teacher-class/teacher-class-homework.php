@@ -60,7 +60,7 @@ session_start();
 	        		<ul class="dropdown-menu">
 						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout()><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
                     <script>
 						function logout(){
@@ -206,7 +206,7 @@ for($i=0;$i<count($wfiles);$i++)
 						   
                           </tbody>
                         </table>
-<button class="btn-inverse btn" onClick="location='teacher-class-homework-r.html'">发布新作业</button>
+<button class="btn-inverse btn" onClick="location='teacher-class-homework-r.php'">发布新作业</button>
                     </div>
                	</div>
            	</div>

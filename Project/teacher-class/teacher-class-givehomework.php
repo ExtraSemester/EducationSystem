@@ -76,7 +76,7 @@ $html_a = <<<HTML
 	        		<ul class="dropdown-menu">
 						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout()><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
                     <script>
 						function logout(){
@@ -174,7 +174,7 @@ HTML;
     //$class_name = '高等数学';
     //echo "<script type='text/javascript'>alert(\"$class_name\")</script>";
 
-    $sql = "SELECT title,content,end_time FROM work 
+    $sql = "SELECT id,title,content,end_time FROM work 
 WHERE class_id=$class_id;";
 
     $result = $conn->database_get($sql);
@@ -184,7 +184,7 @@ WHERE class_id=$class_id;";
     if($result) {
         for ($i = 0; $i < count($result); $i++) {
 
-            $id = $class_id;
+            $id = $result[$i]['id'];
             $title = $result[$i]['title'];
             $content = substr($result[$i]['content'], 0, 20);
             $end_time = $result[$i]['end_time'];
