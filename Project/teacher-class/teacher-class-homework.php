@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 session_start();
  ?>
 
@@ -99,11 +99,26 @@ session_start();
             </div>
         </nav>
 <!------------侧边栏----------------->
+
+
+<form name="datas" method="get" action="teacher-class-homework.php">
+	<input type="hidden" id="command" name="command">
+	<input type="hidden" id="work_id" name="work_id"
+	<?php 
+	$work_id=$_GET['work_id'];
+echo 'value="'.$work_id
+ ?>
+">
+	<input type="hidden" id="com_add" name="com_add" >
+	<input type="hidden" id="com_add2" name="com_add2" >
+</form>
         
 <script>
 function select_change(value)
 {
-	confirm(value);
+	var asd=document.getElementById('work_id');
+	asd.value=value;
+	document.datas.submit();
 }
 </script>
 <!------------作业列表----------------> 
@@ -113,6 +128,7 @@ function select_change(value)
   	       			<h3>作业</h3>
 					
 					<label>作业题目选择：</label> <select id="doc-grade-select" class="select-homework" name="doctor_level" onchange="select_change(this.options[this.options.selectedIndex].value);">
+					<option>请选择要查看的作业题目</option>
 <?php 
 
 require_once "../database.php";
@@ -120,20 +136,27 @@ require_once "../database.php";
 $db= new database();
 
 $class_id=$_SESSION['class_id'];
+
 if($class_id==null)
 {
 	$class_id==$_GET['class_id'];
+	
 	if($class_id==null)
-{
-	$class_id==3;
-}
+	{
+		echo "未得到课程信息(class_id)！";
+	}
 }
 
 $works=$db->database_get("select id,title from work where class_id=".$class_id);
 
 for($i=0;$i<count($works);$i++)
 {
-	echo '<option value ="'.$works[$i]['title'].'">'.$works[$i]['title'].'</option>';
+	echo '<option ';
+	if($work_id==$works[$i]['id'])
+	{
+		echo "selected=\"selected\"";
+	}
+	echo 'value ="'.$works[$i]['id'].'">'.$works[$i]['title'].'</option>';
 }
 
  ?>
@@ -146,60 +169,60 @@ for($i=0;$i<count($works);$i++)
                               <th>#</th>
                               <th>作业标题</th>
                               <th>提交者</th>
-                              <th>状态</th>
+                              <th>评价结果</th>
 <th align="center">操作</th>
                             </tr>
                           </thead>
                           <tbody>
-						  
-<?php 
 
-$work_id=$_GET['work_id'];
-if($work_id==null)
+<?php 
+$command=$_GET['command'];
+$com_add=$_GET['com_add'];
+$com_add2=$_GET['com_add2'];
+
+if($command=='grade')
 {
-	$work_id=1;
+	$db->database_do('update work_file set grade='.$com_add2.' where student_id="'.$com_add.'"');
+}
+else if($command=='comment')
+{
+	$db->database_do('update work_file set comment="'.$com_add2.'" where student_id="'.$com_add.'"');
 }
 
-$wfiles=$db->database_get("select * from work_file where work_id=".$work_id);
+ ?>
 
-for($i=0;$i<count($wfiles);$i++)
-{
-	$ki=$i+1;
-	$name=$db->database_get("select name from student where id=".$wfiles[$i]['student_id']);
-	$kind=$db->database_get("select kind from work where id=".$work_id);
-	if($kind==1)
+<?php 
+
+	$wfiles=$db->database_get("select * from work_file where work_id=".$work_id);
+
+	for($i=0;$i<count($wfiles);$i++)
 	{
-		$grade=$db->database_get("select grade from student_work where work_id=".$work_id);
-	}
-	else
-	{
-		$grade=$db->database_get("select grade from team_work where work_id=".$work_id);
-	}
-	
-	echo '
+		$ki=$i+1;
+		$name=$db->database_get("select name from student where id=".$wfiles[$i]['student_id']);
+		$kind=$db->database_get("select kind from work where id=".$work_id);
+		echo '
 						  <tr class="success">
                               <th scope="row">'.$ki.'</th>
                               <td>'.$wfiles[$i]['title'].'</td>
                               <td>'.$name[0]['name'].'</td>
                               <td>';
-							  if($grade==null)
+							  if($wfiles[$i]['grade']==null)
 							  {
 								  echo "未评分";
 							  }
 							  else
 							  {
-								  echo $grade;
+								  echo $wfiles[$i]['grade'];
 							  }
 							  echo '</td>
 							  <td>
-								<button type="button" class="btn-inverse btn" onclick="javascript:window.location.href=\'.//homework/'.$work_id.'/'.$wfiles[$i]['title'].'\'">下载</button>
-								<button type="button" name="grade1" onclick="grade()" class="btn-inverse btn" >评分</button>
-								<button type="button" name="review1" onclick="review()" class="btn-inverse btn">评价</button>
+								<button type="button" class="btn-inverse btn" onclick="javascript:window.location.href=\'./homework/'.$work_id.'/'.$wfiles[$i]['title'].'\'">下载</button>
+								<button type="button" name="grade1" value="'.$wfiles[$i]['student_id'].'" onclick="grade(this.value)" class="btn-inverse btn" >评分</button>
+								<button type="button" name="review1" value="'.$wfiles[$i]['student_id'].'" onclick="review(this.value)" class="btn-inverse btn">评价</button>
 							  </td>
-						   </tr>
-	
-	';
-}
+						   </tr>';
+	}
+
 
  ?>
 						   
@@ -213,15 +236,33 @@ for($i=0;$i<count($wfiles);$i++)
             
             
 <script type="text/javascript">
-function grade()
+function grade(choose)
 {
     var s=prompt("请输入分数： ");
-    this.value=s;
+	var d=document.getElementById('command');
+	d.value='grade';
+	var k=document.getElementById('com_add');
+	k.value=choose;
+	var p=document.getElementById('com_add2');
+	p.value=s;
+	if(s!=null)
+	{
+		document.datas.submit();
+	}
 }
-function review()
+function review(choose)
 {
-    var a=prompt("请输入分数： ");
-    this.value=a;
+    var s=prompt("请输入评价： ");
+    var d=document.getElementById('command');
+	d.value='comment';
+	var k=document.getElementById('com_add');
+	k.value=choose;
+	var p=document.getElementById('com_add2');
+	p.value=s;
+	if(s!=null)
+	{
+		document.datas.submit();
+	}
 }
 
 </script>
