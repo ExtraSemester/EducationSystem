@@ -25,8 +25,8 @@ if(isset($_SESSION['user_id'])) {
 //        $result = $db->database_get("SELECT * FROM work WHERE class_id=$class_id AND id=$id");
 //        $count = count($_result);
         if ($id!=null) {
-            $result = $db->database_get("UPDATE work set kind=2 title=$title content=$content class_id=$class_id
-                                            start_time=$start_time end_time=$end_time");
+            $result = $db->database_get("UPDATE work set kind=2,title=$title,content=$content,class_id=$class_id,
+                                            start_time=$start_time,end_time=$end_time");
             echo "<script type='text/javascript'>alert('作业修改成功!');location='teacher-class-givehomework.php';</script>";
 
         }
@@ -45,8 +45,8 @@ if(isset($_SESSION['user_id'])) {
 //        $result1 = $db->database_get("SELECT * FROM work WHERE class_id=$class_id AND id=$id");
 //        $count = count($_result1);
         if ($id!=null) {
-            $result = $db->database_get("UPDATE work set kind=1 title=$title content=$content class_id=$class_id
-                                            start_time=$start_time end_time=$end_time");
+            $result = $db->database_get("UPDATE work set kind=1,title=$title,content=$content,class_id=$class_id,
+                                            start_time=$start_time,end_time=$end_time");
             echo "<script type='text/javascript'>alert('作业修改成功!');location='teacher-class-givehomework.php';</script>";
 
         }
