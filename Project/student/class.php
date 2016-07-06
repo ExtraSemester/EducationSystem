@@ -47,12 +47,12 @@ function cookie_jump()
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">BUAA协同教学平台</a>
+                <a class="navbar-brand" href="#" style="font-family:'华文行楷'">北航协同教学平台</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
+	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header">
 							<strong>Messages</strong>
@@ -126,10 +126,18 @@ function cookie_jump()
 						<li class="m_2"><a href="#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
 						<li class="divider"></li>
 						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Lock Profile</a></li>-->
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>
+						<li class="m_2"><a href="s_information.php"><i class="fa fa-lock"></i> 个人资料</a></li>
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>
+                        <li class="m_2"><a href="#" onclick="logout();"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
+                    <script>
+						function logout(){
+							if (confirm("确认退出？")){
+							   top.location = "../utils/logout.php";
+						   }
+						  return false;
+						}
+					</script>
 	      		</li>
 			</ul>
 
@@ -149,7 +157,7 @@ function cookie_jump()
                             <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>讨论</a>
+                            <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
