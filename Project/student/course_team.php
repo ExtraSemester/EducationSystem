@@ -266,7 +266,17 @@ echo $user_team_data[0]['id'];
 echo $html_02;
 echo $user_team_data[0]['admin_id'];
 echo $html_03;
-
+$team_name=$_GET['txtarea1'];
+$search_team_name=$my_db->database_get("select * from team where name=$team_name");
+if(count($search_team_name)!=0) {
+    $table= 'team';
+    $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>1,'stat'=>0);
+    $db->insert_to_db($table,$values);
+    echo "团队创建成功,请等待和珅";
+}
+else{
+    echo"该团队名字已有人使用，请重新输入！";
+}
 if ($user_team_data[0]['stat']==1)
 {
     echo '通过审核';
@@ -282,15 +292,5 @@ elseif ($user_team_data[0]['stat']==3)
 echo $html_B;
 
 //创建团队需要的团队信息
-$team_name=$_GET['txtarea1'];
-$search_team_name=$my_db->database_get("select * from team where name=$team_name");
-if(count($search_team_name)!=0) {
-    $table= 'team';
-    $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>1,'stat'=>0);
-    $db->insert_to_db($table,$values);
-    echo "团队创建成功,请等待和珅";
-}
-else{
-    echo"该团队名字已有人使用，请重新输入！";
-}
+
 
