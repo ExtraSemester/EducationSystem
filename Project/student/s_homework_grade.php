@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="student.php">协同教学平台</a>
+                <a class="navbar-brand" href="student.php" style="font-family:'华文行楷'">北航协同教学平台</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -76,8 +76,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 						<li class="m_2"><a href="s_information.html"><i class="fa fa-male"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-cog"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout();"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
+                    <script>
+						function logout(){
+							if (confirm("确认退出？")){
+							   top.location = "../utils/logout.php";
+						   }
+						  return false;
+						}
+					</script>
 	      		</li>
 			</ul>
 			
@@ -136,7 +144,7 @@ $html_1=<<<HTML
 HTML;
 $html_2=<<<HTML
                                     </th>
-                                    <td><a href="s_homework_sub.html">
+                                    <td>
 
 HTML;
 $html_3=<<<HTML
@@ -195,17 +203,38 @@ $my_db=new database();
 $user_id = $_SESSION['user_id'];
 
 $student_work_data=$my_db->database_get("select * from work where id in (select work_id from student_work wherer student_id=$user_id)");
-$count=count($student_work_data);
-for($i=0;$i<$count;$i++)
+$team_work_data=$my_db->database_get("select * from work where id in (select work_id from team_work where team id in (select team_id from team_student where student_id=$user_id))");
+$count_student_work=count($student_work_data);
+$count_team_work=count($team_work_data);
+if($count_student_work+$count_team_work==0)
 {
-    echo $html_1;
-    echo $student_work_data[$i]['id'];
-    echo $html_2;
-    echo $student_work_data[$i]['title'];
-    echo $html_3;
-    echo $student_work_data[$i]['grade'];
-    echo $html_4;
-    echo $student_work_data[$i]['comment'];
-    echo $html_5;
+    echo "<td>暂无作业信息</td>";
+}
+else
+{
+    for($i=0;$i<$count_student_work;$i++)
+    {
+        echo $html_1;
+        echo $student_work_data[$i]['id'];
+        echo $html_2;
+        echo $student_work_data[$i]['title'];
+        echo $html_3;
+        echo $student_work_data[$i]['grade'];
+        echo $html_4;
+        echo $student_work_data[$i]['comment'];
+        echo $html_5;
+    }
+    for($i=0;$i<$count_team_work;$i++)
+    {
+        echo $html_1;
+        echo $team_work_data[$i]['id'];
+        echo $html_2;
+        echo $team_work_data[$i]['title'];
+        echo $html_3;
+        echo $team_work_data[$i]['grade'];
+        echo $html_4;
+        echo $team_work_data[$i]['comment'];
+        echo $html_5;
+    }
 }
 echo $html_B;
