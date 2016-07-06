@@ -158,7 +158,7 @@ $html_partE = <<<HTML
                <div class="panel-footer">
                <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
-              <button class="btn-inverse btn" onClick="change()">修改</button>
+              <button type="button" class="btn-inverse btn" onClick="change()">修改</button>
               <button type="submit" class="btn-inverse btn">确定</button>                     
               </div>
               </div>
@@ -178,7 +178,7 @@ function change()
 	document.getElementById("homewortype").removeAttribute("disabled");
    
 }
-</script>>  
+</script>  
         
         
         
@@ -224,12 +224,12 @@ $end_time = $result[0]['end_time'];
 echo $html_partA;
 
 if($kind == 1){
-    echo "<select class=\" input-sm\" id=\"homewortype\" disabled>
+    echo "<select class=\" input-sm\" id=\"homewortype\" name=\"kind\" disabled>
         <option>团队作业</option>
         <option selected='selected'>个人作业</option>
         </select>";
 }else{
-    echo "<select class=\" input-sm\" id=\"homewortype\" disabled>
+    echo "<select class=\" input-sm\" id=\"homewortype\" name=\"kind\" disabled>
         <option>团队作业</option>
         <option>个人作业</option>
         </select>";

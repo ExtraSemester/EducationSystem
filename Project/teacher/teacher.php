@@ -29,6 +29,11 @@ $html_partA = <<<HTML
 
 <script>
     
+    function logout() {
+      if(confirm("确认退出？")){
+        top.location = "../utils/logout.php";
+      }
+    }
     function toClass(id) {
     
       window.location.href = "../teacher-class/teacher-class-message.php?class_id="+id;
@@ -79,16 +84,9 @@ $html_partA = <<<HTML
 	        		<ul class="dropdown-menu">
 						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#" onclick="logout()><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
-                    <script>
-						function logout(){
-							if (confirm("确认退出？")){
-							   top.location = "../utils/logout.php";
-						   }
-						  return false;
-						}
-					</script>
+                    
 	      		</li>
 			</ul>
 <!------------顶边栏----------------->
@@ -170,7 +168,7 @@ require_once '../database.php';
 session_start();
 $user_id = $_SESSION['user_id'];
 //$user_id = 1;
-echo "<script type='text/javascript'>alert(\"$user_id\")</script>";
+
 $conn = new database();
 
 $sql = "SELECT id, name, time FROM class,class_teacher WHERE class_id = id and teacher_id = $user_id";
