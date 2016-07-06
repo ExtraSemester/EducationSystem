@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
 <title>发布资源</title>
@@ -33,7 +33,7 @@
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
+	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header">
 							<strong>Messages</strong>
@@ -54,7 +54,7 @@
 	        		<ul class="dropdown-menu">
 						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
                         <script>
 						function logout(){
 							if (confirm("确认退出？")){
@@ -102,15 +102,16 @@
 	<?php 
 $html_a=<<<HTML
 <table class="table">
+                          <thead>
 				<tr>
-				<th>类型</th>
-				<th>文件名</th>
-				<th>更新日期</th>
-				<th>删除</th>
-				<th>重命名
+                              <th>类型</th>
+                              <th>文件名</th>
+                              <th>更新日期</th>
+                              <th>删除</th>
+<th align="center">重命名</th>
+                            </tr>
+                          </thead>
 				
-	<form>			
-	<input type="text" id="com_add2" name="com_add2" placeholder="文件(夹)新名称">
 </form>
 				
 				</th>
@@ -157,23 +158,7 @@ if($command=='add')
 }
 else if($command=='upload')
 {
-		if ($_FILES["fileToUpload"]["error"] > 0)
-    {
-		echo "Return Code: " . $_FILES["fileToUpload"]["error"] . "<br />";
-    }
-	else
-    {
-		$class_name=$_POST['class_name'];
-		$route=$POST['route'];
-
-		if($class_name==null)
-		{
-			$class_name="生产实习";
-		}
-		$real_route="./data/".$class_name."/$route";
-
-		move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$real_route.$_FILES["fileToUpload"]["name"]);
-    }
+		
 }
 else if($command=='in')
 {
@@ -234,18 +219,15 @@ else if($command=='delete')
 <script>
 	function my_rename(choose)
 	{
+		var add2=prompt("请输入新文件（夹）名： ");
 		var nickname = document.getElementById('command');
 		nickname.value = 'rename';
 		var nickname2 = document.getElementById('com_add');
 		nickname2.value = choose;
-		if(document.getElementById('com_add2').value.length==0)
-		{
-			confirm("请输入新的文件(夹)名称");
-		}
-		else
-		{
-			document.datas.submit();
-		}
+		var nickname3 = document.getElementById('com_add2');
+		nickname3.value = add2;
+		
+		document.datas.submit();
 	}
 </script>
 
@@ -260,8 +242,14 @@ else if($command=='delete')
 	}
 </script>
 
-<a href="javascript:class_jump('command','add');">新建文件夹</a>
-<a href="javascript:class_jump('command','return');">返回</a>
+<script>
+function file_click()
+{
+file.click();
+}
+</script>
+<button class="btn-inverse btn" onClick="class_jump('command','add');">新建文件夹</button>
+<button class="btn-inverse btn" onClick="class_jump('command','return');">返回</button>
 
 <form name="datas" method="get" action="teacher-class-file.php">
 	<input type="hidden" id="class_name" name="class_name" >
@@ -272,6 +260,7 @@ echo "value=\"$route\"";
  >
 	<input type="hidden" id="command" name="command">
 	<input type="hidden" id="com_add" name="com_add" >
+	<input type="hidden" id="com_add2" name="com_add2" >
 
 <?php 
 echo $html_a;
@@ -285,8 +274,8 @@ for($i=2;$i<count($files);$i++)
           <td><a href=\"javascript:in_folder('".$files[$i]."');\">".$files[$i]."</a></td>
           <td>26 minutes ago</td>
 		  
-		  <td><a href=\"javascript:my_delete('".$files[$i]."');\">删除</a></td>
-		  <td><a href=\"javascript:my_rename('".$files[$i]."');\">重命名</a></td>
+		  <td><button class=\"btn-inverse btn\" onclick=\"javascript:my_delete('".$files[$i]."');\">删除</a></td>
+		  <td><button class=\"btn-inverse btn\" onclick=\"javascript:my_rename('".$files[$i]."');\">重命名</a></td>
 		  
 		  </tr>";
 	}
@@ -299,8 +288,8 @@ for($i=2;$i<count($files);$i++)
           <td><a href='".$real_route.$files[$i]."'>".$files[$i]."</a></td>
           <td>26 minutes ago</td>
 		  
-		  <td><a href=\"javascript:my_delete('".$files[$i]."');\">删除</a></td>
-		  <td><a href=\"javascript:my_rename('".$files[$i]."');\">重命名</a></td>
+		  <td><button class=\"btn-inverse btn\" onclick=\"javascript:my_delete('".$files[$i]."');\">删除</a></td>
+		  <td><button class=\"btn-inverse btn\" onclick=\"javascript:my_rename('".$files[$i]."');\">重命名</a></td>
 		  </tr>";
 	}
 }
@@ -317,9 +306,10 @@ enctype="multipart/form-data">
 echo "value=\"$route\"".'"';
  ?>
  />
-<input type="file" name="file" id="file" /> 
+<input  type="file" name="file" style="display: none;" id="file">
+<button type="button" class="btn-inverse btn" name="uploadfile" id="uploadfile" onClick="file_click()">选择文件</button>
 <br />
-<input type="submit" name="submit" value="Submit" />
+<input class="btn-inverse btn" type="submit" name="submit" value="Submit" />
 </form>
     
 </div>
