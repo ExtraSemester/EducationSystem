@@ -133,7 +133,7 @@
                                 <div class="form-group">
                                     <label for="smallinput" class="col-sm-2 control-label label-input-sm">截止时间</label>
                         			<div class="col-sm-8">
-										<input type="text" class="form-control1 input-sm" id="taskdeadline" name="end_time" placeholder="请输入截止时间">
+							<input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date"  placeholder="请输入截止时间">
 									</div>
                                	</div>                             
 
@@ -145,6 +145,8 @@
                   		<div class="panel-footer">
                     		<div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
+                                <input type="file" name="file" id="file" style="display:none" onClick="">
+                                <button type="button" onclick="buttonclick()" class="btn-inverse btn" id="button1" name="button1">添加附件</button>
                                     <button type="submit" class="btn-inverse btn">确认发布</button>
                                     
                                 </div>
@@ -156,7 +158,13 @@
             
      	</div>
         
-        
+<script>
+function buttonclick(){
+     var a=document.getElementById("button1");
+	 var b=document.getElementById("file");
+	 a.click()= b.click();
+	}
+</script>>     
         
         
 <!-------------边底栏信息-------------->
