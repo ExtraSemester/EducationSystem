@@ -93,6 +93,8 @@ create table work_file
     student_id int,
     title varchar(250),
     work_id int,
+    comment varchar(500),
+    grade int,
     foreign key(student_id) references student(id),
     foreign key(work_id) references work(id)
 );
@@ -101,32 +103,10 @@ create table team_student
 (
     team_id int,
     student_id int,
+    state int,
     PRIMARY KEY(team_id,student_id),
     foreign key(team_id) references team(id),
-    foreign key(student_id)references student(id),
-    static int
-);
-
-create table student_work
-(
-    work_id int,
-    student_id int,
-	comment varchar(500),
-	grade int,
-    PRIMARY KEY(work_id,student_id),
-    foreign key(work_id) references work(id),
     foreign key(student_id)references student(id)
-);
-
-create table team_work
-(
-    work_id int,
-    team_id int,
-	comment varchar(500),
-	grade int,
-    PRIMARY KEY(work_id,team_id),
-    foreign key(work_id) references work(id),
-    foreign key(team_id)references team(id)
 );
 
 create table talk
