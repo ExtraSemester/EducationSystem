@@ -160,12 +160,14 @@ for($i=0;$i<count($works);$i++)
 }
 
  ?>
+ 
 							</select>	
   	         		<div class="bs-example4" data-example-id="contextual-table">
                     	<h4>作业列表</h4>
                         <table class="table">
                           <thead>
                             <tr>
+							<th> <button class="btn-inverse btn" onclick="sele_all();">全选</button> </th>
                               <th>#</th>
                               <th>作业标题</th>
                               <th>提交者</th>
@@ -174,6 +176,34 @@ for($i=0;$i<count($works);$i++)
                             </tr>
                           </thead>
                           <tbody>
+
+<script>
+ function sele_all()
+ {
+	 var cbs=document.getElementsByName('cates');
+	 for (i = 0; i < cbs.length; i++) 
+	{
+		cbs[i].checked=true;
+	}
+ }
+</script>
+
+<script>
+ function down_my()
+ {
+	 var cbs=document.getElementsByName('cates');
+	 for (i = 0; i < cbs.length; i++) 
+	{
+		if(cbs[i].checked)
+		{
+			var elemIF = document.createElement("iframe");   
+			elemIF.src = cbs[i].value;
+			elemIF.style.display = "none";   
+			document.body.appendChild(elemIF);
+		}
+	}
+ }
+</script>
 
 <?php 
 $command=$_GET['command'];
@@ -189,7 +219,7 @@ else if($command=='comment')
 	$db->database_do('update work_file set comment="'.$com_add2.'" where student_id="'.$com_add.'"');
 }
 
- ?>
+?>
 
 <?php 
 
@@ -202,6 +232,7 @@ else if($command=='comment')
 		$kind=$db->database_get("select kind from work where id=".$work_id);
 		echo '
 						  <tr class="success">
+						  <th><input type="checkbox" id="cates" name="cates" value="./homework/'.$work_id.'/'.$wfiles[$i]['title'].'"/></th>
                               <th scope="row">'.$ki.'</th>
                               <td>'.$wfiles[$i]['title'].'</td>
                               <td>'.$name[0]['name'].'</td>
@@ -216,7 +247,7 @@ else if($command=='comment')
 							  }
 							  echo '</td>
 							  <td>
-								<button type="button" class="btn-inverse btn" onclick="javascript:window.location.href=\'./homework/'.$work_id.'/'.$wfiles[$i]['title'].'\'">下载</button>
+								<button type="button" class="btn-inverse btn" id="do'.$ki.'" onclick="javascript:window.location.href=\'./homework/'.$work_id.'/'.$wfiles[$i]['title'].'\'">下载</button>
 								<button type="button" name="grade1" value="'.$wfiles[$i]['student_id'].'" onclick="grade(this.value)" class="btn-inverse btn" >评分</button>
 								<button type="button" name="review1" value="'.$wfiles[$i]['student_id'].'" onclick="review(this.value)" class="btn-inverse btn">评价</button>
 							  </td>
@@ -225,10 +256,12 @@ else if($command=='comment')
 
 
  ?>
+
 						   
 						   
                           </tbody>
                         </table>
+<button class="btn-inverse btn" onClick="down_my();">下载选中项</button>
 <button class="btn-inverse btn" onClick="location='teacher-class-homework-r.php'">发布新作业</button>
                     </div>
                	</div>
