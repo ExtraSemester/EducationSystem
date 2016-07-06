@@ -42,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">BUAA协同教学平台</a>
+                <a class="navbar-brand" href="index.html" style="font-family:'华文行楷'">北航协同教学平台</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -123,8 +123,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Lock Profile</a></li>-->
 						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout();"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
+                    <script>
+						function logout(){
+							if (confirm("确认退出？")){
+							   top.location = "../utils/logout.php";
+						   }
+						  return false;
+						}
+					</script>
 	      		</li>
 			</ul>
 			
