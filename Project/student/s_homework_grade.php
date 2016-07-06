@@ -1,8 +1,17 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: MSI
+ * Date: 2016/7/6
+ * Time: 9:22
+ */
+
+$html_A=<<<HTML
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>课程作业</title>
+<title>作业成绩</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -65,18 +74,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
 	        		<ul class="dropdown-menu">
 						
-						<li class="m_2"><a href="s_information.php"><i class="fa fa-male"></i> 个人资料</a></li>	
+						<li class="m_2"><a href="s_information.html"><i class="fa fa-male"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-cog"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#" onclick="logout();"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
-                    <script>
-						function logout(){
-							if (confirm("确认退出？")){
-							   top.location = "log.php";
-						   }
-						  return false;
-						}
-					</script>
 	      		</li>
 			</ul>
 			
@@ -87,10 +88,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
-                            <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
+                            <a href="s_homework.html"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                         </li>
 						<li>
-                            <a href="s_homework_grade.html"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
                             <a href="course_team.html"><i class="fa fa-comments nav_icon"></i>我的团队</a>
@@ -111,56 +112,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<div id="page-wrapper">
        			<div class="graphs">
                 	<div class="xs">
-  	       				<h3>作业详情</h3>
+  	       				<h3>个人成绩</h3>
   	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">标题：</label>
-								<label  class=" control-label" id="s_w_title"></label>
-							</div>
-                            <div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">作业要求：</label>
-								<label  class=" control-label" id="s_w_content"></label>
-							</div>
-                            <div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">截止时间：</label>
-								<label  class=" control-label" id="s_w_deadline"></label>
-							</div>
-                       	</div>
-                        <div class="bs-example4" data-example-id="contextual-table">
-                        	<h4>提交作业</h4>
-                            <div class="form-group panel-footer" style="height:auto;min-height:70px;">
-                                <form id="" enctype="" method="post" action="" >
-                                    <div class="row" style="margin-left:10px;">
-                                    	<label class=" ">从计算机中选择文件：</label>
-                                        <input  type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
-                                    </div>
-                                    <div id="fileName"></div>
-                                    <div id="fileSize"></div>
-                                    <div id="fileType"></div>
-                                    <div class="row" style="margin-left:10px;margin-top:10px;margin-bottom:10px">
-                                    	<input type="button" onclick="uploadFile()" value="提交作业" />
-                                        <input type="button" onclick="uploadFile()" value="取消" />
-                                   	</div>
-                                    <!--<div class="panel-footer">
-                                        <div class="row">
-                                            <div class="col-sm-8 col-sm-offset-2">
-                                                <button class="btn-inverse btn" style="width:100px">确定</button>
-                                                
-                                            </div>
-                                        </div>
-                                     </div>-->
+                    		<h4>作业列表</h4>
+                            <table class="table">
+                          		<thead>
+                            		<tr>
+                                      	<th>作业编号</th>
+                                     	<th>标题</th>
+                                      	<th>成绩</th>
+                                      	<th>教师评论</th>
+										
+                            		</tr>
+                          		</thead>
+                          		<tbody>
 
-                                    <div id="progressNumber"></div>
-                               	</form>
-                           	</div>
-                        </div>
-                        
+HTML;
+
+
+$html_1=<<<HTML
+                            		<tr class="active">
+                              		<th scope="row">
+HTML;
+$html_2=<<<HTML
+                                    </th>
+                                    <td><a href="s_homework_sub.html">
+
+HTML;
+$html_3=<<<HTML
+                                    </a></td>
+                                    <td>
+
+HTML;
+$html_4=<<<HTML
+                                    </td>
+                                    <td>
+
+HTML;
+$html_5=<<<HTML
+                                    </td>
+                                    </tr>
+HTML;
+
+$html_B=<<<HTML
+                          		</tbody>
+                        	</table>
+                       	</div>
                     </div>
-                    
 				</div>
-                <div class="copy_layout">
-               		<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
-                </div>
        		</div>
       <!-- /#page-wrapper -->
       
@@ -170,7 +169,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     
       
 <!-------------边底栏信息-------------->
-  
+  <div class="copy_layout">
+	  <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
+  </div>
    </div>
       </div>
       <!-- /#page-wrapper -->
@@ -184,3 +185,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+HTML;
+
+
+session_start();
+require_once '../database.php';
+echo $html_A;
+$my_db=new database();
+$user_id = $_SESSION['user_id'];
+
+$student_work_data=$my_db->database_get("select * from work where id in (select work_id from student_work wherer student_id=$user_id)");
+$count=count($student_work_data);
+for($i=0;$i<$count;$i++)
+{
+    echo $html_1;
+    echo $student_work_data[$i]['id'];
+    echo $html_2;
+    echo $student_work_data[$i]['title'];
+    echo $html_3;
+    echo $student_work_data[$i]['grade'];
+    echo $html_4;
+    echo $student_work_data[$i]['comment'];
+    echo $html_5;
+}
+echo $html_B;

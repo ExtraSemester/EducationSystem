@@ -74,8 +74,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		<ul class="dropdown-menu">
 						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout();"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
+                    <script>
+						function logout(){
+							if (confirm("确认退出？")){
+							   top.location = "log.php";
+						   }
+						  return false;
+						}
+					</script>
 	      		</li>
 			</ul>
 			
@@ -96,14 +104,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队<span class="fa arrow"></span></a>
-                            <!--<ul class="nav nav-second-level">
+                            <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#">沉迷学习小组</a>
                                 </li>
                                 <li>
-                                    <a href="#"></a>
+                                    <a href="#">红星闪闪</a>
                                 </li>
-                            </ul>-->
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
@@ -157,6 +165,7 @@ $html_partB = <<<HTML
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
 <!-- Metis Menu Plugin JavaScript -->
+ <script src="../js/bootstrap.min.js"></script>
 <script src="../js/metisMenu.min.js"></script>
 <script src="../js/custom.js"></script>
 </body>

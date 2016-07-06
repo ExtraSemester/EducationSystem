@@ -60,7 +60,7 @@ $html_part_a = <<<HTML
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">BUAA协同教学平台</a>
+               <p class="navbar-brand" href="" style="font-family:'华文行楷'">北航协同教学平台</p>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
