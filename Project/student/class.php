@@ -289,11 +289,13 @@ function cookie_jump()
 			<!----End Calender -------->
 		</div>
 
-		<div class="copy" >
+		
+		</div>
+        
+       </div>
+       <div class="copy" >
 			<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
 	    </div>
-		</div>
-       </div>
       <!-- /#page-wrapper -->
    </div>
     <!-- /#wrapper -->
