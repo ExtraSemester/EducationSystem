@@ -123,39 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <tbody>
 HTML;
 $html_b =<<<HTML
-                        <tr class="active">
-                            <th scope="row">1</th>
-                            <td><a href="s_homework_sub.html">Column content</a></td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>未提交</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td><a href="#">Column content</a></td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-
-                        </tr>
-                        <tr class="success">
-                            <th scope="row">3</th>
-                            <td><a href="#">Column content</a></td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td><a href="#">Column content</a></td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-
-                        </tr>
-                        </tbody>
+                        
                     </table>
                 </div>
             </div>
