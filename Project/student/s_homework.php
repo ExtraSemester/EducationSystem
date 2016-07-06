@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="student.php">协同教学平台</a>
+            <a class="navbar-brand" href="student.php" style="font-family:'华文行楷'">北航协同教学平台</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
