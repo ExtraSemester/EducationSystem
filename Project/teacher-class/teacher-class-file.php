@@ -54,7 +54,7 @@
 	        		<ul class="dropdown-menu">
 						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#" onclick="logout()><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
                         <script>
 						function logout(){
 							if (confirm("确认退出？")){
