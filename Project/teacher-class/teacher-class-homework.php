@@ -262,7 +262,7 @@ else if($command=='comment')
                           </tbody>
                         </table>
 <button class="btn-inverse btn" onClick="down_my();">下载选中项</button>
-<button class="btn-inverse btn" onClick="location='teacher-class-homework-r.php'">发布新作业</button>
+<button class="btn-inverse btn" onClick="location='teacher-class-homework-r.html'">发布新作业</button>
                     </div>
                	</div>
            	</div>

@@ -142,7 +142,7 @@ $html_partD = <<<HTML
                         <div class="bs-example4" data-example-id="contextual-table">
                         	<h4>提交作业</h4>
                             <div class="form-group panel-footer" style="height:auto;min-height:70px;">
-                                <form id="" enctype="" method="post" action="" >
+                                <form id="" enctype="multipart/form-data" method="post" action="../teacher-class/upload.php" >
                                     <div class="row" style="margin-left:10px;">
                                     	<label class=" ">从计算机中选择文件：</label>
                                         <input  type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
@@ -151,8 +151,12 @@ $html_partD = <<<HTML
                                     <div id="fileSize"></div>
                                     <div id="fileType"></div>
                                     <div class="row" style="margin-left:10px;margin-top:10px;margin-bottom:10px">
-                                    	<input type="button" onclick="uploadFile()" value="提交作业" />
-                                        <input type="button" onclick="uploadFile()" value="取消" />
+                                    	
+HTML;
+
+$html_partE = <<<HTML
+<input type="submit" onclick="uploadFile()" value="提交作业" />
+                                        <input type="button" onclick="" value="取消" />
                                    	</div>
                                     <!--<div class="panel-footer">
                                         <div class="row">
@@ -224,3 +228,5 @@ echo $html_partC;
 echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
 
 echo $html_partD;
+echo "<input type=\"hidden\" name=\"work_id\" value=\"$work_id\" />";
+echo $html_partE;
