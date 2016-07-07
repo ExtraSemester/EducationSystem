@@ -17,7 +17,6 @@ if(isset($_SESSION['user_id'])) {
     $start_time = "2016-7-5 16:11:20";
     $db = new database();
     $class_id = $_SESSION['class_id'];
-    //$teacher_id = $_SESSION['user_id'];
     $id = $_GET['id'];
     echo $id;
     //判断是否为团队作业
