@@ -241,14 +241,14 @@ if($kind == 1){
 
 echo $html_partB;
 echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"tasktitle\" 
-name=\"tasktitle\" value='$title' readonly>";
+name=\"title\" value='$title' readonly>";
 
 echo $html_partC;
 echo "<textarea class=\"form-control1 input-sm\" id=\"taskask\" 
-style=\"height:auto;min-height:100px\" name=\"taskask\" readonly>$content</textarea>";
+style=\"height:auto;min-height:100px\" name=\"content\" readonly>$content</textarea>";
 
 echo $html_partD;
-echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" name=\"taskdeadline\" placeholder=\"\" value='$end_time' readonly>";
+echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" name=\"end_time\" placeholder=\"\" value='$end_time' readonly>";
 
 echo $html_partE;
 echo "<input type=\"hidden\" name=\"id\" value=\"$id\"/>";
