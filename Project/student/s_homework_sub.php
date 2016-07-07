@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
-                            <a href="course_team.html"><i class="fa fa-comments nav_icon"></i>我的团队</a>
+                            <a href="course_team.php"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
@@ -142,7 +142,7 @@ $html_partD = <<<HTML
                         <div class="bs-example4" data-example-id="contextual-table">
                         	<h4>提交作业</h4>
                             <div class="form-group panel-footer" style="height:auto;min-height:70px;">
-                                <form id="" enctype="multipart/form-data" method="post" action="../teacher-class/upload.php" >
+                                <form id="" enctype="multipart/form-data" method="post" action="upload_work.php" >
                                     <div class="row" style="margin-left:10px;">
                                     	<label class=" ">从计算机中选择文件：</label>
                                         <input  type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>

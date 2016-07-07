@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                        <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                     </li>
                     <li>
                         <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
@@ -166,7 +166,7 @@ require_once '../database.php';
     echo $html_a;
     if ($work_data) {
         for ($i=0;$i<$count;$i++) {
-            $id = $class_id;
+            $id = $work_data[$i]['id'];
             $title = $work_data[$i]['title'];
             $kind = $work_data[$i]['kind'];
             $end_time = $work_data[$i]['end_time'];
@@ -174,7 +174,7 @@ require_once '../database.php';
 
             echo "<tr class='active'>
                               <th scope='row'>" . ($i+1) . "</th>
-                                  <td><a href='s_homework_sub.html'>" . $title . "</a></td>
+                                  <td><a href='s_homework_sub.php?id=$id'>" . $title . "</a></td>
                               <td>" . $kind . "</td>
                               <td>" . $end_time . "</td>
                               <td>" . $state . "</td>

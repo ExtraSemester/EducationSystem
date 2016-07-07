@@ -278,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <ul class="nav nav-second-level" style="width:300px">
                 <form name="formc" method="get" action="class.php">
-                        <input type="hidden" id="cname" name="class_name" value="value">
+                        <input type="hidden" id="cname" name="class_id" value="value">
 						<input type="hidden" id="cname" name="user_id" value="
 HTML;
 $html_ab=<<<HTML
@@ -363,14 +363,14 @@ HTML;
 			$db = new database();
 			//$user_id=$_GET["user_id"];
 			$user_id=$_SESSION['user_id'];
-			$class_data=$db->database_get("select class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
+			$class_data=$db->database_get("select class.id,class.name from class_student,class where class_student.class_id=class.id and class_student.student_id=$user_id");
 			echo $html_a;
 			echo $user_id;
 			echo $html_ab;
 			
 			for($i=0;$i<count($class_data);$i++)
 			{
-				echo "<li><a href=\"javascript:class_jump('".$class_data[$i]['name']."');\">".$class_data[$i]['name']."</a></li>";
+				echo "<li><a href=\"javascript:class_jump('".$class_data[$i]['id']."');\">".$class_data[$i]['name']."</a></li>";
 			}
 			echo $html_b;
 		}

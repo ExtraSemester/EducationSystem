@@ -216,23 +216,23 @@ function cookie_jump()
 		require_once '../database.php';
 		
 		$db = new database();
-		$class_name=$_GET['class_name'];
-		$_SESSION['class_name']=$class_name;
+		$class_id=$_GET['class_id'];
+		$_SESSION['class_id']=$class_id;
 		$user_id=$_GET['user_id'];
 		
 		echo '<form name="cookie" method="get" action="s_homework.php">
                         <input type="hidden" id="cname" name="user_id" value="'.$user_id.'">
                 </form>';
 		
-		$class_data=$db->database_get("select * from class where name='$class_name'");
+		$class_data=$db->database_get("select * from class where id='$class_id'");
 		if($class_data==null)
 		{
-			echo $class_name.':未找到此课程相关信息！';
+			echo '未找到此课程相关信息！';
 		}
 		else
 		{
 			echo "<br/>课程名称：".$class_data[0]['name']."<br/>开始周次：".$class_data[0]['start_week']."<br/>结束周次：".$class_data[0]['end_week']."<br/>上课时间：".$class_data[0]['time']."<br/>上课地点：".$class_data[0]['place']."<br/>课程状态：";
-			if($class_data[0]['name']==1)
+			if($class_data[0]['state']==1)
 			{
 				echo '进行中<br/>';
 			}
