@@ -238,7 +238,6 @@ if($kind == 1){
         <option>个人作业</option>
         </select>";
 }
-
 echo $html_partB;
 echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"tasktitle\" 
 name=\"title\" value='$title' readonly>";
