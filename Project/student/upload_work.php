@@ -1,11 +1,3 @@
-/**
- * Created by PhpStorm.
- * User: whx
- * Date: 2016/7/6
- * Time: 23:51
- */
-<html>
-<meta http-equiv="refresh" content="0; url=s_homework.php
 <?php
 
     require_once '../database.php';
@@ -32,15 +24,18 @@
 		{
 			$class_name="生产实习";
 		}
-		$real_route="../teacher-class/data/".$class_name."/work/";
+		$real_route="../teacher-class/homework/".$work_id."/";
 
-        $title = $real_route.$_FILES["file"]["name"];
+        $file_name = iconv('utf-8','gbk',$_FILES["file"]["name"]);
+        $title = $real_route.$file_name;
 
-		move_uploaded_file($_FILES["file"]["tmp_name"],$title);
+        //echo $title;
 
-        $sql = "INSERT INTO work_file(title,student_id,work_id) VALUES ('$title',$student_id,$work_id)";
+        $sql = "INSERT INTO work_file(title,student_id,work_id) VALUES ('$file_name',$student_id,$work_id)";
         $conn->database_do($sql);
-        
+        //echo $sql;
+		move_uploaded_file($_FILES["file"]["tmp_name"],iconv('utf-8','gbk',$title));
+
+        echo "<script type='text/javascript'>location=\"s_homework.php\"</script>";
     }
 ?>
-</html>

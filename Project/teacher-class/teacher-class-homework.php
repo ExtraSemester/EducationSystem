@@ -139,7 +139,7 @@ $class_id=$_SESSION['class_id'];
 
 if($class_id==null)
 {
-	$class_id==$_GET['class_id'];
+	//$class_id==$_GET['class_id'];
 	
 	if($class_id==null)
 	{
@@ -212,11 +212,11 @@ $com_add2=$_GET['com_add2'];
 
 if($command=='grade')
 {
-	$db->database_do('update work_file set grade='.$com_add2.' where student_id="'.$com_add.'"');
+	$db->database_do("update work_file set grade=$com_add2 where student_id=$com_add AND work_id=$work_id");
 }
 else if($command=='comment')
 {
-	$db->database_do('update work_file set comment="'.$com_add2.'" where student_id="'.$com_add.'"');
+	$db->database_do("update work_file set comment='$com_add2' where student_id=$com_add AND work_id=$work_id");
 }
 
 ?>

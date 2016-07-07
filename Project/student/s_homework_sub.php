@@ -142,19 +142,18 @@ $html_partD = <<<HTML
                         <div class="bs-example4" data-example-id="contextual-table">
                         	<h4>提交作业</h4>
                             <div class="form-group panel-footer" style="height:auto;min-height:70px;">
-                                <form id="" enctype="multipart/form-data" method="post" action="upload_work.php" >
-                                    <div class="row" style="margin-left:10px;">
+                                                            	
+HTML;
+
+$html_partE = <<<HTML
+<div class="row" style="margin-left:10px;">
                                     	<label class=" ">从计算机中选择文件：</label>
-                                        <input  type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
+                                        <input  type="file" name="file" id="file"/>
                                     </div>
                                     <div id="fileName"></div>
                                     <div id="fileSize"></div>
                                     <div id="fileType"></div>
                                     <div class="row" style="margin-left:10px;margin-top:10px;margin-bottom:10px">
-                                    	
-HTML;
-
-$html_partE = <<<HTML
 <input type="submit" onclick="uploadFile()" value="提交作业" />
                                         <input type="button" onclick="" value="取消" />
                                    	</div>
@@ -218,6 +217,11 @@ $title = $result[0]['title'];
 $content = $result[0]['content'];
 $end_time = $result[0]['end_time'];
 
+$route = "../teacher-class/homework/".$work_id;
+if(!file_exists($route)){
+	mkdir($route);
+}
+
 echo $html_partA;
 echo "<label  class=\" control-label\" id=\"s_w_title\">$title</label>";
 
@@ -228,5 +232,6 @@ echo $html_partC;
 echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
 
 echo $html_partD;
-echo "<input type=\"hidden\" name=\"work_id\" value=\"$work_id\" />";
+echo "<form id=\"\" enctype=\"multipart/form-data\" method=\"post\" action=\"upload_work.php?work_id=$work_id\" >";
+//echo "<input type=\"hidden\" name=\"work_id\" value=\"$work_id\" />";
 echo $html_partE;
