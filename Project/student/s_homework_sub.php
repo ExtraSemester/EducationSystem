@@ -165,8 +165,11 @@ $html_partE = <<<HTML
                                             </div>
                                         </div>
                                      </div>-->
+                                    
+HTML;
 
-                                    <div id="progressNumber"></div>
+$html_partF = <<<HTML
+<div id="progressNumber"></div>
                                	</form>
                            	</div>
                         </div>
@@ -206,16 +209,24 @@ require_once '../database.php';
 
 $conn = new database();
 
+session_start();
+$user_id = $_SESSION['user_id'];
 $work_id = $_GET['id'];
 //$work_id = 4;
 
-$sql = "SELECT title,content,end_time FROM work WHERE id=$work_id";
+$sql = "SELECT title,content,end_time,kind FROM work WHERE id=$work_id";
 
 $result = $conn->database_get($sql);
 
 $title = $result[0]['title'];
 $content = $result[0]['content'];
 $end_time = $result[0]['end_time'];
+$kind = $result[0]['kind'];
+
+$sql1 = "SELECT status FROM student WHERE id=$user_id";
+$stu = $conn->database_get($sql1);
+
+$status = $stu[0]['status'];
 
 $route = "../teacher-class/homework/".$work_id;
 if(!file_exists($route)){
@@ -232,6 +243,11 @@ echo $html_partC;
 echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
 
 echo $html_partD;
-echo "<form id=\"\" enctype=\"multipart/form-data\" method=\"post\" action=\"upload_work.php?work_id=$work_id\" >";
-//echo "<input type=\"hidden\" name=\"work_id\" value=\"$work_id\" />";
-echo $html_partE;
+if($kind==2 && $status==1){
+	echo "只有团队负责人才可以提交作业~";
+}else {
+	echo "<form id=\"\" enctype=\"multipart/form-data\" method=\"post\" action=\"upload_work.php?work_id=$work_id\" >";
+	echo $html_partE;
+}
+
+echo $html_partF;
