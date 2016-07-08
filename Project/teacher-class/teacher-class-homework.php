@@ -58,7 +58,7 @@ session_start();
 			    <li class="dropdown">
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
 	        		<ul class="dropdown-menu">
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
+						<li class="m_2"><a href="../teacher/teacher.php"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
                         <li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
