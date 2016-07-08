@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
+                            <a href="#"><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
                     </ul>
                 </div>
@@ -191,15 +191,16 @@ $html_B=<<<HTML
                              <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
-                                        <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_join.html'" value="加入或组建团队">
+                                        <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_join.php'" value="加入或组建团队">
                                     </div>
                                 </div>
                              </div>
                              <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
+                                    	 <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_manage.php'" value="管理团队">
                                     </div>
-                                    <div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
+                                    <!--<div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
                                     </div>
                                     <script>
 										function show(){
@@ -207,7 +208,7 @@ $html_B=<<<HTML
 										//alert(document.getElementById("div").style.display)
 										}
 										
-									</script>
+									</script>-->
                                 </div>
                              </div>
                              
@@ -254,7 +255,10 @@ $user_id = $_SESSION['user_id'];
 $class_id=$_SESSION['class_id'];
 
 $user_team_data=$my_db->database_get("select * from team where ( id in(select team_id from team_student where student_id=$user_id) and class_id=$class_id )");
-$lead_data=$my_db->database_get("select * from student where id=$user_team_data[0]['admin_id']");
+
+$admin_id = $user_team_data[0]['admin_id'];
+
+$lead_data=$my_db->database_get("select name from student where id=$admin_id");
 
 echo $user_team_data[0]['name'];
 echo $html_01;

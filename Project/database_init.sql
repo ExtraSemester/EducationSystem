@@ -35,6 +35,15 @@ create table student
     status int
 );
 
+create table terms
+(
+    id int primary key AUTO_INCREMENT,
+    name varchar(255),
+    start_date date,
+    end_date date,
+    state int
+);
+
 create table class
 (
 	    id int primary key AUTO_INCREMENT,
@@ -96,8 +105,10 @@ create table work_file
     work_id int,
     comment varchar(500),
     grade int,
+    class_id int,
     foreign key(student_id) references student(id),
-    foreign key(work_id) references work(id)
+    foreign key(work_id) references work(id),
+    foreign key(class_id) references class(id)
 );
 
 create table team_student

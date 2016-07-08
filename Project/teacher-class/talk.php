@@ -1,15 +1,26 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: whx
- * Date: 2016/7/6
- * Time: 20:21
- */
-$html_partA = <<<HTML
+<?php 
+session_start();
+$class_id=$_SESSION['class_id'];
+$class_name=$_SESSION['class_name'];
+$user_id=$_SESSION['user_id'];
+
+require_once "../database.php";
+$db=new database();
+$res=$db->database_get("select name from teacher where id=".$user_id);
+$user_name=$res[0]['name'];
+
+$cont=$_GET['txt'];
+if($cont!=null)
+{
+	$db->database_do('insert into talk values('.$class_id.',"'.$user_name.':'.$cont.'",NOW())');
+}
+
+ ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>课程作业</title>
+<title>课程讨论</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -24,9 +35,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
-<!----webfonts--->
-<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
 <!-- Metis Menu Plugin JavaScript -->
@@ -39,8 +47,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div id="wrapper">
      <!-- Navigation -->
-     <!-----顶边---------->
         <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <!---------顶边-------------------->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -86,12 +94,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</script>
 	      		</li>
 			</ul>
-			
+             <!---------顶边-------------------->
+             
+             
+			<!-----------侧边------------------>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
@@ -100,86 +111,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
-                            <a href="course_team.php"><i class="fa fa-comments nav_icon"></i>我的团队</a>
+                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
+                            <a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
                     </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-            <!-- /.navbar-static-side -->
+            <!-----------侧边------------------>
         </nav>
+        
+        
 		<div class="copyrights">Collect from <a href="#" ></a></div>
         	<div id="page-wrapper">
        			<div class="graphs">
-                	<div class="xs">
-  	       				<h3>作业详情</h3>
-  	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">标题：</label>
-HTML;
-
-$html_partB = <<<HTML
-</div>
-                            <div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">作业要求：</label>
-HTML;
-
-$html_partC = <<<HTML
-</div>
-                            <div class="form-group">
-								<label for="focusedinput" class="col-sm-2 control-label">截止时间：</label>
-HTML;
-
-$html_partD = <<<HTML
-</div>
+					<div class="form-group">
+					<form action="talk.php" method="get" id="talkf">
+						<div class="col-sm-8">
+							<input name="txt" id="txt" cols="50" rows="4" class="form-control1"></div>
+							<input type="submit" class="btn-inverse btn" style="width:100px" value="发送">
+						</div>
+					</form>
+					
+<?php 
+$talks=$db->database_get("select * from talk where class_id=".$class_id." order by time desc");
+$les=count($talks);
+for($i=0;$i<count($talks);$i++)
+{
+	$level=$les-$i;
+	$tk=$talks[$i]['content'];
+	$pos=strpos($tk,':');
+	$na=substr($tk,0,$pos);
+	$nb=substr($tk,$pos+1);
+	
+	echo '
+		<div class="panel-footer">
+			<table width="1000px">
+				<td width="10%" style="TEXT-ALIGN: center"><img src="../images/people.png" /><br/><span>'.$na.'</span></td>							
+				<td width="74%" style="word-break:break-all">'.$nb.'</td>
+				<td width="16%" align="right"><span >'.$level.'#<br/>'.$talks[$i]['time'].'</span></td>
+			</table>
+		</div>
+';
+}
+ ?>
+							  
+						</div>
+                            
                        	</div>
-                        <div class="bs-example4" data-example-id="contextual-table">
-                        	<h4>提交作业</h4>
-                            <div class="form-group panel-footer" style="height:auto;min-height:70px;">
-                                                            	
-HTML;
-
-$html_partE = <<<HTML
-<div class="row" style="margin-left:10px;">
-                                    	<label class=" ">从计算机中选择文件：</label>
-                                        <input  type="file" name="file" id="file"/>
-                                    </div>
-                                    <div id="fileName"></div>
-                                    <div id="fileSize"></div>
-                                    <div id="fileType"></div>
-                                    <div class="row" style="margin-left:10px;margin-top:10px;margin-bottom:10px">
-<input type="submit" onclick="uploadFile()" value="提交作业" />
-                                        <input type="button" onclick="" value="取消" />
-                                   	</div>
-                                    <!--<div class="panel-footer">
-                                        <div class="row">
-                                            <div class="col-sm-8 col-sm-offset-2">
-                                                <button class="btn-inverse btn" style="width:100px">确定</button>
-                                                
-                                            </div>
-                                        </div>
-                                     </div>-->
-                                    
-HTML;
-
-$html_partF = <<<HTML
-<div id="progressNumber"></div>
-                               	</form>
-                           	</div>
-                        </div>
-                        
                     </div>
-                    
 				</div>
-                <div class="copy_layout">
-               		<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
-                </div>
        		</div>
       <!-- /#page-wrapper -->
       
@@ -189,7 +174,9 @@ $html_partF = <<<HTML
     
       
 <!-------------边底栏信息-------------->
-  
+  <div class="copy_layout">
+      <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
+  </div>
    </div>
       </div>
       <!-- /#page-wrapper -->
@@ -203,51 +190,3 @@ $html_partF = <<<HTML
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-HTML;
-
-require_once '../database.php';
-
-$conn = new database();
-
-session_start();
-$user_id = $_SESSION['user_id'];
-$work_id = $_GET['id'];
-//$work_id = 4;
-
-$sql = "SELECT title,content,end_time,kind FROM work WHERE id=$work_id";
-
-$result = $conn->database_get($sql);
-
-$title = $result[0]['title'];
-$content = $result[0]['content'];
-$end_time = $result[0]['end_time'];
-$kind = $result[0]['kind'];
-
-$sql1 = "SELECT status FROM student WHERE id=$user_id";
-$stu = $conn->database_get($sql1);
-
-$status = $stu[0]['status'];
-
-$route = "../teacher-class/homework/".$work_id;
-if(!file_exists($route)){
-	mkdir($route);
-}
-
-echo $html_partA;
-echo "<label  class=\" control-label\" id=\"s_w_title\">$title</label>";
-
-echo $html_partB;
-echo "<label  class=\" control-label\" id=\"s_w_content\">$content</label>";
-
-echo $html_partC;
-echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
-
-echo $html_partD;
-if($kind==2 && $status==1){
-	echo "只有团队负责人才可以提交作业~";
-}else {
-	echo "<form id=\"\" enctype=\"multipart/form-data\" method=\"post\" action=\"upload_work.php?work_id=$work_id\" >";
-	echo $html_partE;
-}
-
-echo $html_partF;

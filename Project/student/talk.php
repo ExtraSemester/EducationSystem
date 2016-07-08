@@ -1,3 +1,22 @@
+<?php 
+session_start();
+$class_id=$_SESSION['class_id'];
+$class_name=$_SESSION['class_name'];
+$user_id=$_SESSION['user_id'];
+
+require_once "../database.php";
+$db=new database();
+$res=$db->database_get("select name from student where id=".$user_id);
+$user_name=$res[0]['name'];
+
+$cont=$_GET['txt'];
+if($cont!=null)
+{
+	$db->database_do('insert into talk values('.$class_id.',"'.$user_name.':'.$cont.'",NOW())');
+}
+
+ ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -107,61 +126,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </nav>
         
         
-        
 		<div class="copyrights">Collect from <a href="#" ></a></div>
         	<div id="page-wrapper">
        			<div class="graphs">
-                	<div class="xs">
-  	       		        <div class="bs-example" data-example-id="form-validation-states-with-icons">
-                        	<form>                              
-                              <!--<div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <input type="file" id="exampleInputFile">
-                                <p class="help-block">Example block-level help text here.</p>
-                              </div>-->
-							 <div class="panel-footer">
-							 <table>
-							 <td><img src="../images/people.png" /></td>
-                                <td><label>fkehw:hhhhhhffffffsssssssssffffffffffffffffffffffffffffffffqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</label></td>
-								<td><label>2#</label></td>
-							 </table>
-							 
-							 
-                             </div>
-							 <div class="panel-footer">
-                                <div class="row">
-								<label>1#</label>
-                                    <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
-                                        <label>fkehwkfhuwef:hhhhhhhhhhhhhhhhhhhhhhhh</label>
-                                    </div>
-                                </div>
-                             </div>
-							 
-<script>
-function show(){
-	document.getElementById("team_setup").style.display="";
-	//alert(document.getElementById("div").style.display)
+					<div class="form-group">
+					<form action="talk.php" method="get" id="talkf">
+						<div class="col-sm-8">
+							<input name="txt" id="txt" cols="50" rows="4" class="form-control1"></div>
+							<input type="submit" class="btn-inverse btn" style="width:100px" value="发送">
+						</div>
+					</form>
+					
+<?php 
+$talks=$db->database_get("select * from talk where class_id=".$class_id." order by time desc");
+$les=count($talks);
+for($i=0;$i<count($talks);$i++)
+{
+	$level=$les-$i;
+	$tk=$talks[$i]['content'];
+	$pos=strpos($tk,':');
+	$na=substr($tk,0,$pos);
+	$nb=substr($tk,$pos+1);
+	
+	echo '
+		<div class="panel-footer">
+			<table width="1000px">
+				<td width="10%" style="TEXT-ALIGN: center"><img src="../images/people.png" /><br/><span>'.$na.'</span></td>							
+				<td width="74%" style="word-break:break-all">'.$nb.'</td>
+				<td width="16%" align="right"><span >'.$level.'#<br/>'.$talks[$i]['time'].'</span></td>
+			</table>
+		</div>
+';
 }
-</script>
-                             <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
-                                        <input type=button class="btn-inverse btn" style="width:100px" onclick="show();" value="创建团队">
-                                    </div>
-                                    <div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
-                                    	<div class="form-group">
-                                            <label for="txtarea1" class="col-sm-2 control-label">团队名称：</label>
-                                            <div class="col-sm-8"><input name="txtarea1" id="txtarea1" cols="50" rows="4" class="form-control1"></div>
-                                            <input type=button class="btn-inverse btn" style="width:100px" onclick="" value="提交">
-                                        </div>
-                                    </div>
-                                </div>
-                             </div>
-                             
-                            </form>
-                          </div>
-
-                            
+ ?>
+							  
+						</div>
                             
                        	</div>
                     </div>
