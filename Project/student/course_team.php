@@ -254,7 +254,10 @@ $user_id = $_SESSION['user_id'];
 $class_id=$_SESSION['class_id'];
 
 $user_team_data=$my_db->database_get("select * from team where ( id in(select team_id from team_student where student_id=$user_id) and class_id=$class_id )");
-$lead_data=$my_db->database_get("select * from student where id=$user_team_data[0]['admin_id']");
+
+$admin_id = $user_team_data[0]['admin_id'];
+
+$lead_data=$my_db->database_get("select name from student where id=$admin_id");
 
 echo $user_team_data[0]['name'];
 echo $html_01;
