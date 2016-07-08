@@ -145,6 +145,7 @@ if($class_name==null)
 	}
 }
 $real_route="../teacher-class/data/".$class_name."/$route";
+
 if(file_exists($real_route)==false)
 {
 	mkdir($real_route,0777);
@@ -193,7 +194,16 @@ echo "value=\"$route\"";
 	<input type="hidden" id="com_add" name="com_add" >
 	<input type="hidden" id="com_add2" name="com_add2" >
 </form>
-
+<script>
+	function in_folder(choose)
+	{
+		var nickname = document.getElementById('command');
+		nickname.value = 'in';
+		var nickname2 = document.getElementById('com_add');
+		nickname2.value = choose;
+		document.datas.submit();
+	}
+</script>
 <?php 
 $files=scandir($real_route);
 
