@@ -88,6 +88,9 @@
                         <li>
                             <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                         </li>
+						<li>
+						<a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
+					</li>
                             </ul>
                 </div>
             </div>
