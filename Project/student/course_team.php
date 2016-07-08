@@ -198,8 +198,9 @@ $html_B=<<<HTML
                              <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
+                                    	 <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_manage.php'" value="管理团队">
                                     </div>
-                                    <div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
+                                    <!--<div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
                                     </div>
                                     <script>
 										function show(){
@@ -207,7 +208,7 @@ $html_B=<<<HTML
 										//alert(document.getElementById("div").style.display)
 										}
 										
-									</script>
+									</script>-->
                                 </div>
                              </div>
                              
