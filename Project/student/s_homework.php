@@ -155,7 +155,6 @@ $html_b =<<<HTML
 </html>
 HTML;
 require_once '../database.php';
-
     session_start();
     $class_id = $_SESSION['class_id'];
     $db = new database();
