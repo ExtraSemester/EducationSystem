@@ -193,12 +193,20 @@ $html_B=<<<HTML
                                 </div>
                              </div>
                              
+<<<<<<< HEAD
                              <!------------判断身份，若是负责人，则显示以下div，若不是则不显示---------------->
                              <div class="panel-footer">
+=======
+HTML;
+$html_C=<<<HTML
+                                 <div class="panel-footer">
+>>>>>>> refs/remotes/origin/master
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
                                     	 <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_manage.php'" value="管理团队">
                                     </div>
+HTML;
+$html_D=<<<HTML
                                     <!--<div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
                                     </div>
                                     <script>
@@ -243,7 +251,9 @@ $html_B=<<<HTML
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+
 HTML;
+
 
 session_start();
 require_once '../database.php';
@@ -278,4 +288,14 @@ elseif ($user_team_data[0]['stat']==3)
     echo '未通过审核';
 }
 echo $html_B;
+
+//判断是不是团队管理员
+$is_manager=$my_db->database_get("select status from student where id = $user_id");
+if($is_manager[0]['status']==2)
+{
+    echo $html_C;
+}
+else{
+}
+echo  $html_D;
 
