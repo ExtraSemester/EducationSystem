@@ -2,16 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: MSI
- * Date: 2016/7/6
- * Time: 9:22
+ * Date: 2016/7/8
+ * Time: 9:32
  */
-
 $html_A=<<<HTML
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>作业成绩</title>
+<title>团队申请</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -74,8 +73,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
 	        		<ul class="dropdown-menu">
 						
-						<li class="m_2"><a href="s_information.php"><i class="fa fa-male"></i> 个人资料</a></li>	
-                        <li class="m_2"><a href="#"><i class="fa fa-cog"></i> 设置</a></li>	
+						<li class="m_2"><a href="s_information.php"><i class="fa fa-lock"></i> 个人资料</a></li>	
+                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
                         <li class="m_2"><a href="#" onclick="logout();"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
                     <script>
@@ -93,13 +92,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
+                            <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
                             <a href="course_team.php"><i class="fa fa-comments nav_icon"></i>我的团队</a>
@@ -108,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
+                            <a href="#"><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
                     </ul>
                 </div>
@@ -116,75 +115,89 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-		<div class="copyrights">Collect from <a href="#" ></a></div>
+        
+        
+<!-----------------------------------可加入团队部分---------------------------------------->
         	<div id="page-wrapper">
        			<div class="graphs">
                 	<div class="xs">
-  	       				<h3>个人成绩</h3>
+  	       				<h3>团队申请</h3>
   	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<h4>作业列表</h4>
+                    		<h4>可加入团队</h4>
                             <table class="table">
                           		<thead>
                             		<tr>
-                                      	<th>作业编号</th>
-                                     	<th>标题</th>
-                                      	<th>成绩</th>
-                                      	<th>教师评论</th>
-										
+                                      	<th>团队编号</th>
+                                     	<th>团队名称</th>
+                                      	<th>团队成员</th>
+                                      	<th>团队负责人</th>
+                                        <th>团队状态</th>
+                                        <th>操作</th>	
                             		</tr>
                           		</thead>
                           		<tbody>
-
-HTML;
-
-
-$html_1=<<<HTML
                             		<tr class="active">
-                              		<th scope="row">
-HTML;
-$html_2=<<<HTML
-                                    </th>
-                                    <td>
-
-HTML;
-$html_3=<<<HTML
-                                    </a></td>
-                                    <td>
-
-HTML;
-$html_4=<<<HTML
-                                    </td>
-                                    <td>
-
-HTML;
-$html_5=<<<HTML
-                                    </td>
-                                    </tr>
-HTML;
-
-$html_B=<<<HTML
+                              			<th scope="row">1</th>
+                                       	<td><a href="">Column content</a></td>
+                                        <td>Column content</td>
+                                       	<td>Column content</td>
+                                       	<td>Column content</td>
+                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
+                            		</tr>
+                            		<tr>
+                              			<th scope="row">2</th>
+                                        <td><a href="#">Column content</a></td>
+                                        <td>Column content</td>
+                                       	<td>Column content</td>
+                                		<td>Column content</td>
+                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>	
+                            		</tr>
+                            		<tr class="success">
+                              			<th scope="row">3</th>
+                             			<td><a href="#">Column content</a></td>
+                                        <td>Column content</td>
+                                       	<td>Column content</td>
+                                		<td>Column content</td>
+                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
+                            		</tr>
+                            		<tr>
+                              			<th scope="row">4</th>
+                                        <td><a href="#">Column content</a></td>
+                                        <td>Column content</td>
+                                       	<td>Column content</td>
+                                		<td>Column content</td>
+                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
+                           		 	</tr>
                           		</tbody>
                         	</table>
+                            <form method="get" action="">
+<input type="text"  name="team_name" placeholder="请输入团队名称">
+<button type="submit" class="btn-inverse btn">组建团队</button>
+</form>
                        	</div>
                     </div>
 				</div>
-       		</div>
-      <!-- /#page-wrapper -->
-      
-      
-   		</div>
-    <!-- /#wrapper -->
-    
-      
 <!-------------边底栏信息-------------->
   <div class="copy_layout">
 	  <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
   </div>
    </div>
       </div>
-      <!-- /#page-wrapper -->
    </div>
-<!-------------边底栏信息-------------->
+<!-------------边底栏信息-------------->             
+       		</div>
+      <!-- /#page-wrapper -->
+      
+    
+      
+   		</div>
+    <!-- /#wrapper -->
+
+<!-----------------------------------可加入团队部分---------------------------------------->
+
+
+
+
 
 
 
@@ -193,34 +206,25 @@ $html_B=<<<HTML
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+
 HTML;
-
-
-session_start();
 require_once '../database.php';
-echo $html_A;
+session_start();
 $my_db=new database();
 $user_id = $_SESSION['user_id'];
 
-$student_work_data=$my_db->database_get("select * from work_file where student_id=$user_id");
-$count_student_work=count($student_work_data);
-if($count_student_work==0)
-{
-    echo "<td>暂无作业信息</td>";
+echo $html_A;
+
+//创建团队需要的团队信息
+
+$team_name=$_GET["team_name"];
+$search_team_name=$my_db->database_get("select * from team where name=$team_name");
+if(count($search_team_name)==0) {
+    $table= 'team';
+    $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>1,'stat'=>0);
+    $db->insert_to_db($table,$values);
+    echo "<script>alert('团队创建成功,请等待审核')</script>";
 }
-else
-{
-    for($i=0;$i<$count_student_work;$i++)
-    {
-        echo $html_1;
-        echo $student_work_data[$i]['id'];
-        echo $html_2;
-        echo $student_work_data[$i]['title'];
-        echo $html_3;
-        echo $student_work_data[$i]['grade'];
-        echo $html_4;
-        echo $student_work_data[$i]['comment'];
-        echo $html_5;
-    }
+else{
+    echo "<script>alert('该团队名字已有人使用，请重新输入！')</script>";
 }
-echo $html_B;

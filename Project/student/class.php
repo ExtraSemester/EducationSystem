@@ -232,6 +232,7 @@ function cookie_jump()
 		else
 		{
 			echo "<br/>课程名称：".$class_data[0]['name']."<br/>开始周次：".$class_data[0]['start_week']."<br/>结束周次：".$class_data[0]['end_week']."<br/>上课时间：".$class_data[0]['time']."<br/>上课地点：".$class_data[0]['place']."<br/>课程状态：";
+			$_SESSION['class_name']=$class_data[0]['name'];
 			if($class_data[0]['state']==1)
 			{
 				echo '进行中<br/>';
