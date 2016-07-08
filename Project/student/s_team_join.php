@@ -138,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           		<tbody>
                             		<tr class="active">
                               			<th scope="row">1</th>
-                                       	<td><a href="s_homework_sub.html">Column content</a></td>
+                                       	<td><a href="">Column content</a></td>
                                         <td>Column content</td>
                                        	<td>Column content</td>
                                        	<td>Column content</td>
@@ -171,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                           		</tbody>
                         	</table>
                             <form method="get" action="">
-<input type="text" placeholder="请输入团队名称">
+<input type="text"  name="team_name" placeholder="请输入团队名称">
 <button type="submit" class="btn-inverse btn">组建团队</button>
 </form>
                        	</div>
@@ -208,18 +208,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </html>
 
 HTML;
+require_once '../database.php';
+session_start();
+$my_db=new database();
+$user_id = $_SESSION['user_id'];
 
 echo $html_A;
 
 //创建团队需要的团队信息
-$team_name=$_GET['txtarea1'];
+
+$team_name=$_GET["team_name"];
 $search_team_name=$my_db->database_get("select * from team where name=$team_name");
-if(count($search_team_name)!=0) {
+if(count($search_team_name)==0) {
     $table= 'team';
     $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>1,'stat'=>0);
     $db->insert_to_db($table,$values);
-    echo "团队创建成功,请等待和珅";
+    echo "<script>alert('团队创建成功,请等待审核')</script>";
 }
 else{
-    echo"该团队名字已有人使用，请重新输入！";
+    echo "<script>alert('该团队名字已有人使用，请重新输入！')</script>";
 }
