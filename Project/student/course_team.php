@@ -251,14 +251,15 @@ require_once '../database.php';
 echo $html_A;
 $my_db=new database();
 $user_id = $_SESSION['user_id'];
+$class_id=$_SESSION['class_id'];
 $user_team_data=$my_db->database_get("select * from team where id in(select team_id from team_student where student_id=$user_id) ");
 $lead_data=$my_db->database_get("select * from student where id=$user_team_data[0]['admin_id']");
 $count=count($user_team_data);
 echo $user_team_data[0]['name'];
 echo $html_01;
-echo $lead_data[0]['name'];
+echo $user_team_data[0]['id'];
 echo $html_02;
-echo $user_team_data[0]['admin_id'];
+echo $lead_data[0]['name'];
 echo $html_03;
 
 if ($user_team_data[0]['stat']==1)
