@@ -193,14 +193,11 @@ $html_B=<<<HTML
                                 </div>
                              </div>
                              
-<<<<<<< HEAD
                              
                              <div class="panel-footer">
-=======
 HTML;
 $html_C=<<<HTML
                                  <div class="panel-footer">
->>>>>>> refs/remotes/origin/master
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
                                     	 <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_manage.php'" value="管理团队">

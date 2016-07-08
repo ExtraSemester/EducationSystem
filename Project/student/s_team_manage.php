@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
 <!----webfonts--->
-<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+
 <!---//webfonts--->  
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
@@ -41,31 +41,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script>
     function agree(id) {
-        alert(id);
+        
+        //alert(id);
         $.get("../utils/deal_student_request.php?op=1&id="+id,function(data,state) {
           if(data > 0)alert("已通过个人申请");
           location.reload();
         })
     }
     function reject(id) {
-        alert(id);
+        //alert(id);
         $.get("../utils/deal_student_request.php?op=2&id="+id,function(data,state) {
           if(data > 0)alert("已拒绝个人申请");
           location.reload();
         })
     }
     
-    function moveover(id) {
-        window.location.href("../utils/appoint.php?id"+id);
+    function moveover(stu_id,team_id) {
+        //alert(id);
+        $.get("../utils/appoint.php?stu_id="+stu_id+"&team_id="+team_id,function(data,status) {
+        
+          if(data > 0){
+          alert("移交成功")
+          location.reload();
+          }
+        })
+        //window.location.href();
     }
     
     function end_team(id) {
-        window.location.href("../utils/end_team.php?id"+id);
+        $.get("../utils/end_team.php?id="+id,function(data,status) {
+          if(data>0){
+          alert("结束组队");
+          window.location.href = "course_team.php";
+          }
+        })
       
     }
     
     function submit_team(id) {
-        window.location.href("../utils/submit_team.php?id"+id);
+        $.get("../utils/submit_team.php?id="+id,function(data,status) {
+          if(data>0){
+          alert("已提交申请");
+          window.location.href = "course_team.php";
+          }
+        })
+      
     }
 </script>
 <div id="wrapper">
@@ -244,26 +264,28 @@ $admin_id = $_SESSION['user_id'];
 
 require_once '../database.php';
 $db = new database();
-$stu_info = $db->database_get("select * from student where student_id=(select student_id from team_student where state=0 and team_id=(select id from team where admin_id=$admin_id))");
+$stu_info = $db->database_get("select * from student where id=(select student_id from team_student where state=0 and team_id=(select id from team where admin_id=$admin_id))");
 $team_id = $db->database_get("select id from team where admin_id=$admin_id");
 echo $html_a;
 
-echo "<form><button class=\"btn-inverse btn\" style=\"width:100px\" onclick=\"end_team($team_id)\">结束组队</button>					          
-                                  	<form><button class=\"btn-inverse btn\" style=\"width:100px\" onclick=\"submit_team($team_id)\">提交申请</button>";
+$team_id1 = $team_id[0]['id'];
+echo "<button class=\"btn-inverse btn\" style=\"width:100px\" onclick='end_team(\"$team_id1\")'>结束组队</button>					          
+                                  	<button class=\"btn-inverse btn\" style=\"width:100px\" onclick='submit_team(\"$team_id1\")'>提交申请</button>";
 echo $html_d;
 
 if($stu_info!=null) {
 
 
     for ($i=0;$i<count($stu_info);$i++) {
+        $student_id = $stu_info[$i]['id'];
         $state = '';
         echo "<tr class=\"active\">
                               			<th scope=\"row\">". ($i+1) . "</th>
                                         <td>". $stu_info[$i]['student_id'] . "</td>
                                         <td>". $stu_info[$i]['name'] . "</td>
                                         <td>未审核</td>";
-        echo "<td align='centre'><button id='agree' onclick='agree(". $stu_info[$i]['id'] .")'>通过</button>					          
-        <button id='reject' onclick='reject(".$stu_info[$i]['id']."'>拒绝</button><td>
+        echo "<td align='centre'><button id='agree' onclick='agree(\"$student_id\")'>通过</button>					          
+        <button id='reject' onclick='reject(\"$student_id\")'>拒绝</button><td>
         </tr>";
 
     }
@@ -273,13 +295,15 @@ else {
 }
 
 echo $html_b;
-$student_info = $db->database_get("select * from student where student_id=(select student_id from team_student where state=1 and team_id=(select id from team where admin_id=$admin_id))");
+$student_info = $db->database_get("select * from student where id in (select student_id from team_student where state=1 and team_id=(select id from team where admin_id=$admin_id))");
 $pre_admin_id = $admin_id;
 for ($i=0;$i<count($student_info);$i++) {
+    $stu_id = $student_info[$i]['id'];
+    $team_id_real = $team_id[0]['id'];
     echo "<tr class=\"active\">
                 <th>". ($i+1) ."</th>
                 <td>". $student_info[$i]['name'] ."</td>
-                <td><button type=\"submit\" class=\"btn-inverse btn\" onclick=\"moveover($student_info[$i]['id'])\">移交负责人</button></td>
+                <td><button class=\"btn-inverse btn\" onclick='moveover(\"$stu_id\",\"$team_id_real\")'>移交负责人</button></td>
                 
                                                     
                                         </tr>";

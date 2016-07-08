@@ -13,3 +13,5 @@ $team_id = $_GET['id'];
 $sql = "update team set status=2 where id=$team_id";
 
 $db->database_do($sql);
+
+echo 1;
