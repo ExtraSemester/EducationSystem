@@ -7,7 +7,6 @@
  */
 require_once '../database.php';
 $db = new database();
-
 $team_id = $_GET['id'];
 $sql = "update team set stat=2 where id=$team_id";
 $db->database_do($sql);

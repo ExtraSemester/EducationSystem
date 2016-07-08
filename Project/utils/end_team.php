@@ -5,6 +5,7 @@
  * Date: 2016/7/8
  * Time: 19:10
  */
+
 require_once '../database.php';
 $db = new database();
 
