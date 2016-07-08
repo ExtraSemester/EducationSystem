@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
+                            <a href="#"><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
                     </ul>
                 </div>
@@ -191,7 +191,7 @@ $html_B=<<<HTML
                              <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
-                                        <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_join.html'" value="加入或组建团队">
+                                        <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_join.php'" value="加入或组建团队">
                                     </div>
                                 </div>
                              </div>
