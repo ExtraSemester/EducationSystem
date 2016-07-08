@@ -162,6 +162,7 @@ require_once '../database.php';
     $work_data = $db->database_get("SELECT * FROM work WHERE work.class_id= $class_id");
     $count = count($work_data);
     //作业提交状态，默认为未提交
+    $student_id = $_SESSION['user_id'];
     $work_state = '未提交';
     echo $html_a;
     if ($work_data) {
@@ -170,12 +171,26 @@ require_once '../database.php';
             $title = $work_data[$i]['title'];
             $kind = $work_data[$i]['kind'];
             $end_time = $work_data[$i]['end_time'];
-            $state = $work_state;
+            $result = $db->database_get("SELECT id FROM work_file WHERE student_id=$student_id AND work_id=$id");
+            if(count($result)!=0) {
+                $work_state = '已提交';
+            }
+            else {
+                $work_state = '未提交';
+            }
+            $state = $work_state ;
 
+            $kind_ = '';
+            if ($kind == 1) {
+                $kind_ = '个人作业';
+            }
+            else{
+                $kind_ = '团队作业';
+            }
             echo "<tr class='active'>
                               <th scope='row'>" . ($i+1) . "</th>
                                   <td><a href='s_homework_sub.php?id=$id'>" . $title . "</a></td>
-                              <td>" . $kind . "</td>
+                              <td>" . $kind_ . "</td>
                               <td>" . $end_time . "</td>
                               <td>" . $state . "</td>
                             <tr>";
