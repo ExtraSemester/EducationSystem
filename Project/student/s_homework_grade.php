@@ -201,8 +201,9 @@ require_once '../database.php';
 echo $html_A;
 $my_db=new database();
 $user_id = $_SESSION['user_id'];
+$class_id = $_SESSION['class_id'];
 
-$student_work_data=$my_db->database_get("select work_id,comment,grade from work_file where student_id=$user_id");
+$student_work_data=$my_db->database_get("select work_id,comment,grade from work_file where student_id=$user_id and class_id=$class_id");
 $count_student_work=count($student_work_data);
 
 if($count_student_work==0)
@@ -217,7 +218,7 @@ else
         $work_data = $my_db->database_get("select title from work where id=$work_id");
 
         echo $html_1;
-        echo $student_work_data[$i]['work_id'];
+        echo ($i+1);
         echo $html_2;
         echo $work_data[0]['title'];
         echo $html_3;
