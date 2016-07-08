@@ -1,8 +1,15 @@
-
+<?php
+/**
+ * Created by PhpStorm.
+ * User: whx
+ * Date: 2016/7/6
+ * Time: 20:21
+ */
+$html_partA = <<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>教学资源</title>
+<title>课程作业</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -84,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
@@ -111,105 +118,120 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<div id="page-wrapper">
        			<div class="graphs">
                 	<div class="xs">
-  	       				<h3>课程资源</h3>
+  	       				<h3>作业详情</h3>
   	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<h4>文件夹</h4>
-                            <table class="table">
-                          		<thead>
-                            		<tr>
-                                      	<th>#</th>
-                                     	<th>文件（夹）名</th>
-                                      	<th>创建者</th>
-                                      	<th>修改时间</th>
-										<th align="center">操作</th>
-                            		</tr>
-                          		</thead>
-                          		<tbody>
-                            		<tr class="active">
-                              			<th scope="row">1</th>
-                                       	<td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                       	<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">2</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr class="success">
-                              			<th scope="row">3</th>
-                             			<td><a href="#">Column content</a></td>
-                              			<td>Column content</td>
-                             			<td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">4</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                           		 	</tr>
-                          		</tbody>
-                        		
-                          		<tbody>
-                                	<tr>
-                              			<th scope="row">文件</th>
-                                       	
-                            		</tr>
-                            		<tr class="active">
-                              			<th scope="row">1</th>
-                                       	<td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                       	<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">2</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr class="success">
-                              			<th scope="row">3</th>
-                             			<td><a href="#">Column content</a></td>
-                              			<td>Column content</td>
-                             			<td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                            		</tr>
-                            		<tr>
-                              			<th scope="row">4</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                        <td>Column content</td>
-                                		<td><button class="btn-inverse btn">下载</button></td>
-                           		 	</tr>
-                          		</tbody>
-                        	</table>
+                    		<div class="form-group">
+								<label for="focusedinput" class="col-sm-2 control-label">标题：</label>
+HTML;
+
+$html_partB = <<<HTML
+</div>
+                            <div class="form-group">
+								<label for="focusedinput" class="col-sm-2 control-label">作业要求：</label>
+HTML;
+
+$html_partC = <<<HTML
+</div>
+                            <div class="form-group">
+								<label for="focusedinput" class="col-sm-2 control-label">截止时间：</label>
+HTML;
+
+$html_partD = <<<HTML
+</div>
                        	</div>
+                        <div class="bs-example4" data-example-id="contextual-table">
+                        	<h4>提交作业</h4>
+                            <div class="form-group panel-footer" style="height:auto;min-height:70px;">
+                                                            	
+HTML;
+
+$html_partE = <<<HTML
+<div class="row" style="margin-left:10px;">
+                                    	<label class=" ">从计算机中选择文件：</label>
+                                        <input  type="file" name="file" id="file"/>
+                                    </div>
+                                    <div id="fileName"></div>
+                                    <div id="fileSize"></div>
+                                    <div id="fileType"></div>
+                                    <div class="row" style="margin-left:10px;margin-top:10px;margin-bottom:10px">
+<input type="submit" onclick="uploadFile()" value="提交作业" />
+                                        <input type="button" onclick="" value="取消" />
+                                   	</div>
+                                    <!--<div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-sm-offset-2">
+                                                <button class="btn-inverse btn" style="width:100px">确定</button>
+                                                
+                                            </div>
+                                        </div>
+                                     </div>-->
+
+                                    <div id="progressNumber"></div>
+                               	</form>
+                           	</div>
+                        </div>
+                        
                     </div>
+                    
 				</div>
-                
-                <!-------------边底栏信息-------------->
                 <div class="copy_layout">
-					<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
-               	</div>
-                <!-------------边底栏信息-------------->
+               		<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
+                </div>
        		</div>
       <!-- /#page-wrapper -->
-  
+      
+      
    		</div>
     <!-- /#wrapper -->
-
+    
+      
+<!-------------边底栏信息-------------->
+  
    </div>
       </div>
       <!-- /#page-wrapper -->
    </div>
+<!-------------边底栏信息-------------->
+
+
+
+
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
+HTML;
+
+require_once '../database.php';
+
+$conn = new database();
+
+$work_id = $_GET['id'];
+//$work_id = 4;
+
+$sql = "SELECT title,content,end_time FROM work WHERE id=$work_id";
+
+$result = $conn->database_get($sql);
+
+$title = $result[0]['title'];
+$content = $result[0]['content'];
+$end_time = $result[0]['end_time'];
+
+$route = "../teacher-class/homework/".$work_id;
+if(!file_exists($route)){
+	mkdir($route);
+}
+
+echo $html_partA;
+echo "<label  class=\" control-label\" id=\"s_w_title\">$title</label>";
+
+echo $html_partB;
+echo "<label  class=\" control-label\" id=\"s_w_content\">$content</label>";
+
+echo $html_partC;
+echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
+
+echo $html_partD;
+echo "<form id=\"\" enctype=\"multipart/form-data\" method=\"post\" action=\"upload_work.php?work_id=$work_id\" >";
+//echo "<input type=\"hidden\" name=\"work_id\" value=\"$work_id\" />";
+echo $html_partE;

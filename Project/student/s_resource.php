@@ -1,17 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: MSI
- * Date: 2016/7/6
- * Time: 9:22
- */
-
-$html_A=<<<HTML
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>作业成绩</title>
+<title>教学资源</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -93,13 +84,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
+                            <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
                         </li>
 						<li>
                             <a href="course_team.php"><i class="fa fa-comments nav_icon"></i>我的团队</a>
@@ -120,121 +111,139 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<div id="page-wrapper">
        			<div class="graphs">
                 	<div class="xs">
-  	       				<h3>个人成绩</h3>
+  	       				<h3>课程资源</h3>
   	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<h4>作业列表</h4>
-                            <table class="table">
-                          		<thead>
-                            		<tr>
-                                      	<th>作业编号</th>
-                                     	<th>标题</th>
-                                      	<th>成绩</th>
-                                      	<th>教师评论</th>
-										
-                            		</tr>
-                          		</thead>
-                          		<tbody>
+                    		
+							<table class="table">
+                          <thead>
+				<tr>
+                              <th>类型</th>
+                              <th>文件名</th>
+                              <th>更新日期</th>
+							  <th>下载</th>
+                            </tr>
+                          </thead>
+						  
+						  
+<?php 
 
-HTML;
+$class_name=$_GET['class_name'];
+$route=$_GET['route'];
+$command=$_GET['command'];
+$com_add=$_GET['com_add'];
+$com_add2=$_GET['com_add2'];
 
+session_start();
 
-$html_1=<<<HTML
-                            		<tr class="active">
-                              		<th scope="row">
-HTML;
-$html_2=<<<HTML
-                                    </th>
-                                    <td>
+if($class_name==null)
+{
+	$class_name=$_SESSION['class_name'];
+	
+	if($class_name==null)
+	{
+		$class_name="生产实习";
+	}
+}
+$real_route="../teacher-class/data/".$class_name."/$route";
+if(file_exists($real_route)==false)
+{
+	mkdir($real_route,0777);
+}
 
-HTML;
-$html_3=<<<HTML
-                                    </a></td>
-                                    <td>
+if($command=='in')
+{
+	$route=$route.$com_add."/";
+	$real_route="../teacher-class/data/".$class_name."/$route";
+}
+else if($command=='return')
+{
+	$bef=substr($route,0,-1);
+	$pos=strrpos($bef,'/');
+	if($pos>0)
+	{
+		$route=substr($bef,0,$pos+1);
+	}
+	else
+	{
+		$route=null;
+	}
+	
+	$real_route="../teacher-class/data/".$class_name."/$route";
+}
+?>
 
-HTML;
-$html_4=<<<HTML
-                                    </td>
-                                    <td>
+<script>
+	function class_jump(choose,nam)
+	{
+		var nickname = document.getElementById(choose);
+		nickname.value = nam;
+		document.datas.submit();
+	}
+</script>
+<button class="btn-inverse btn" onClick="class_jump('command','return');">返回上一层</button>
 
-HTML;
-$html_5=<<<HTML
-                                    </td>
-                                    </tr>
-HTML;
+<form name="datas" method="get" action="s_resource.php">
+	<input type="hidden" id="class_name" name="class_name" >
+	<input type="hidden" id="route" name="route"
+<?php 
+echo "value=\"$route\"";
+ ?>
+ >
+	<input type="hidden" id="command" name="command">
+	<input type="hidden" id="com_add" name="com_add" >
+	<input type="hidden" id="com_add2" name="com_add2" >
+</form>
 
-$html_B=<<<HTML
-                          		</tbody>
-                        	</table>
+<?php 
+$files=scandir($real_route);
+
+for($i=2;$i<count($files);$i++)
+{
+	if(is_dir($real_route.$files[$i]))
+	{
+		echo "<tr><td><img src='../images/folder.png'/></td>
+          <td><a href=\"javascript:in_folder('".$files[$i]."');\">".$files[$i]."</a></td>
+          <td>26 minutes ago</td>
+		  </tr>";
+	}
+}
+for($i=2;$i<count($files);$i++)
+{
+	if(is_dir($real_route.$files[$i])==false)
+	{
+		echo "<tr><td><img src='../images/file.jpg'/></td>
+          <td><a href='".$real_route.$files[$i]."'>".$files[$i]."</a></td>
+          <td>26 minutes ago</td>
+		  <td><button type=\"button\" class=\"btn-inverse btn\" onclick=\"javascript:window.location.href='".$real_route.$files[$i]."'\">下载</button></td>
+		  </tr>";
+	}
+}
+?>
+
+							</table>
+<?php 
+echo "当前位置:./".$route;
+ ?>
                        	</div>
                     </div>
 				</div>
+                
+                <!-------------边底栏信息-------------->
+                <div class="copy_layout">
+					<p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
+               	</div>
+                <!-------------边底栏信息-------------->
        		</div>
       <!-- /#page-wrapper -->
-      
-      
+  
    		</div>
     <!-- /#wrapper -->
-    
-      
-<!-------------边底栏信息-------------->
-  <div class="copy_layout">
-	  <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
-  </div>
+
    </div>
       </div>
       <!-- /#page-wrapper -->
    </div>
-<!-------------边底栏信息-------------->
-
-
-
-
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-HTML;
-
-
-session_start();
-require_once '../database.php';
-echo $html_A;
-$my_db=new database();
-$user_id = $_SESSION['user_id'];
-
-$student_work_data=$my_db->database_get("select * from work where id in (select work_id from student_work wherer student_id=$user_id)");
-$team_work_data=$my_db->database_get("select * from work where id in (select work_id from team_work where team id in (select team_id from team_student where student_id=$user_id))");
-$count_student_work=count($student_work_data);
-$count_team_work=count($team_work_data);
-if($count_student_work+$count_team_work==0)
-{
-    echo "<td>暂无作业信息</td>";
-}
-else
-{
-    for($i=0;$i<$count_student_work;$i++)
-    {
-        echo $html_1;
-        echo $student_work_data[$i]['id'];
-        echo $html_2;
-        echo $student_work_data[$i]['title'];
-        echo $html_3;
-        echo $student_work_data[$i]['grade'];
-        echo $html_4;
-        echo $student_work_data[$i]['comment'];
-        echo $html_5;
-    }
-    for($i=0;$i<$count_team_work;$i++)
-    {
-        echo $html_1;
-        echo $team_work_data[$i]['id'];
-        echo $html_2;
-        echo $team_work_data[$i]['title'];
-        echo $html_3;
-        echo $team_work_data[$i]['grade'];
-        echo $html_4;
-        echo $team_work_data[$i]['comment'];
-        echo $html_5;
-    }
-}
-echo $html_B;
