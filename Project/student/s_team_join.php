@@ -129,51 +129,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             		<tr>
                                       	<th>团队编号</th>
                                      	<th>团队名称</th>
-                                      	<th>团队成员</th>
                                       	<th>团队负责人</th>
                                         <th>团队状态</th>
                                         <th>操作</th>	
                             		</tr>
                           		</thead>
                           		<tbody>
-                            		<tr class="active">
-                              			<th scope="row">1</th>
-                                       	<td><a href="">Column content</a></td>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                       	<td>Column content</td>
-                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
-                            		</tr>
-                            		<tr>
+                          		 <!-----------                           		
+                          		 <tr>
                               			<th scope="row">2</th>
-                                        <td><a href="#">Column content</a></td>
                                         <td>Column content</td>
                                        	<td>Column content</td>
                                 		<td>Column content</td>
                                        	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>	
                             		</tr>
-                            		<tr class="success">
-                              			<th scope="row">3</th>
-                             			<td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                		<td>Column content</td>
-                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
+                            		-----------!>
+HTML;
+
+$html_01=<<<HTML
+<tr class="active">
+                              			<th scope="row">
+HTML;
+$html_02=<<<HTML
+</th>
+                                       	<td>
+HTML;
+
+$html_03=<<<HTML
+</td>
+                                       	<td>
+HTML;
+
+$html_04=<<<HTML
+</td>
+                                       	<td>
+HTML;
+
+$html_05=<<<HTML
+</td>
+                                       	<td>
+HTML;
+
+$html_06=<<<HTML
+<form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
                             		</tr>
-                            		<tr>
-                              			<th scope="row">4</th>
-                                        <td><a href="#">Column content</a></td>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                		<td>Column content</td>
-                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
-                           		 	</tr>
+HTML;
+
+$html_10=<<<HTML
                           		</tbody>
                         	</table>
-                            <form method="get" action="">
+<form method="get" action="">
 <input type="text"  name="team_name" placeholder="请输入团队名称">
+<input type="text"  name="team_number" placeholder="请输入团队人数上限">
 <button type="submit" class="btn-inverse btn">组建团队</button>
 </form>
+HTML;
+
+
+$html_B=<<<HTML
                        	</div>
                     </div>
 				</div>
@@ -212,19 +225,39 @@ require_once '../database.php';
 session_start();
 $my_db=new database();
 $user_id = $_SESSION['user_id'];
-
+$class_id=$_SESSION['class_id'];
 echo $html_A;
+$team_number_for_now=count($my_db->database_get("select * from "));//团队当前人数
+$available_team_data=$my_db->database_get("select * from ");
+$count=count($available_team_data);
+if($count!=0)
+{
+    echo $html_01;
+    echo $html_02;
+    echo $html_03;
+    echo $html_04;
+    echo $html_05;
+    echo $html_06;
+}
+else
+{
+    echo"无可申请团队";
+}
+echo $html_10;
 
 //创建团队需要的团队信息
 
 $team_name=$_GET["team_name"];
+$team_number=$_GET["team_number"];
 $search_team_name=$my_db->database_get("select * from team where name=$team_name");
 if(count($search_team_name)==0) {
     $table= 'team';
-    $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>1,'stat'=>0);
+    $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>$team_number,'stat'=>2);
     $db->insert_to_db($table,$values);
     echo "<script>alert('团队创建成功,请等待审核')</script>";
 }
 else{
     echo "<script>alert('该团队名字已有人使用，请重新输入！')</script>";
 }
+
+echo $html_B;
