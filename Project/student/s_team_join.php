@@ -171,7 +171,7 @@ $html_05=<<<HTML
 HTML;
 
 $html_06=<<<HTML
-<form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
+<form method="get" action=""><input type="hidden" name="approve" value="1"><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
                             		</tr>
 HTML;
 
@@ -227,34 +227,57 @@ $my_db=new database();
 $user_id = $_SESSION['user_id'];
 $class_id=$_SESSION['class_id'];
 echo $html_A;
-$team_number_for_now=count($my_db->database_get("select * from "));//团队当前人数
-$available_team_data=$my_db->database_get("select * from ");
-$count=count($available_team_data);
-if($count!=0)
+$all_team_data=$my_db->database_get("select * from team");
+//计算可申请团队
+$count_available_team=0;
+for($i=0;$i<count($all_team_data);$i++)
 {
-    echo $html_01;
-    echo $html_02;
-    echo $html_03;
-    echo $html_04;
-    echo $html_05;
-    echo $html_06;
+    //显示申请团队信息
+    $team_id=$all_team_data[$i]['id'];
+    $team_number_for_now=count($my_db->database_get("select student_id from class_student where class_id in(select class_id from team where id=$team_id) "));//该团队当前人数
+    if($team_number_for_now < $all_team_data[$i]['number'])
+    {
+        $count_available_team++;
+        echo $html_01;
+        echo $all_team_data[$i]['id'];
+        echo $html_02;
+        echo $all_team_data[$i]['name'];
+        echo $html_03;
+        echo $all_team_data[$i]['admin_id'];
+        echo $html_04;
+        echo $all_team_data[$i]['stat'];
+        echo $html_05;
+        echo $html_06;
+        if($_GET["approve"]==1)
+        {
+            $table='team_student';
+            $values=array('team_id'=>$all_team_data[$i]['id'],'student_id'=>$user_id,'state'=>0);
+            $my_db->insert_to_db($table,$values);
+            echo "<script>alert('申请已发送，请等待审核！')</script>";
+        }
+        else {
+        }
+    }
+    else
+    {
+        $count_available_team=$count_available_team+0;
+        echo "无可申请团队";
+    }
+    //申请团队
+
 }
-else
-{
-    echo"无可申请团队";
-}
+
 echo $html_10;
 
 //创建团队需要的团队信息
-
 $team_name=$_GET["team_name"];
 $team_number=$_GET["team_number"];
-$search_team_name=$my_db->database_get("select * from team where name=$team_name");
+$search_team_name=$my_db->database_get("select id from team where name=$team_name");
 if(count($search_team_name)==0) {
     $table= 'team';
     $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>$team_number,'stat'=>2);
     $db->insert_to_db($table,$values);
-    echo "<script>alert('团队创建成功,请等待审核')</script>";
+    echo "<script>alert('团队创建成功,请等待审核！')</script>";
 }
 else{
     echo "<script>alert('该团队名字已有人使用，请重新输入！')</script>";
