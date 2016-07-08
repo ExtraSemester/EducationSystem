@@ -224,7 +224,7 @@ $my_db=new database();
 $user_id = $_SESSION['user_id'];
 $class_id=$_SESSION['class_id'];
 echo $html_A;
-$all_team_data=$my_db->database_get("select * from team where ");
+$all_team_data=$my_db->database_get("select * from team where class_id=$class_id");
 //计算可申请团队
 $count_available_team=0;
 for($i=0;$i<count($all_team_data);$i++)
@@ -263,6 +263,5 @@ for($i=0;$i<count($all_team_data);$i++)
     //申请团队
 
 }
-
 echo $html_10;
 echo $html_B;
