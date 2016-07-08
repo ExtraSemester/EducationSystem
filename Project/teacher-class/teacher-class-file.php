@@ -262,6 +262,15 @@ function file_click()
 file.click();
 }
 </script>
+
+<script>
+function fch()
+{
+	var filen =document.getElementById('file').files;
+	var fna=document.getElementById('fnamlable');
+	fna.innerHTML=filen[0].name;
+}
+</script>
 <button class="btn-inverse btn" onClick="class_jump('command','add');">新建文件夹</button>
 <button class="btn-inverse btn" onClick="class_jump('command','return');">返回上一层</button>
 
@@ -325,8 +334,9 @@ echo "value=\"$route\"".'"';
 echo "value=\"$class_name\"".'"';
  ?>
  />
-<input  type="file" name="file" style="display: none;" id="file">
-<button type="button" class="btn-inverse btn" name="uploadfile" id="uploadfile" onClick="file_click()">选择文件</button>
+<input  type="file" name="file" style="display: none;" onchange="fch();" id="file">
+<button type="button" class="btn-inverse btn" name="uploadfile" id="uploadfile" onClick="file_click()">选择上传文件</button>
+<label id="fnamlable"></label>
 <input class="btn-inverse btn" type="submit" name="submit" value="上传到当前文件夹" >
 </form>
     
