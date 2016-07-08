@@ -191,21 +191,15 @@ $html_B=<<<HTML
                              <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
-                                        <input type=button class="btn-inverse btn" style="width:100px" onclick="location='s_team_join.html'" value="加入团队">
+                                        <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_join.html'" value="加入或组建团队">
                                     </div>
                                 </div>
                              </div>
                              <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
-                                        <input type=button class="btn-inverse btn" style="width:100px" onclick="show();" value="创建团队">
                                     </div>
                                     <div class="col-sm-8 col-sm-offset-2" id="team_setup" style="margin-left:60px;margin-top:40px;display:none">
-                                    	<div class="form-group">
-                                            <label for="txtarea1" class="col-sm-2 control-label">团队名称：</label>
-                                            <div class="col-sm-8"><input name="txtarea1" id="txtarea1" cols="50" rows="4" class="form-control1"></div>
-                                            <button type="submit" class="btn-inverse btn" >提交</button>
-                                        </div>
                                     </div>
                                     <script>
 										function show(){
@@ -280,17 +274,4 @@ elseif ($user_team_data[0]['stat']==3)
     echo '未通过审核';
 }
 echo $html_B;
-
-//创建团队需要的团队信息
-$team_name=$_GET['txtarea1'];
-$search_team_name=$my_db->database_get("select * from team where name=$team_name");
-if(count($search_team_name)!=0) {
-    $table= 'team';
-    $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>1,'stat'=>0);
-    $db->insert_to_db($table,$values);
-    echo "团队创建成功,请等待和珅";
-}
-else{
-    echo"该团队名字已有人使用，请重新输入！";
-}
 
