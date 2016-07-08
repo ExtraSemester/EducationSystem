@@ -58,6 +58,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function moveover(id) {
         window.location.href("../utils/appoint.php?id"+id);
     }
+    
+    function end_team(id) {
+        window.location.href("../utils/end_team.php?id"+id);
+      
+    }
+    
+    function submit_team(id) {
+        window.location.href("../utils/submit_team.php?id"+id);
+    }
 </script>
 <div id="wrapper">
      <!-- Navigation -->
@@ -148,8 +157,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <!--<td><button class="btn-inverse btn" style="width:100px">结束组队</button></td>
                                 <td><button class="btn-inverse btn" style="width:100px">提交申请</button></td>-->
                                 <td style="float:right;margin-right:100px">
-                                 	<form><button class="btn-inverse btn" style="width:100px">结束组队</button>					          
-                                  	<form><button class="btn-inverse btn" style="width:100px">提交申请</button>
+HTML;
+
+$html_d = <<<HTML
                                 <td>
                                 </tr>
                             </table>
@@ -235,9 +245,16 @@ $admin_id = $_SESSION['user_id'];
 require_once '../database.php';
 $db = new database();
 $stu_info = $db->database_get("select * from student where student_id=(select student_id from team_student where state=0 and team_id=(select id from team where admin_id=$admin_id))");
+$team_id = $db->database_get("select id from team where admin_id=$admin_id");
 echo $html_a;
 
+echo "<form><button class=\"btn-inverse btn\" style=\"width:100px\" onclick=\"end_team($team_id)\">结束组队</button>					          
+                                  	<form><button class=\"btn-inverse btn\" style=\"width:100px\" onclick=\"submit_team($team_id)\">提交申请</button>";
+echo $html_d;
+
 if($stu_info!=null) {
+
+
     for ($i=0;$i<count($stu_info);$i++) {
         $state = '';
         echo "<tr class=\"active\">
@@ -245,8 +262,8 @@ if($stu_info!=null) {
                                         <td>". $stu_info[$i]['student_id'] . "</td>
                                         <td>". $stu_info[$i]['name'] . "</td>
                                         <td>未审核</td>";
-        echo "<td align='centre'><button id='agree' onclick='agree(". $stu_info[$i]['student_id'] .")'>通过</button>					          
-        <button id='reject' onclick='reject(".$stu_info[$i]['student_id']."'>拒绝</button><td>
+        echo "<td align='centre'><button id='agree' onclick='agree(". $stu_info[$i]['id'] .")'>通过</button>					          
+        <button id='reject' onclick='reject(".$stu_info[$i]['id']."'>拒绝</button><td>
         </tr>";
 
     }
@@ -257,11 +274,12 @@ else {
 
 echo $html_b;
 $student_info = $db->database_get("select * from student where student_id=(select student_id from team_student where state=1 and team_id=(select id from team where admin_id=$admin_id))");
+$pre_admin_id = $admin_id;
 for ($i=0;$i<count($student_info);$i++) {
     echo "<tr class=\"active\">
                 <th>". ($i+1) ."</th>
                 <td>". $student_info[$i]['name'] ."</td>
-                <td><button type=\"submit\" class=\"btn-inverse btn\" onclick=\"moveover($student_info[$i]['student_id'])\">移交负责人</button></td>
+                <td><button type=\"submit\" class=\"btn-inverse btn\" onclick=\"moveover($student_info[$i]['id'])\">移交负责人</button></td>
                 
                                                     
                                         </tr>";
