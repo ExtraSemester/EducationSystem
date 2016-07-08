@@ -31,7 +31,7 @@
 
         //echo $title;
 
-        $sql = "INSERT INTO work_file(title,student_id,work_id) VALUES ('$file_name',$student_id,$work_id)";
+        $sql = "INSERT INTO work_file(title,student_id,work_id,class_id) VALUES ('$file_name',$student_id,$work_id,$class_id)";
         $conn->database_do($sql);
         //echo $sql;
 		move_uploaded_file($_FILES["file"]["tmp_name"],iconv('utf-8','gbk',$title));

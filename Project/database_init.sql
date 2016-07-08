@@ -96,8 +96,10 @@ create table work_file
     work_id int,
     comment varchar(500),
     grade int,
+    class_id int,
     foreign key(student_id) references student(id),
-    foreign key(work_id) references work(id)
+    foreign key(work_id) references work(id),
+    foreign key(class_id) references class(id)
 );
 
 create table team_student
