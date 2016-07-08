@@ -3,10 +3,9 @@
  * Created by PhpStorm.
  * User: MSI
  * Date: 2016/7/8
- * Time: 9:32
+ * Time: 15:37
  */
 $html_A=<<<HTML
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -25,6 +24,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
+<!----webfonts--->
+<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<!---//webfonts--->  
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
 <!-- Metis Menu Plugin JavaScript -->
@@ -89,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
@@ -118,72 +120,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	<div id="page-wrapper">
        			<div class="graphs">
                 	<div class="xs">
-  	       				<h3>团队申请</h3>
-  	         			<div class="bs-example4" data-example-id="contextual-table">
-                    		<h4>可加入团队</h4>
-                            <table class="table">
-                          		<thead>
-                            		<tr>
-                                      	<th>团队编号</th>
-                                     	<th>团队名称</th>
-                                      	<th>团队负责人</th>
-                                        <th>团队状态</th>
-                                        <th>操作</th>	
-                            		</tr>
-                          		</thead>
-                          		<tbody>
-                          		 <!-----------                           		
-                          		 <tr>
-                              			<th scope="row">2</th>
-                                        <td>Column content</td>
-                                       	<td>Column content</td>
-                                		<td>Column content</td>
-                                       	<td><form method="get" action=""><input type="hidden" value=""><button type="submit" class="btn-inverse btn">申请加入</button></form></td>	
-                            		</tr>
-                            		-----------!>
-HTML;
-
-$html_01=<<<HTML
-<tr class="active">
-                              			<th scope="row">
-HTML;
-$html_02=<<<HTML
-</th>
-                                       	<td>
-HTML;
-
-$html_03=<<<HTML
-</td>
-                                       	<td>
-HTML;
-
-$html_04=<<<HTML
-</td>
-                                       	<td>
-HTML;
-
-$html_05=<<<HTML
-</td>
-                                       	<td>
-HTML;
-
-$html_06=<<<HTML
-<form method="get" action=""><input type="hidden" name="approve" value="1"><button type="submit" class="btn-inverse btn">申请加入</button></form></td>
-                            		</tr>
-HTML;
-
-$html_10=<<<HTML
-                          		</tbody>
-                        	</table>
-<form method="get" action="">
+                            <form method="post" action="">
 <input type="text"  name="team_name" placeholder="请输入团队名称">
 <input type="text"  name="team_number" placeholder="请输入团队人数上限">
 <button type="submit" class="btn-inverse btn">组建团队</button>
 </form>
-HTML;
-
-
-$html_B=<<<HTML
                        	</div>
                     </div>
 				</div>
@@ -218,51 +159,19 @@ $html_B=<<<HTML
 </html>
 
 HTML;
-require_once '../database.php';
-session_start();
-$my_db=new database();
-$user_id = $_SESSION['user_id'];
-$class_id=$_SESSION['class_id'];
+
+//创建团队需要的团队信息
 echo $html_A;
-$all_team_data=$my_db->database_get("select * from team where ");
-//计算可申请团队
-$count_available_team=0;
-for($i=0;$i<count($all_team_data);$i++)
-{
-    //显示申请团队信息
-    $team_id=$all_team_data[$i]['id'];
-    $team_number_for_now=count($my_db->database_get("select student_id from class_student where class_id in(select class_id from team where id=$team_id) "));//该团队当前人数
-    if($team_number_for_now < $all_team_data[$i]['number'])
-    {
-        $count_available_team++;
-        echo $html_01;
-        echo $all_team_data[$i]['id'];
-        echo $html_02;
-        echo $all_team_data[$i]['name'];
-        echo $html_03;
-        echo $all_team_data[$i]['admin_id'];
-        echo $html_04;
-        echo $all_team_data[$i]['stat'];
-        echo $html_05;
-        echo $html_06;
-        if($_GET["approve"]==1)
-        {
-            $table='team_student';
-            $values=array('team_id'=>$all_team_data[$i]['id'],'student_id'=>$user_id,'state'=>0);
-            $my_db->insert_to_db($table,$values);
-            echo "<script>alert('申请已发送，请等待审核！')</script>";
-        }
-        else {
-        }
-    }
-    else
-    {
-        $count_available_team=$count_available_team+0;
-        echo "无可申请团队";
-    }
-    //申请团队
 
+$team_name=$_GET["team_name"];
+$team_number=$_GET["team_number"];
+$search_team_name=$my_db->database_get("select id from team where name=$team_name");
+if(count($search_team_name)==0) {
+    $table= 'team';
+    $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>$team_number,'stat'=>2);
+    $db->insert_to_db($table,$values);
+    echo "<script>alert('团队创建成功,请等待审核！')</script>";
 }
-
-echo $html_10;
-echo $html_B;
+else{
+    echo "<script>alert('该团队名字已有人使用，请重新输入！')</script>";
+}
