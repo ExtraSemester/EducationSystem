@@ -154,14 +154,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             		</tr>
                             		<tr class="success">
                               			<th scope="row">3</th>
-                             			<td>Column content</td>
+                             			<td><a href="#">Column content</a></td>
                                         <td>Column content</td>
                                        	<td align="centre"><form action="teacher-class-team.php" method="get"><input type="hidden" name="prove1" value="1"><button type="submit" class="btn-inverse btn">通过</button>					          <form action="teacher-class-team.php" method="get"><input type="hidden" name="prove1" value="0"><button type="submit" class="btn-inverse btn">拒绝</button><td>
                                 		
                             		</tr>
                             		<tr>
                               			<th scope="row">4</th>
-                                        <td>Column content</td>
+                                        <td><a href="#">Column content</a></td>
                                         <td>Column content</td>
                                        	<td align="centre"><form action="teacher-class-team.php" method="get"><input type="hidden" name="prove1" value="1"><button type="submit" class="btn-inverse btn">通过</button>					          <form action="teacher-class-team.php" method="get"><input type="hidden" name="prove1" value="0"><button type="submit" class="btn-inverse btn">拒绝</button><td>                                		
                            		 	</tr>
@@ -169,11 +169,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         	</table>
                        	</div>
                         <div class="panel-footer">
-                            <div class="row" style="display:inline;margin-left:20px">   
-                             	<button class="btn-inverse btn" style="width:150px" onClick="show();">移交负责人职位</button>
+                            <div style="margin-left:20px">   
+                             	<input type=button class="btn-inverse btn" style="width:150px" onclick="show();" value="移交负责人职位">
                             </div>
-                            <div class="bs-example4" data-example-id="contextual-table" id="list_manage" style="display:none">   
-                             	<table class="table" style="width:50%">
+                            <div class="bs-example4" data-example-id="contextual-table" id="list_manage" style="display:none;">   
+                             	<table class="table">
                                 	<thead>
                                     	<tr>
                                         	<th>#</th>
@@ -202,10 +202,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </table>
                             </div>
                             <script>
+								var flag=true;
 								function show(){
+									if(flag)
 										document.getElementById("list_manage").style.display="";
-										//alert(document.getElementById("div").style.display)
-										}
+									else
+										document.getElementById("list_manage").style.display="none";
+									flag=!flag;
+									//alert(document.getElementById("div").style.display)
+								}
+								/*function hide(){
+									document.getElementById("list_manage").style.display="none";
+									//alert(document.getElementById("div").style.display)
+								}*/										
 							</script>
                          </div>
                     </div>
