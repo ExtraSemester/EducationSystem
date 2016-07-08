@@ -151,7 +151,7 @@ for($i=0;$i<count($talks);$i++)
 	echo '
 		<div class="panel-footer">
 			<table width="1000px">
-				<td width="10%" style="TEXT-ALIGN: center"><img src="../images/people.png" /><br/><span>'.$na.'</span></td>							
+				<td width="10%" style="TEXT-ALIGN: center"><img style="border-radius:50%" src="../images/people.png" /><br/><span>'.$na.'</span></td>							
 				<td width="74%" style="word-break:break-all">'.$nb.'</td>
 				<td width="16%" align="right"><span >'.$level.'#<br/>'.$talks[$i]['time'].'</span></td>
 			</table>
