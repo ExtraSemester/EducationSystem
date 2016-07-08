@@ -260,8 +260,6 @@ for($i=0;$i<count($all_team_data);$i++)
         $count_available_team=$count_available_team+0;
         echo "无可申请团队";
     }
-    //申请团队
-
 }
 echo $html_10;
 echo $html_B;

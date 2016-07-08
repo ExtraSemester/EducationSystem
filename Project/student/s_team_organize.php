@@ -170,8 +170,10 @@ if(count($search_team_name)==0) {
     $table= 'team';
     $values = array('name'=>$team_name,'admin_id'=>$user_id,'class_id'=>$class_id,'number'=>$team_number,'stat'=>2);
     $db->insert_to_db($table,$values);
-    echo "<script>alert('团队创建成功,请等待审核！')</script>";
+    echo "<script type='text/javascript'>alert('团队创建成功,请等待审核！')</script>";
+    echo "<script type='text/javascript'>location='student/course_team.php';</script>";
 }
 else{
-    echo "<script>alert('该团队名字已有人使用，请重新输入！')</script>";
+    echo "<script type='text/javascript'>alert('该团队名字已有人使用，请重新输入！')</script>";
+    echo "<script type='text/javascript'>location='student/s_team_organize.php';</script>";
 }
