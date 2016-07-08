@@ -110,6 +110,7 @@ $html_partA = <<<HTML
 <div id="page-wrapper">
    <div class="col-md-12 graphs">
 	   <div class="xs">
+       <h3>所授课程</h3>
 <!------------所属课程--------------->
 <table class="table">
                           <thead>

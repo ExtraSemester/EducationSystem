@@ -6,7 +6,7 @@ $user_id=$_SESSION['user_id'];
 
 require_once "../database.php";
 $db=new database();
-$res=$db->database_get("select name from student where id=".$user_id);
+$res=$db->database_get("select name from teacher where id=".$user_id);
 $user_name=$res[0]['name'];
 
 $cont=$_GET['txt'];

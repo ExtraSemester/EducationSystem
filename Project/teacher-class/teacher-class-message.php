@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -14,9 +14,6 @@
     <link href="../css/font-awesome.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="../js/jquery.min.js"></script>
-    <!----webfonts--->
-    <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-    <!---//webfonts--->
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
 </head>
@@ -97,6 +94,9 @@
                     <li>
                         <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                     </li>
+					<li>
+						<a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
+					</li>
                 </ul>
             </div>
         </div>
