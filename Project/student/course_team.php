@@ -195,6 +195,8 @@ $html_B=<<<HTML
                                     </div>
                                 </div>
                              </div>
+                             
+                             <!------------判断身份，若是负责人，则显示以下div，若不是则不显示---------------->
                              <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
@@ -211,12 +213,11 @@ $html_B=<<<HTML
 									</script>-->
                                 </div>
                              </div>
+                             <!-------------------------------------->
+                             
                              
                             </form>
                           </div>
-
-                            
-                            
                        	</div>
                     </div>
 				</div>
