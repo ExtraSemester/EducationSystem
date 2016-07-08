@@ -5,7 +5,6 @@
  * Date: 2016/7/8
  * Time: 16:41
  */
-
 require_once '../database.php';
 $db=new database();
 $id = $_GET['id'];
