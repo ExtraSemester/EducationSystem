@@ -12,5 +12,5 @@ $op = $_GET['op'];
 $id = $_GET['id'];
 $sql = "UPDATE team_student SET state = ".$op." WHERE student_id=".$id;
 
-$conn->database_do($sql);
+$db->database_do($sql);
 echo 1;
