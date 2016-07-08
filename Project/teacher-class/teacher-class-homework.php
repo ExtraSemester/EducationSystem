@@ -196,10 +196,11 @@ for($i=0;$i<count($works);$i++)
 	{
 		if(cbs[i].checked)
 		{
-			var elemIF = document.createElement("iframe");   
+			window.open(cbs[i].value);
+			/*var elemIF = document.createElement("iframe");   
 			elemIF.src = cbs[i].value;
 			elemIF.style.display = "none";   
-			document.body.appendChild(elemIF);
+			document.body.appendChild(elemIF);*/
 		}
 	}
  }
