@@ -35,6 +35,15 @@ create table student
     status int
 );
 
+create table terms
+(
+    id int primary key AUTO_INCREMENT,
+    name varchar(255),
+    start_date date,
+    end_date date,
+    state int
+);
+
 create table class
 (
 	    id int primary key AUTO_INCREMENT,
