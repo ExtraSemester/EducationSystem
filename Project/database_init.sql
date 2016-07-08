@@ -31,7 +31,8 @@ create table student
     password varchar(50),
     student_id varchar(50),
     sex varchar(50),
-    grade int
+    grade int,
+    status int
 );
 
 create table class
