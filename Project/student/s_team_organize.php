@@ -9,7 +9,7 @@ $html_A=<<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>团队申请</title>
+<title>团队组建</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
