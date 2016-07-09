@@ -1,3 +1,13 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: MSI
+ * Date: 2016/7/9
+ * Time: 14:28
+ */
+require_once '../database.php';
+
+$html_A=<<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -176,12 +186,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </tr>
       </thead>
       <tbody>
+        
+HTML;
+$html_01=<<<HTML
         <tr>
-          <th scope="row">1</p></th>
-          <td>fas</td>
-          <td>sdg</td>
-          <td>编辑<td>
+          <th scope="row">
+HTML;
+$html_02=<<<HTML
+</p></th>
+          <td>
+HTML;
+$html_03=<<<HTML
+</td>
+          <td>
+HTML;
+$html_04=<<<HTML
+</td>
+          <td>
+HTML;
+$html_05=<<<HTML
+<td>
         </tr>
+HTML;
+
+
+$html_B=<<<HTML
       </tbody>
     </table>
 
@@ -194,3 +223,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------学期管理--------------------------------------------------------------->
 </body>
 </html>
+
+
+HTML;
+
+$my_db=new database();
+
+session_start();
+$term_id = $_SESSION['term_id'];
+$class_id=$my_db->database_get("select class_id from class_term where term_id=$term_id");
+$count=count($class_id);
+for($i=0;$i<$count;$i++)
+{
+    $class_name=$my_db->database_get("select name from class where id=$class_id[$i]['class_id']");
+    $teacher_id=$my_db->database_get("select teacher_id from class_teacher where class_id=$class_id[$i]['class_id']");
+    $teacher_name=$my_db->database_get("select name from teacher where id=$teacher_id[0]['teacher_id']");
+    echo $html_A;
+    echo $html_01;
+    echo $class_id[$i]['class_id'];
+    echo $html_02;
+    echo $class_name[0]['name'];
+    echo $html_03;
+    echo $teacher_id[0]['teacher_id'];
+    echo $html_04;
+    echo $teacher_name[0]['name'];
+    echo $html_05;
+}
+echo $html_B;
