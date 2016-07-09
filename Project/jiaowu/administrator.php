@@ -43,8 +43,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       $.get("switch_term.php?id="+id+"&state="+state,function(data,status) {
         if(data>0){
             alert("开启成功");
+            location.reload();
         }else{
             alert("关闭成功");
+            location.reload();
         }
       })
     }
@@ -131,8 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                        	<li>
                         	<a href="#"><i class="fa fa-laptop nav_icon"></i>学期管理</a>
                      	</li>
-                 
-                      	<li>
+                        <li>
                           	<a href="calendar.html"><i class="fa fa-table nav_icon"></i>校历</a>
                       	</li>
                     </ul>
