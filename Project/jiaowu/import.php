@@ -1,4 +1,7 @@
+<html>
+
 <?php
+
 require_once '../Classes/PHPExcel/IOFactory.php';
 require_once '../database.php';
 
@@ -10,7 +13,14 @@ require_once '../database.php';
     {
 		$succeed=true;
 		$choose=$_POST['choose'];
-		$reader = PHPExcel_IOFactory::createReader('Excel5'); //设置以Excel5格式(Excel97-2003工作簿)
+		if($_FILES["file"]["name"][strlen($_FILES["file"]["name"])-1]=='s')
+		{
+			$reader = new PHPExcel_Reader_Excel5(); 
+		}
+		else
+		{
+			echo "无法识别的文件，仅支持xls";
+		}
 		$PHPExcel = $reader->load($_FILES["file"]["tmp_name"]); // 载入excel文件
 		$sheet = $PHPExcel->getSheet(0); // 读取第一個工作表
 		$highestRow = $sheet->getHighestRow(); // 取得总行数
@@ -18,28 +28,28 @@ require_once '../database.php';
 		
 		$mdb=new database();
 		
-		if(choose=='student')
+		if($choose=='student')
 		{
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
-				$mdb->database_do('insert into student(name,password,student_id,sex,grade)values("'.$sheet->getCell('A'.$row)->getValue().'","'.$sheet->getCell('B'.$row)->getValue()."','".$sheet->getCell('C'.$row)->getValue().'","'.$sheet->getCell('D'.$row)->getValue().'",'.$sheet->getCell('E'.$row)->getValue().')');
+				$mdb->database_do('insert into student(name,password,student_id,sex,grade)values("'.$sheet->getCell('A'.$row)->getValue().'","'.$sheet->getCell('B'.$row)->getValue().'","'.$sheet->getCell('C'.$row)->getValue().'","'.$sheet->getCell('D'.$row)->getValue().'",'.$sheet->getCell('E'.$row)->getValue().')');
 			}
 		}
-		else if(choose=="teacher")
+		else if($choose=="teacher")
 		{
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
 				$mdb->database_do('insert into teacher(name,password,employee_id)values("'.$sheet->getCell('A'.$row)->getValue().'","'.$sheet->getCell('B'.$row)->getValue().'","'.$sheet->getCell('C'.$row)->getValue().'")');
 			}
 		}
-		else if(choose=="class")
+		else if($choose=="class")
 		{
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
 				$mdb->database_do('insert into class(name,start_week,end_week,time,place)values("'.$sheet->getCell('A'.$row)->getValue().'",'.$sheet->getCell('B'.$row)->getValue().','.$sheet->getCell('C'.$row)->getValue().',"'.$sheet->getCell('D'.$row)->getValue().'","'.$sheet->getCell('E'.$row)->getValue().'")');
 			}
 		}
-		else if(choose=="class_teacher")
+		else if($choose=="class_teacher")
 		{
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
@@ -62,7 +72,7 @@ require_once '../database.php';
 				$mdb->database_do('insert into class_teacher values('.$class_id.','.$s_id.')');
 			}
 		}
-		else if(choose=="class_student")
+		else if($choose=="class_student")
 		{
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
@@ -96,3 +106,5 @@ require_once '../database.php';
 		}
     }	
 ?>
+
+</html>
