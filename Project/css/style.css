@@ -2744,25 +2744,31 @@ padding-top:1em;
   margin-bottom: 1em;
 }
 .jiaowubutton{
-	width:10em;
-	height:8em;
-	margin:1.5em 1.5em 1.5em 1.5em;
+	width:250px;
+	height:200px;
+	margin:25px 25px 25px 25px;
 	border-radius:50px;
 	font-size:25px;
 	}
 	
 .jiaowubutton1{
-	width:10em;
-	height:8em;
-	margin:1.5em 1.5em 1.5em 14em;
+	width:250px;
+	height:200px;
+	margin:25px 25px 25px 25px;
 	border-radius:50px;
 	font-size:25px;
 	}
 .jiaowubutton2{
-	width:10em;
-	height:8em;
-	margin:1.5em 1.5em 1.5em 8em;
+	width:250px;
+	height:200px;
+	margin:25px 25px 25px 25px;
 	border-radius:50px;
 	font-size:25px;
 	}
 	
+.filegraphs1{
+	margin-left:150px;
+}
+.filegraphs2{
+	margin-left:300px;
+	}

@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
+                            <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
                         </li>
                     <li>
                             <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
@@ -197,14 +197,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="bs-example2">
 		<div class="modal-dialog">
 			<div class="modal-content">
-            <form method="post" action="">
+            <form method="get" action="set_term_date.php">
 				<div class="modal-header">
 					<p class="modal-title">开始时间</p>
-                    <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" id="start-time" name="start-time">
+                    <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" id="start-time" name="start_date">
 				</div>
 				<div class="modal-body">
 					<p>结束时间</p>
-                    <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" id="close-time" name="close-time">
+                    <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" id="close-time" name="end_date">
 				</div>
 				<div class="modal-footer">
 					<button type="sumbit"  class="btn btn-primary">保存修改</button>
