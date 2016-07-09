@@ -1,5 +1,6 @@
 <?php
 class database{
+	
 	private $mysql_db,
 			$mysql_host,
 			$mysql_password,
