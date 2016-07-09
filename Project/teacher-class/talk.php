@@ -10,8 +10,10 @@ $res=$db->database_get("select name from teacher where id=".$user_id);
 $user_name=$res[0]['name'];
 
 $cont=$_GET['txt'];
-if($cont!=null)
+$last=$_SESSION['txt'];
+if($cont!=null&&$cont!=$last)
 {
+	$_SESSION['txt']=$cont;
 	$db->database_do('insert into talk values('.$class_id.',"'.$user_name.':'.$cont.'",NOW())');
 }
 
