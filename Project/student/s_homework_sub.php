@@ -139,21 +139,24 @@ $html_partD = <<<HTML
 </div>
 						   	<div class="form-group">
 								<label for="focusedinput" class="col-sm-2 control-label">附件：</label>
-								<label id="s_w_deadline">文件名</label>
-                                <button type="submit" class="btn-inverse btn">下载附件</button>  
+								<!--<label id="s_w_deadline">文件名</label>-->
+                                <!--<button type="submit" class="btn-inverse btn">下载附件</button>  -->
                                 <!-----或者点击文件名链接直接下载----->
-                                <!-----<a href="#" onClick="">文件名</a> ----->  
-							</div>
+                                  
+							                                                            	
+HTML;
+
+$html_partE = <<<HTML
+</div>
                            </form>
                        	  </div>
                         </div>
                         <div class="bs-example4" data-example-id="contextual-table">
                         	<h4>提交作业</h4>
                             <div class="form-group panel-footer" style="height:auto;min-height:70px;">
-                                                            	
 HTML;
 
-$html_partE = <<<HTML
+$html_partF = <<<HTML
 <div class="row" style="margin-left:10px;">
                                     	<label class=" ">从计算机中选择文件：</label>
                                         <input  type="file" name="file" id="file"/>
@@ -163,7 +166,7 @@ $html_partE = <<<HTML
                                     <div id="fileType"></div>
                                     <div class="row" style="margin-left:10px;margin-top:10px;margin-bottom:10px">
 <input type="submit" onclick="uploadFile()" value="提交作业" />
-                                        <input type="button" onclick="" value="取消" />
+                                        <input type="reset" onclick="" value="取消" />
                                    	</div>
                                     <!--<div class="panel-footer">
                                         <div class="row">
@@ -176,7 +179,7 @@ $html_partE = <<<HTML
                                     
 HTML;
 
-$html_partF = <<<HTML
+$html_partG = <<<HTML
 <div id="progressNumber"></div>
                                	</form>
                            	</div>
@@ -234,6 +237,10 @@ $kind = $result[0]['kind'];
 $sql1 = "SELECT status FROM student WHERE id=$user_id";
 $stu = $conn->database_get($sql1);
 
+$sql2 = "select attachment from work where id = $work_id";
+$attaches = $conn->database_get($sql2);
+$attach = $attaches[0]['attachment'];
+
 $status = $stu[0]['status'];
 
 $route = "../teacher-class/homework/".$work_id;
@@ -251,11 +258,14 @@ echo $html_partC;
 echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
 
 echo $html_partD;
+echo "<a href=\"../teacher-class/work/$work_id/$attach\" onClick=\"\">$attach</a>";
+echo $html_partE;
+
 if($kind==2 && $status==1){
 	echo "只有团队负责人才可以提交作业~";
 }else {
 	echo "<form id=\"\" enctype=\"multipart/form-data\" method=\"post\" action=\"upload_work.php?work_id=$work_id\" >";
-	echo $html_partE;
+	echo $html_partF;
 }
 
-echo $html_partF;
+echo $html_partG;
