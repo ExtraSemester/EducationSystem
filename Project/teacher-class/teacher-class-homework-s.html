@@ -131,6 +131,7 @@
                                     <label for="smallinput" class="col-sm-2 control-label label-input-sm" >截止时间</label>
                         			<div class="col-sm-8">
 										<input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" name="taskdeadline" id="taskdeadline" placeholder="" readonly>
+                                        <input type="text" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date"  name='end_time_hour' placeholder="" readonly>
 									</div>
                                	</div>                             
                 </form>
@@ -159,6 +160,7 @@ function change()
 	document.getElementById("tasktitle").removeAttribute("readonly");
 	document.getElementById("taskask").removeAttribute("readonly");
 	document.getElementById("taskdeadline").removeAttribute("readonly");
+	document.getElementById("end_time_hour").removeAttribute("readonly");
 	document.getElementById("homewortype").removeAttribute("disabled");
    
 }
