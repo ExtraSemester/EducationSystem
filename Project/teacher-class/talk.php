@@ -99,29 +99,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              
 			<!-----------侧边------------------>
             <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
-                        </li>
-                        <li>
-                            <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
-                        </li>
-						<li>
-                            <a href="s_homework_grade.php"><i class="fa fa-indent nav_icon"></i>作业成绩</a>
-                        </li>
-						<li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队</a>
-                        </li>
-                        <li>
-                            <a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
-                        </li>
-                    </ul>
-                </div>
+
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="teacher-class-message.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
+                    </li>
+                    <li>
+                        <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
+                    </li>
+                    <li>
+                        <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                    </li>
+                    <li>
+                        <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
+                    </li>
+                    <li>
+                        <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
+                    </li>
+					<li>
+						<a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
+					</li>
+                </ul>
             </div>
+        </div>
             <!-----------侧边------------------>
         </nav>
         
