@@ -55,6 +55,13 @@ create table class
 	    state int
 );
 
+create table class_term
+(
+      class_id int,
+      term_id int,
+      foreign key(class_id) references class(id),
+      foreign key(term_id)references terms(id)
+)
 create table class_student
 (
     class_id int,
