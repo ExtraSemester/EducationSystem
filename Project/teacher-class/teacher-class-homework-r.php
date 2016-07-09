@@ -7,6 +7,7 @@
  * Date: 2016/7/5
  * Time: 11:07
  */
+
 session_start();
 if(isset($_SESSION['user_id'])) {
     require_once '../database.php';
