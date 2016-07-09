@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="course_team.php"><i class="fa fa-comments nav_icon"></i>我的团队</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
+                            <a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
                         </li>
                         <li>
                             <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
