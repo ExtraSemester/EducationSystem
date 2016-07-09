@@ -131,20 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                        	<li>
                         	<a href="#"><i class="fa fa-laptop nav_icon"></i>学期管理</a>
                      	</li>
-                        <li>
-                            <a href="setterms.html"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
-                            <!--<ul class="nav nav-second-level">
-                                <li>
-                                  <a href="setterms.html">设置学期信息和周次</a>
-                                </li>
-                            </ul>-->
-                        </li>
-                        <li>
-                            <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
-                        </li>
-                    	<li>
-                            <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
-                        </li>
+                 
                       	<li>
                           	<a href="calendar.html"><i class="fa fa-table nav_icon"></i>校历</a>
                       	</li>
