@@ -16,9 +16,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
-<!----webfonts--->
-<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
 <!-- Metis Menu Plugin JavaScript -->
@@ -154,6 +151,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li>
                             <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
+						<li>
+                            <a href="#"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
                         </li>
                     	<li>
                             <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
@@ -174,35 +173,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div id="page-wrapper">
      <div class="graphs">
 
-
 <div align="center"><h3><strong>导入课程信息</strong></h3></div>
      <div class="filegraphs1">
    
 			
-					<form method="post" action="">
+					<form method="post" action="import.php" id="datas" name="datas" enctype="multipart/form-data">
                     <input  type="file" name="file" style="display: none;" onchange="fch();" id="file">
-                    <input type="hidden" name="judge" id="judge">
-					<button class="btn btn-primary jiaowubutton2" onClick="file_click()" value="1">上传学生表格</button>
-					<button class="btn btn-primary jiaowubutton"  onClick="file_click()" value="2">上传教师表格</button>
-                    <button class="btn btn-primary jiaowubutton" onClick="file_click()" value="3">上传课程表格</button>
-                    </div>
-                     <div class="filegraphs2">
-                    <button class="btn btn-primary jiaowubutton1" onClick="file_click()" value="4">上传学生-课程表格</button>
-                    <button class="btn btn-primary jiaowubutton" onClick="file_click()" value="5">上传教师-课程表格</button>
+                    <input type="hidden" name="choose" id="chooseh">
+					<input type="submit" name="submitb" id="submitb" style="display: none;" >
                     </form>
+					<button class="btn btn-primary jiaowubutton2" onClick="file_click('student')">上传学生表格</button>
+					<button class="btn btn-primary jiaowubutton"  onClick="file_click('teacher')">上传教师表格</button>
+                    <button class="btn btn-primary jiaowubutton" onClick="file_click('class')">上传课程表格</button>
+					</div>
+                     <div class="filegraphs2">
+                    <button class="btn btn-primary jiaowubutton1" onClick="file_click('class_student')">上传学生-课程表格</button>
+                    <button class="btn btn-primary jiaowubutton" onClick="file_click('class_teacher')">上传教师-课程表格</button>
             </div>
 <script>
-function file_click()
+function file_click(choose)
 {
-file.click();
-document.getElementById("judge").value=this.value;
+	document.getElementById('chooseh').value=choose;
+	file.click();
 }
-
+</script>
+<script>
 function fch()
 {
-	var filen =document.getElementById('file').files;
-	var fna=document.getElementById('fnamlable');
-	fna.innerHTML=filen[0].name;
+	submitb.click();
 }
 </script>
 
