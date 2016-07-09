@@ -116,7 +116,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        			<div class="graphs">
                 	<div class="xs">
   	       				<h3>作业详情</h3>
-  	         			<div class="bs-example4" data-example-id="contextual-table">
+  	         			<div class="tab-content">
+						  <div class="tab-pane active" id="horizontal-form">
+                           <form class="form-horizontal">
                     		<div class="form-group">
 								<label for="focusedinput" class="col-sm-2 control-label">标题：</label>
 HTML;
@@ -135,7 +137,16 @@ HTML;
 
 $html_partD = <<<HTML
 </div>
-                       	</div>
+						   	<div class="form-group">
+								<label for="focusedinput" class="col-sm-2 control-label">附件：</label>
+								<label id="s_w_deadline">文件名</label>
+                                <button type="submit" class="btn-inverse btn">下载附件</button>  
+                                <!-----或者点击文件名链接直接下载----->
+                                <!-----<a href="#" onClick="">文件名</a> ----->  
+							</div>
+                           </form>
+                       	  </div>
+                        </div>
                         <div class="bs-example4" data-example-id="contextual-table">
                         	<h4>提交作业</h4>
                             <div class="form-group panel-footer" style="height:auto;min-height:70px;">
