@@ -150,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                   	<ul class="nav" id="side-menu">
                     	<li>
-                        	<a href="terminfo.html"><i class="fa fa-laptop nav_icon"></i>学期信息</a>
+                        	<a href="terminfo.php"><i class="fa fa-laptop nav_icon"></i>学期信息</a>
                      	</li>
                         <li>
                             <a href="setterms.html"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
@@ -230,7 +230,7 @@ HTML;
 $my_db=new database();
 
 session_start();
-$term_id = $_SESSION['term_id'];
+$term_id = $_GET['term_id'];
 $class_id=$my_db->database_get("select class_id from class_term where term_id=$term_id");
 $count=count($class_id);
 for($i=0;$i<$count;$i++)
