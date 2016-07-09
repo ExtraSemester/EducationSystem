@@ -18,6 +18,8 @@ $sql = "update terms set state=$state where id = $id";
 $conn->database_do($sql);
 
 if($state == 1){
+    session_start();
+    $_SESSION['term_id'] = $id;
     echo 1;
 }else {
     echo 0;

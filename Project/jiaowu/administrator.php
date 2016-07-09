@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
 <!----webfonts--->
-<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<l
 <!---//webfonts--->  
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
@@ -144,10 +144,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li hidden>
                             <a href="#"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
                         </li>
-                    <li>
+                        <li>
                             <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
                         </li>
                     
@@ -187,6 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<th>学期</th>
 								<th>开启学期</th>
 								<th>关闭学期</th>
+								<th>学期状态</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -220,7 +221,12 @@ for($i = 0;$i < count($terms); $i++){
 								<td>".$terms[$i]['name']."</td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",1)'>开启学期</button></form></td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",2)'>关闭学期</button></form></td>
-							</tr>";
+							";
+    if($terms[$i]['state'] == 1){
+        echo "<td>已开启</td></tr>";
+    }else{
+        echo "<td>已关闭</td></tr>";
+    }
 }
 
 echo $html_partB;
