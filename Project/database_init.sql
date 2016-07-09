@@ -96,6 +96,7 @@ create table work
 	kind int,
 	start_time datetime,
 	end_time datetime,
+	attachment varchar(255),
     foreign key(class_id) references class(id)
 );
 

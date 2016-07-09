@@ -144,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </ul>
                         </li>
-                        <li hidden>
+                        <li>
                             <a href="#"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
                         </li>
                         <li>
