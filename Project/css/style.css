@@ -2754,15 +2754,21 @@ padding-top:1em;
 .jiaowubutton1{
 	width:10em;
 	height:8em;
-	margin:1.5em 1.5em 1.5em 14em;
+	margin:1.5em 1.5em 1.5em 1.5em;
 	border-radius:50px;
 	font-size:25px;
 	}
 .jiaowubutton2{
 	width:10em;
 	height:8em;
-	margin:1.5em 1.5em 1.5em 8em;
+	margin:1.5em 1.5em 1.5em 1.5em;
 	border-radius:50px;
 	font-size:25px;
 	}
 	
+.filegraphs1{
+	margin-left:100px;
+}
+.filegraphs2{
+	margin-left:250px;
+	}
