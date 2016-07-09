@@ -193,9 +193,10 @@ $terms = $conn->database_get($sql);
 echo $html_partA;
 
 for($i = 0;$i < count($terms); $i++){
+    $term_id = $terms[$i]['id'];
     echo "<tr>
 								<td>".($i+1)."</td>
-								<td>".$terms[$i]['name']."</td>
+								<td><a href='terminfo.php?id=$term_id'>".$terms[$i]['name']."</td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",1)'>开启学期</button></form></td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",2)'>关闭学期</button></form></td>
 							";
