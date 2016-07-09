@@ -2743,3 +2743,26 @@ padding-top:1em;
 .select-homework{
   margin-bottom: 1em;
 }
+.jiaowubutton{
+	width:10em;
+	height:8em;
+	margin:1.5em 1.5em 1.5em 1.5em;
+	border-radius:50px;
+	font-size:25px;
+	}
+	
+.jiaowubutton1{
+	width:10em;
+	height:8em;
+	margin:1.5em 1.5em 1.5em 14em;
+	border-radius:50px;
+	font-size:25px;
+	}
+.jiaowubutton2{
+	width:10em;
+	height:8em;
+	margin:1.5em 1.5em 1.5em 8em;
+	border-radius:50px;
+	font-size:25px;
+	}
+	

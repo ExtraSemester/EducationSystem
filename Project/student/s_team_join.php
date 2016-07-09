@@ -175,18 +175,17 @@ HTML;
 $html_10=<<<HTML
                           		</tbody>
                         	</table>
-<form method="get" action="">
+<form method="get" action="s_team_organize.php">
 <input type="text"  name="team_name" placeholder="请输入团队名称">
 <input type="text"  name="team_number" placeholder="请输入团队人数上限">
+
+HTML;
+$html_11 = <<<HTML
 <button type="submit" class="btn-inverse btn">组建团队</button>
 </form>
-HTML;
-
-
-$html_B=<<<HTML
-                       	</div>
-                    </div>
-				</div>
+ 	</div>
+    </div>
+	</div>
 <!-------------边底栏信息-------------->
   <div class="copy_layout">
 	  <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
@@ -231,29 +230,37 @@ for($i=0;$i<count($all_team_data);$i++)
 {
     //显示申请团队信息
     $team_id=$all_team_data[$i]['id'];
-    $team_number_for_now=count($my_db->database_get("select student_id from class_student where class_id in(select class_id from team where id=$team_id) "));//该团队当前人数
+    $sql = "select student_id from team_student where team_id=$team_id and state=1";
+    $team_number_for_now=count($my_db->database_get($sql));//该团队当前人数
+
     if($team_number_for_now < $all_team_data[$i]['number'])
     {
-        $count_available_team++;
+        $admin_id = $all_team_data[$i]['admin_id'];
+        $admin = $my_db->database_get("select name from student where id=$admin_id");
+
+        //$count_available_team++;
         echo $html_01;
         echo $all_team_data[$i]['id'];
         echo $html_02;
         echo $all_team_data[$i]['name'];
         echo $html_03;
-        echo $all_team_data[$i]['admin_id'];
+        echo $admin[0]['name'];
         echo $html_04;
-        echo $all_team_data[$i]['stat'];
+        $state = "";
+        switch ($all_team_data[$i]['stat']){
+            case 1:
+                $state="已通过";break;
+            case 2:
+                $state="审核中";break;
+            case 3:
+                $state="已拒绝";break;
+        }
+        echo $state;
         echo $html_05;
-        echo $html_06;
-        if($_GET["approve"]==1)
-        {
-            $table='team_student';
-            $values=array('team_id'=>$all_team_data[$i]['id'],'student_id'=>$user_id,'state'=>0);
-            $my_db->insert_to_db($table,$values);
-            echo "<script>alert('申请已发送，请等待审核！')</script>";
-        }
-        else {
-        }
+        echo "<form method=\"get\" action=\"join_team.php\"><input type='hidden' name='team_id' value='$team_id'>
+<button type=\"submit\" class=\"btn-inverse btn\">申请加入</button></form></td>
+                            		</tr>";
+        
     }
     else
     {
@@ -262,4 +269,6 @@ for($i=0;$i<count($all_team_data);$i++)
     }
 }
 echo $html_10;
-echo $html_B;
+echo "<input type=\"hidden\"  name=\"admin_id\" value='$user_id'>
+      <input type=\"hidden\"  name=\"class_id\" value='$class_id'>";
+echo $html_11;

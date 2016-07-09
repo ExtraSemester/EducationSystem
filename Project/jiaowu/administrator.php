@@ -145,15 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope nav_icon"></i>信息导入<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                  <a href="import_term.html">课程信息导入</a>
-                                </li>
-                                <li>
-                                  <a href="import_ts.html">教师和学生信息导入</a>
-                                </li>
-                            </ul>
+                            <a href="#"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
                         </li>
                     <li>
                             <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
@@ -179,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------学期管理--------------------------------------------------------------->
   <div id="page-wrapper">
      <div class="graphs">
-     <div class="alert alert-success"><span class="badge badge-primary"><strong>第一周</strong></span>
+     <div class="alert alert-success">
 
 <strong class="strong">欢迎使用北航协同教学平台</strong> </div>
     <div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
@@ -225,7 +217,7 @@ echo $html_partA;
 for($i = 0;$i < count($terms); $i++){
     echo "<tr>
 								<td>".($i+1)."</td>
-								<td>$terms[$i]['name']</td>
+								<td>".$terms[$i]['name']."</td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",1)'>开启学期</button></form></td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",2)'>关闭学期</button></form></td>
 							</tr>";

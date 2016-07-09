@@ -56,7 +56,7 @@ class database{
 				$this->insert_data_class_teacher($class_id,$teacher_id);
 				break;
 			case 'team':
-				$this->insert_data_to_team($name,$admin_id,$class_id,$stat);
+				$this->insert_data_to_team($name,$admin_id,$class_id,$number,$stat,$status);
 				break;
 			case 'data':
 				$this->insert_data_to_data($class_id,$position);
@@ -134,9 +134,9 @@ class database{
 		$this->connect->exec("INSERT INTO class_teacher(class_id,teacher_id) VALUES"
 			. "('$class_id','$teacher_id')");
 	}
-	private function insert_data_to_team($name,$admin_id,$class_id,$stat){
-		$this->connect->exec("INSERT INTO team(name,admin_id,class_id,stat) VALUES"
-			. "('$name','$admin_id','$class_id','$stat')");
+	private function insert_data_to_team($name,$admin_id,$class_id,$number,$stat,$status){
+		$this->connect->exec("INSERT INTO team(name,admin_id,class_id,number,stat,status) VALUES"
+			. "('$name','$admin_id','$class_id','$number','$stat','$status')");
 	}
 	private function insert_data_to_data($class_id,$position){
 		$this->connect->exec("INSERT INTO team(class_id,postiton) VALUES"

@@ -73,6 +73,7 @@ create table class_teacher
     foreign key(teacher_id)references teacher(id)
 );
 
+
 create table team
 (
     id int primary key AUTO_INCREMENT,
@@ -81,6 +82,7 @@ create table team
 	class_id int,
 	number int,
 	stat int,
+  status int,
     foreign key(class_id) references class(id),
     foreign key(admin_id) references student(id)
 );
