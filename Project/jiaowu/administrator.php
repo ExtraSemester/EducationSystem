@@ -127,38 +127,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------侧边栏---------------------------------------------------------------->
           <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                  <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="#"><i class="fa fa-laptop nav_icon"></i>教务管理<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                            <a href="administrator.html">学期管理</a></li>
-                            <li></li>
-                        </ul>
-                      </li>
+                  	<ul class="nav" id="side-menu">
+                       	<li>
+                        	<a href="#"><i class="fa fa-laptop nav_icon"></i>学期管理</a>
+                     	</li>
                         <li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>学期信息管理<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <a href="setterms.html"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
+                            <!--<ul class="nav nav-second-level">
                                 <li>
                                   <a href="setterms.html">设置学期信息和周次</a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
+                            <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
                         </li>
-                        <li>
+                    	<li>
                             <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
                         </li>
-                    
-                      <li>
-                          <a href="#"><i class="fa fa-table nav_icon"></i>校历<span class="fa arrow"></span></a>
-                          <ul class="nav nav-second-level">
-                              <li>
-                                  <a href="calendar.html">查看校历</a>
-                              </li>
-                          </ul>
-                      </li>
+                      	<li>
+                          	<a href="calendar.html"><i class="fa fa-table nav_icon"></i>校历</a>
+                      	</li>
                     </ul>
                 </div>
             </div>
