@@ -13,11 +13,15 @@ if(isset($_SESSION['user_id'])) {
     $kind = $_GET['kind'];
     $title = $_GET['title'];
     $content = $_GET['content'];
-    $end_time = $_GET['end_time'];
+    $end_time_day = $_GET['end_time_day'];
+    $end_time_hour = $_GET['end_time_hour'];
+    $end_time = $end_time_day. " " .$end_time_hour;
     $start_time = "2016-7-5 16:11:20";
     $db = new database();
     $class_id = $_SESSION['class_id'];
+    $teacher_id = $_SESSION['user_id'];
     $id = $_GET['id'];
+    echo $end_time;
     echo $id;
     //判断是否为团队作业
     if ($kind == '团队作业') {
@@ -32,6 +36,31 @@ if(isset($_SESSION['user_id'])) {
             $values = array('kind' => 2, 'title' => $title, 'content' => $content, 'class_id' => $class_id,
                 'start_time' => $start_time, 'end_time' => $end_time);
             $db->insert_to_db('work', $values);
+            $route = "../teacher-class/work/".$id;
+            if(!file_exists($route)){
+                mkdir($route);
+            }
+            if ($_FILES["file"]["error"] > 0)
+            {
+                echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+            }
+            else {
+
+                $result = $db->database_get("SELECT name FROM class WHERE id=$id");
+                $class_name = $result[0]['name'];
+                //echo "R".$route."S".$class_name;
+                if($class_name==null)
+                {
+                    $class_name="生产实习";
+                }
+                $real_route="../teacher-class/work/".$id."/";
+
+                $file_name = iconv('utf-8','gbk',$_FILES["file"]["name"]);
+                $db->database_do("update work set attachment='$file_name' where id=$id");
+                $title = $real_route.$file_name;
+
+                move_uploaded_file($_FILES["file"]["tmp_name"],iconv('utf-8','gbk',$title));
+            }
             echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.php';</script>";
         }
     }
@@ -47,6 +76,31 @@ if(isset($_SESSION['user_id'])) {
             $values = array('kind' => 1, 'title' => $title, 'content' => $content, 'class_id' => $class_id,
                 'start_time' => $start_time, 'end_time' => $end_time);
             $db->insert_to_db('work', $values);
+            $route = "../teacher-class/work/".$id;
+            if(!file_exists($route)){
+                mkdir($route);
+            }
+            if ($_FILES["file"]["error"] > 0)
+            {
+                echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+            }
+            else {
+
+                $result = $db->database_get("SELECT name FROM class WHERE id=$id");
+                $class_name = $result[0]['name'];
+                //echo "R".$route."S".$class_name;
+                if($class_name==null)
+                {
+                    $class_name="生产实习";
+                }
+                $real_route="../teacher-class/work/".$id."/";
+
+                $file_name = iconv('utf-8','gbk',$_FILES["file"]["name"]);
+                $db->database_do("update work set attachment='$file_name' where id=$id");
+                $title = $real_route.$file_name;
+
+                move_uploaded_file($_FILES["file"]["tmp_name"],iconv('utf-8','gbk',$title));
+            }
             echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.php';</script>";
         }
     }
