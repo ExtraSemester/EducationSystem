@@ -113,11 +113,9 @@
                     <div class="bs-example4" data-example-id="contextual-table">
                         <?php
                         require_once '../database.php';
-                        
+                        session_start();
                         $my_db=new database();
                         $class_id=$_GET['class_id'];
-
-                        session_start();
                         if($class_id == null){
                             $class_id = $_SESSION['class_id'];
                         }else{
@@ -151,7 +149,8 @@
                     require_once '../database.php';
 
                     $my_db=new database();
-                    $team_data=$my_db->database_get("select * from team where class_id=$class_data[0]['id']");
+                    $class_data_id=$class_data[0]['id'];
+                    $team_data=$my_db->database_get("select * from team where class_id=$class_data_id");
                     $count=count($team_data);
                     $i=0;
                     $html= <<<HTML
