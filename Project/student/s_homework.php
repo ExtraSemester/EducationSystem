@@ -167,8 +167,8 @@ require_once '../database.php';
             $title = $work_data[$i]['title'];
             $kind = $work_data[$i]['kind'];
             $end_time = $work_data[$i]['end_time'];
-            $result = $db->database_get("SELECT id FROM work_file WHERE student_id=$student_id AND work_id=$id");
-            if(count($result)!=0) {
+            $result = $db->database_get("SELECT state FROM work_student WHERE student_id=$student_id and work_id=$id");
+            if($result[0]['state'] == 1) {
                 $work_state = '已提交';
             }
             else {

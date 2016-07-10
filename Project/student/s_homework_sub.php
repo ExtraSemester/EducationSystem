@@ -222,6 +222,8 @@ $conn = new database();
 
 session_start();
 $user_id = $_SESSION['user_id'];
+$class_id = $_SESSION['class_id'];
+
 $work_id = $_GET['id'];
 //$work_id = 4;
 
@@ -234,14 +236,15 @@ $content = $result[0]['content'];
 $end_time = $result[0]['end_time'];
 $kind = $result[0]['kind'];
 
-$sql1 = "SELECT status FROM student WHERE id=$user_id";
-$stu = $conn->database_get($sql1);
+//$sql1 = "SELECT status FROM student WHERE id=$user_id";
+//$stu = $conn->database_get($sql1);
 
 $sql2 = "select attachment from work where id = $work_id";
 $attaches = $conn->database_get($sql2);
 $attach = $attaches[0]['attachment'];
 
-$status = $stu[0]['status'];
+$stu = $conn->database_get("select admin_id from team where class_id=$class_id");
+$admin_id = $stu[0]['admin_id'];
 
 $route = "../teacher-class/homework/".$work_id;
 if(!file_exists($route)){
@@ -261,7 +264,7 @@ echo $html_partD;
 echo "<a href=\"../teacher-class/work/$work_id/$attach\" onClick=\"\">$attach</a>";
 echo $html_partE;
 
-if($kind==2 && $status==1){
+if($kind==2 && $admin_id != $user_id){
 	echo "只有团队负责人才可以提交作业~";
 }else {
 	echo "<form id=\"\" enctype=\"multipart/form-data\" method=\"post\" action=\"upload_work.php?work_id=$work_id\" >";
