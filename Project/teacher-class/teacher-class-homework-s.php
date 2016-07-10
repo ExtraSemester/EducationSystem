@@ -162,7 +162,7 @@ $html_partE = <<<HTML
 HTML;
 
 $html_partF = <<<HTML
-<button type="submit" class="btn-inverse btn">确定</button>                     
+<button id='submit' type="submit" class="btn-inverse btn" disabled>确定</button>                     
               </div>
               </div>
               </div>
@@ -180,6 +180,7 @@ function change()
 	document.getElementById("taskdeadline").removeAttribute("readonly");
 	document.getElementById("homewortype").removeAttribute("disabled");
     document.getElementById("choose_file").removeAttribute("hidden");
+    document.getElementById("submit").removeAttribute("disabled");
 }
 </script>  
         
@@ -251,7 +252,7 @@ echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" 
                                	</div>";
 echo "<div class=\"form-group\">
                 <label for=\"smallinput\" class=\"col-sm-2 control-label label-input-sm\">附件:</label>
-                <label class=\"col-sm-8\">$attachment</label>
+                <a href='./work/$attachment' class=\"col-sm-8\">$attachment</a>
                 <div id='choose_file' class=\"col-sm-8\" hidden=\"hidden\">
                     <input type=\"file\" name=\"file\" id=\"file\">
                 </div>
