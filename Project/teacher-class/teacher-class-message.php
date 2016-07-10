@@ -44,7 +44,7 @@ $html_A=<<<HTML
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
+	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header">
 							<strong>Messages</strong>
@@ -85,13 +85,13 @@ $html_A=<<<HTML
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="teacher-class-message.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
+                            <a href="#"><i class="fa fa-dashboard fa-fw nav_icon"></i>课程信息</a>
                         </li>
                            <li>
-                            <a href="teacher-class-team.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
+                            <a href="teacher-class-team.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>团队申请</a>
                         </li>
                            <li>
-                            <a href="teacher-class-givehomework.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
+                            <a href="teacher-class-givehomework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布作业</a>
                         </li>
                         <li>
                             <a href="teacher-class-file.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>发布资源</a>
@@ -196,7 +196,7 @@ $html_C=<<<HTML
 
 <!-------------边底栏信息-------------->
   <div class="copy_layout">
-      <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+     <p>BUAA<a href="">协同教学平台.&nbsp;</a> Copyright &copy; 2016.沉迷学习</p>
   </div>
    </div>
       </div>
@@ -253,6 +253,7 @@ echo $html_B;
 
 //团队信息
 $team_data=$my_db->database_get("select * from team where class_id=$class_id");
+
 $count=count($team_data);
 for($i=0;$i<$count;$i++)
 {
