@@ -108,6 +108,15 @@ create table work
     foreign key(class_id) references class(id)
 );
 
+create table work_student
+(
+    work_id int,
+    student_id int,
+    state int,
+    foreign key(work_id) references work(id),
+    foreign key(student_id) references student(id)
+);
+
 create table work_file
 (
     id int primary key AUTO_INCREMENT,
