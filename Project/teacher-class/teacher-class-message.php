@@ -140,6 +140,15 @@ $html_03=<<<HTML
 HTML;
 
 $html_B=<<<HTML
+</td>
+        </tr>
+      </tbody>
+    </table>
+   </div>
+   
+   <div class="panel-body1">
+   <table class="table">
+     <thead>
         <tr>
           <th>团队编号</th>
           <th>团队名称</th>
@@ -154,21 +163,25 @@ $html_1=<<<HTML
         <tr>
           <th>
 HTML;
+
 $html_2=<<<HTML
 </th>
           <td>
 HTML;
+
 $html_3=<<<HTML
 </td>
           <td>
 HTML;
+
 $html_4=<<<HTML
 </td>
           <td
 HTML;
+
 $html_5=<<<HTML
 </td>
-        </tr>
+         </tr>
 HTML;
 
 $html_C=<<<HTML
@@ -239,8 +252,7 @@ else
 echo $html_B;
 
 //团队信息
-$class_data_id=$class_data[0]['id'];
-$team_data=$my_db->database_get("select * from team where class_id=$class_data_id");
+$team_data=$my_db->database_get("select * from team where class_id=$class_id");
 $count=count($team_data);
 for($i=0;$i<$count;$i++)
 {
