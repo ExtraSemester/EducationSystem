@@ -23,7 +23,7 @@ if(isset($_SESSION['user_id'])) {
     $class_id = $_SESSION['class_id'];
     $teacher_id = $_SESSION['user_id'];
     $id = $_GET['id'];
-    echo $end_time;
+    //echo $end_time;
     //判断是否为团队作业
     if ($kind == '团队作业') {
 //        $result = $db->database_get("SELECT * FROM work WHERE class_id=$class_id AND id=$id");
