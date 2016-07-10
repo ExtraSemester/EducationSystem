@@ -104,7 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="s_resource.html"><i class="fa fa-indent nav_icon"></i>课程资料</a>
+                            <a href="s_resource.php"><i class="fa fa-indent nav_icon"></i>课程资料</a>
                         </li>
                         <li>
                             <a href="s_homework.php"><i class="fa fa-indent nav_icon"></i>课程作业</a>
@@ -119,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
+                            <a href="#"><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>
                     </ul>
                 </div>
