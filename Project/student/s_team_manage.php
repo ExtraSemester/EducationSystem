@@ -264,7 +264,7 @@ $admin_id = $_SESSION['user_id'];
 
 require_once '../database.php';
 $db = new database();
-$stu_info = $db->database_get("select * from student where id=(select student_id from team_student where state=0 and team_id=(select id from team where admin_id=$admin_id and class_id=$class_id))");
+$stu_info = $db->database_get("select * from student where id in (select student_id from team_student where state=0 and team_id=(select id from team where admin_id=$admin_id and class_id=$class_id))");
 $team_id = $db->database_get("select id from team where admin_id=$admin_id");
 echo $html_a;
 
@@ -295,7 +295,7 @@ else {
 }
 
 echo $html_b;
-$student_info = $db->database_get("select * from student where id= (select student_id from team_student where state=1 and team_id=(select id from team where admin_id=$admin_id and class_id=$class_id))");
+$student_info = $db->database_get("select * from student where id in (select student_id from team_student where state=1 and team_id=(select id from team where admin_id=$admin_id and class_id=$class_id))");
 $pre_admin_id = $admin_id;
 for ($i=0;$i<count($student_info);$i++) {
     $stu_id = $student_info[$i]['id'];
