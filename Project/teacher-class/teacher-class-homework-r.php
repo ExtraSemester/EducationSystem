@@ -35,6 +35,7 @@ if(isset($_SESSION['user_id'])) {
             echo "<script type='text/javascript'>alert('作业修改成功！');location='teacher-class-givehomework.php';</script>";
         }
         else{
+            
             //将获得的作业信息插入到数据库中
             $values = array('kind' => 2, 'title' => $title, 'content' => $content, 'class_id' => $class_id,
                 'start_time' => $start_time, 'end_time' => $end_time_all, 'attachment' => $attachment);
