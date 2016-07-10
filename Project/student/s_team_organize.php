@@ -25,7 +25,7 @@ if(count($search_team_name)==0) {
     $team = $db->database_get("select id from team where admin_id=$admin_id");
     $team_id = $team[0]['id'];
     //将团队负责人插入到team_student表
-    $db->database_do("insert into team_student($team_id,$admin_id,1)");
+    $db->database_do("insert into team_student VALUES($team_id,$admin_id,1)");
 
     echo "<script type='text/javascript'>alert('团队创建成功,请等待审核！')</script>";
     echo "<script type='text/javascript'>location='course_team.php';</script>";
