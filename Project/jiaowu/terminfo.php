@@ -229,15 +229,21 @@ HTML;
 require_once '../database.php';
 session_start();
 $my_db=new database();
-$term_id = $_SESSION['term_id'];
-$class_id=$my_db->database_get("select class_id from class_term where term_id=$term_id");
+$term_id = $_GET['id'];
+
+$_SESSION['term_id']=$term_id;
+
+$class_ids=$my_db->database_get("select class_id from class_term where term_id=$term_id");
 echo $html_A;
-$count=count($class_id);
+$count=count($class_ids);
 for($i=0;$i<$count;$i++)
 {
-    $class_name=$my_db->database_get("select name from class where id=$class_id[$i]['class_id']");
-    $teacher_id=$my_db->database_get("select teacher_id from class_teacher where class_id=$class_id[$i]['class_id']");
-    $teacher_name=$my_db->database_get("select name from teacher where id=$teacher_id[0]['teacher_id']");
+    $class_id = $class_ids[$i]['class_id'];
+    $class_name=$my_db->database_get("select name from class where id=$class_id");
+    $teacher_ids=$my_db->database_get("select teacher_id from class_teacher where class_id=$class_id");
+
+    $teacher_id = $teacher_ids[0]['teacher_id'];
+    $teacher_name=$my_db->database_get("select name from teacher where id=$teacher_id");
     echo $html_01;
     echo $class_id[$i]['class_id'];
     echo $html_02;

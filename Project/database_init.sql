@@ -61,7 +61,8 @@ create table class_term
       term_id int,
       foreign key(class_id) references class(id),
       foreign key(term_id)references terms(id)
-)
+);
+
 create table class_student
 (
     class_id int,

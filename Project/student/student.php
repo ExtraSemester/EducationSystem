@@ -19,9 +19,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
-<!----webfonts--->
-<link href='' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
 <!-- Nav CSS -->
 <link href="../css/custom.css" rel="stylesheet">
 <!-- Metis Menu Plugin JavaScript -->
