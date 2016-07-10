@@ -239,9 +239,9 @@ $kind = $result[0]['kind'];
 //$sql1 = "SELECT status FROM student WHERE id=$user_id";
 //$stu = $conn->database_get($sql1);
 
-$sql2 = "select attachment from work where id = $work_id";
-$attaches = $conn->database_get($sql2);
-$attach = $attaches[0]['attachment'];
+//$sql2 = "select attachment from work where id = $work_id";
+//$attaches = $conn->database_get($sql2);
+//$attach = $attaches[0]['attachment'];
 
 $stu = $conn->database_get("select admin_id from team where class_id=$class_id");
 $admin_id = $stu[0]['admin_id'];
@@ -260,8 +260,8 @@ echo "<label  class=\" control-label\" id=\"s_w_content\">$content</label>";
 echo $html_partC;
 echo "<label  class=\" control-label\" id=\"s_w_deadline\">$end_time</label>";
 
-echo $html_partD;
-echo "<a href=\"../teacher-class/work/$work_id/$attach\" onClick=\"\">$attach</a>";
+//echo $html_partD;
+//echo "<a href=\"../teacher-class/work/$work_id/$attach\" onClick=\"\">$attach</a>";
 echo $html_partE;
 
 if($kind==2 && $admin_id != $user_id){
