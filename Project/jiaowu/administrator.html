@@ -142,21 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         	<a href="#"><i class="fa fa-laptop nav_icon"></i>学期管理</a>
                      	</li>
                         <li>
-                            <a href="setterms.html"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
-                            <!--<ul class="nav nav-second-level">
-                                <li>
-                                  <a href="setterms.html">设置学期信息和周次</a>
-                                </li>
-                            </ul>-->
-                        </li>
-                        <li>
-                            <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
-                        </li>
-                    	<li>
-                            <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
-                        </li>
-                      	<li>
-                          	<a href="calendar.html"><i class="fa fa-table nav_icon"></i>校历</a>
+                        <a href="calendar.html"><i class="fa fa-table nav_icon"></i>校历</a>
                       	</li>
                     </ul>
                 </div>
@@ -190,42 +176,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<tbody>
 							<tr>
 								<td>1</td>
-								<td>2015-2016学年秋季学期</td>
+								<td><form><input type="hidden" id="term1"><a herf="javascript:void(document.form.submit()" onClick="getvalue()">2015-2016学年秋季学期</a></form></td>
 								<td><form method="post" action=""><input type="hidden" name="open" value="1"><button type="submit" class="btn btn-primary btn-lg">开启学期</button></form></td>
 								<td><form method="post" action=""><input type="hidden" name="close" value="0"><button type="submit" class="btn btn-primary btn-lg" onClick="close()">关闭学期</button></form></td>
                                 <td>已开启</td>
 							</tr>
 							<tr>
 								<td>2</td>
-								<td>2015-2016学年春季学期</td>
+								<td><form><input type="hidden" id="term1"><a herf="javascript:void(document.form.submit()" onClick="getvalue()">2015-2016学年春季学期</a></form></td>
 	<td><form method="post" action=""><input type="hidden" name="open" value="1"><button type="submit" class="btn btn-primary btn-lg" >开启学期</button></form></td>
 								<td><form method="post" action=""><input type="hidden" name="close" value="0"><button type="submit" class="btn btn-primary btn-lg">关闭学期</button></form></td>
                                 <td>已开启</td>
 							</tr>
 							<tr>
 								<td>3</td>
-								<td>2015-2016学年夏季学期</td>
+								<td><form><input type="hidden" id="term1"><a herf="javascript:void(document.form.submit()" onClick="getvalue()">2015-2016学年夏季学期</a></form></td>
 	<td><form method="post" action=""><input type="hidden" name="open" value="1"><button type="submit" class="btn btn-primary btn-lg" >开启学期</button></form></td>
 								<td><form method="post" action=""><input type="hidden" name="close" value="0"><button type="submit" class="btn btn-primary btn-lg">关闭学期</button></form></td>
                                 <td>已开启</td>
 							</tr>
                             <tr>
 								<td>4</td>
-								<td>2016-2017学年秋季学期</td>
+								<td><form><input type="hidden" id="term1"><a herf="javascript:void(document.form.submit()" onClick="getvalue()">2016-2017学年秋季学期</a></form></td>
 	<td><form method="post" action=""><input type="hidden" name="open" value="1"><button type="submit" class="btn btn-primary btn-lg" >开启学期</button></form></td>
 								<td><form method="post" action=""><input type="hidden" name="close" value="0"><button type="submit" class="btn btn-primary btn-lg">关闭学期</button></form></td>
                                 <td>已开启</td>
 							</tr>
                             <tr>
 								<td>5</td>
-								<td>2016-2017学年春季学期</td>
+								<td><form><input type="hidden" id="term1"><a herf="javascript:void(document.form.submit()" onClick="getvalue()">2016-2017学年春季学期</a></form></td>
 	<td><form method="post" action=""><input type="hidden" name="open" value="1"><button type="submit" class="btn btn-primary btn-lg" >开启学期</button></form></td>
 								<td><form method="post" action=""><input type="hidden" name="close" value="0"><button type="submit" class="btn btn-primary btn-lg">关闭学期</button></form></td>
                                 <td>已开启</td>
 							</tr>
                             <tr>
 								<td>6</td>
-								<td>2016-2017学年夏季学期</td>
+								<td><form><input type="hidden" id="term1"><a herf="javascript:void(document.form.submit()" onClick="getvalue()">2016-2017学年夏季学期</a></form></td>
 	<td><form method="post" action=""><input type="hidden" name="open" value="1"><button type="submit" class="btn btn-primary btn-lg" >开启学期</button></form></td>
 								<td><form method="post" action=""><input type="hidden" name="close" value="0"><button type="submit" class="btn btn-primary btn-lg">关闭学期</button></form></td>
                                 <td>已开启</td>
@@ -234,7 +220,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
     </div>
-
+<script>
+function getvalue()
+{
+	document.getElementById("term1").value = this.value;
+	}
+</script>
 <script src="../js/bootstrap.min.js"></script>
 <!-----------------------------------------------------学期管理--------------------------------------------------------------->
 </body>

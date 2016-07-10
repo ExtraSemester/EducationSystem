@@ -43,8 +43,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       $.get("switch_term.php?id="+id+"&state="+state,function(data,status) {
         if(data>0){
             alert("开启成功");
+            location.reload();
         }else{
             alert("关闭成功");
+            location.reload();
         }
       })
     }
@@ -132,20 +134,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         	<a href="#"><i class="fa fa-laptop nav_icon"></i>学期管理</a>
                      	</li>
                         <li>
-                            <a href="setterms.html"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
-                            <!--<ul class="nav nav-second-level">
-                                <li>
-                                  <a href="setterms.html">设置学期信息和周次</a>
-                                </li>
-                            </ul>-->
-                        </li>
-                        <li>
-                            <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
-                        </li>
-                    	<li>
-                            <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
-                        </li>
-                      	<li>
                           	<a href="calendar.html"><i class="fa fa-table nav_icon"></i>校历</a>
                       	</li>
                     </ul>
@@ -205,9 +193,10 @@ $terms = $conn->database_get($sql);
 echo $html_partA;
 
 for($i = 0;$i < count($terms); $i++){
+    $term_id = $terms[$i]['id'];
     echo "<tr>
 								<td>".($i+1)."</td>
-								<td>".$terms[$i]['name']."</td>
+								<td><a href='terminfo.php?id=$term_id'>".$terms[$i]['name']."</td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",1)'>开启学期</button></form></td>
 								<td><button type=\"submit\" class=\"btn btn-primary btn-lg\" onclick='operate(".$terms[$i]['id'].",2)'>关闭学期</button></form></td>
 							";

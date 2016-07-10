@@ -1,7 +1,17 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: MSI
+ * Date: 2016/7/9
+ * Time: 14:28
+ */
+require_once '../database.php';
+
+$html_A=<<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>教务管理</title>
+<title>学期课程信息</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -135,7 +145,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-
 <!-----------------------------------------------------侧边栏---------------------------------------------------------------->
           <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -161,48 +170,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------侧边栏---------------------------------------------------------------->
 
 
-
 <!-----------------------------------------------------学期管理--------------------------------------------------------------->
   <div id="page-wrapper">
      <div class="graphs">
 	   <div class="xs">
-  	 <h3>教师信息</h3>
+  	 <h3>课程信息</h3>
    <div class="panel-body1">
    <table class="table">
      <thead>
         <tr>
+          <th>课程编号</th>
+          <th>课程名称</th>
           <th>教师工号</th>
-          <th>姓名</th>
-          <th>所代课程</th>
-          <th>操作<th>
+          <th>代课教师<th>
         </tr>
       </thead>
       <tbody>
+        
+HTML;
+$html_01=<<<HTML
         <tr>
-        <form method="post" action="">
-          <th scope="row"><input type="hidden" name="" id="id1" value=""><p id="p11">1</p></th>
-          <td><input type="hidden" name="" id="name1" value=""><p  id="p12">fas</p></td>
-          <td><input type="hidden" name="" id="class1" value=""><p  id="p13">sdg</p></td>
-          <td><button type="button" class="btn-inverse btn" onClick="change()">编辑</button><td>
-         </form>
+          <th scope="row">
+HTML;
+$html_02=<<<HTML
+</p></th>
+          <td>
+HTML;
+$html_03=<<<HTML
+</td>
+          <td>
+HTML;
+$html_04=<<<HTML
+</td>
+          <td>
+HTML;
+$html_05=<<<HTML
+<td>
         </tr>
+HTML;
+
+
+$html_B=<<<HTML
       </tbody>
     </table>
-    <script>
-	function change()
-	{
-		document.getElementById("id1").type="text";
-		document.getElementById("id1").value=document.getElementById("p11").innerHTML;
-	document.getElementById("name1").type="text";
-	document.getElementById("name1").value=document.getElementById("p12").innerHTML;
-	document.getElementById("class1").type="text";
-	document.getElementById("class1").value=document.getElementById("p13").innerHTML;
-	document.getElementById("p11").hidden="hidden";
-	document.getElementById("p12").hidden="hidden";
-	document.getElementById("p13").hidden="hidden";
-		}
-	</script>
-    <button type="submit" class="btn-inverse btn">确认</button>
+
     </div>
     </div>
 	</div>
@@ -212,3 +223,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------学期管理--------------------------------------------------------------->
 </body>
 </html>
+
+
+HTML;
+require_once '../database.php';
+session_start();
+$my_db=new database();
+$term_id = $_SESSION['term_id'];
+$class_id=$my_db->database_get("select class_id from class_term where term_id=$term_id");
+echo $html_A;
+$count=count($class_id);
+for($i=0;$i<$count;$i++)
+{
+    $class_name=$my_db->database_get("select name from class where id=$class_id[$i]['class_id']");
+    $teacher_id=$my_db->database_get("select teacher_id from class_teacher where class_id=$class_id[$i]['class_id']");
+    $teacher_name=$my_db->database_get("select name from teacher where id=$teacher_id[0]['teacher_id']");
+    echo $html_01;
+    echo $class_id[$i]['class_id'];
+    echo $html_02;
+    echo $class_name[0]['name'];
+    echo $html_03;
+    echo $teacher_id[0]['teacher_id'];
+    echo $html_04;
+    echo $teacher_name[0]['name'];
+    echo $html_05;
+}
+echo $html_B;
