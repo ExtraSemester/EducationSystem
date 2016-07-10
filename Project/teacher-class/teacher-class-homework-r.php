@@ -35,11 +35,21 @@ if(isset($_SESSION['user_id'])) {
             echo "<script type='text/javascript'>alert('作业修改成功！');location='teacher-class-givehomework.php';</script>";
         }
         else{
+            //将获得的作业信息插入到数据库中
             $values = array('kind' => 2, 'title' => $title, 'content' => $content, 'class_id' => $class_id,
                 'start_time' => $start_time, 'end_time' => $end_time_all, 'attachment' => $attachment);
             $db->insert_to_db('work', $values);
+            //获得发布的作业id
             $value = $db->database_get("select id from work where kind=2 and title='$title' and content='$content' and class_id=$class_id and end_time='$end_time_all'");
             $work_id = $value[0]['id'];
+            //发布作业后将work_student表更新，将state设为2
+            $resuluts = $db->database_get("select student_id from class_student where class_id=$class_id");
+            for ($i=0;$i<count($resuluts);$i++) {
+                $stu_id[$i] = $resuluts[$i]['student_id'];
+                $db->database_do("insert into work_student(work_id, student_id, state) values ('$work_id','$stu_id[$i]',2)");
+            }
+            //$db->database_do("update work_student set state=2 where work_id=$work_id and student_id in (select student_id from class_student where class_id=$class_id)");
+            //添加附件
             $route = "../teacher-class/work/".$work_id;
             //echo $work_id;
             if(!file_exists($route)){
@@ -51,14 +61,7 @@ if(isset($_SESSION['user_id'])) {
             }
             else {
                 $result = $db->database_get("SELECT name FROM class WHERE id=$class_id");
-//                $class_name = $result[0]['name'];
-//                //echo "R".$route."S".$class_name;
-//                if($class_name==null)
-//                {
-//                    $class_name="生产实习";
-//                }
                 $real_route="../teacher-class/work/".$work_id."/";
-                //echo $real_route;
                 $file_name = iconv('utf-8','gbk',$_FILES["file"]["name"]);
                 //echo $file_name;
                 $db->database_do("update work set attachment='$file_name' where id=$work_id");
@@ -70,8 +73,6 @@ if(isset($_SESSION['user_id'])) {
     }
     //判断是否为个人作业
     elseif ($kind == '个人作业') {
-//        $result1 = $db->database_get("SELECT * FROM work WHERE class_id=$class_id AND id=$id");
-//        $count = count($_result1);
         if ($id!=null) {
             $db->database_do("UPDATE work set kind=1,title='$title',content='$content',end_time='$end_time',attachment='$attachment'WHERE id=$id");
             echo "<script type='text/javascript'>alert('作业修改成功');location='teacher-class-givehomework.php';</script>";
@@ -82,7 +83,12 @@ if(isset($_SESSION['user_id'])) {
             $db->insert_to_db('work', $values);
             $value_ = $db->database_get("select id from work where kind=1 and title=$title and content=$content and class_id=$class_id and end_time='$end_time_all'");
             $work_id_ = $value_[0]['id'];
-            //echo $work_id_;
+            //发布作业后将work_student表更新，将state设为2
+            $resulut1 = $db->database_get("select student_id from class_student where class_id=$class_id");
+            for ($i=0;$i<count($resulut1);$i++) {
+                $student_id[$i] = $resulut1[$i]['student_id'];
+                $db->database_do("insert into work_student(work_id, student_id, state) values ('$work_id_','$student_id[$i]',2)");
+            }
             $route = "../teacher-class/work/".$work_id_;
             if(!file_exists($route)){
                 mkdir($route);
@@ -94,13 +100,6 @@ if(isset($_SESSION['user_id'])) {
             else {
                 $result = $db->database_get("SELECT name FROM class WHERE id=$class_id");
                 $class_name = $result[0]['name'];
-                //echo "R".$route."S".$class_name;
-//                if($class_name==null)
-//                {
-//                    $class_name="生产实习";
-//                }
-//                $real_route="../teacher-class/work/".$work_id_."/";
-                //echo $work_id_;
                 $file_name = iconv('utf-8','gbk',$_FILES["file"]["name"]);
                 $db->database_do("update work set attachment='$file_name' where id=$work_id_");
                 $title = $real_route.$file_name;
