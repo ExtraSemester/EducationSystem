@@ -282,6 +282,8 @@ elseif ($user_team_data[0]['stat']==2)
 elseif ($user_team_data[0]['stat']==3)
 {
     echo '未通过审核';
+}else{
+    echo '新建';
 }
 echo $html_B;
 
