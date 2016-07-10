@@ -271,19 +271,16 @@ echo $html_02;
 echo $lead_data[0]['name'];
 echo $html_03;
 
-if ($user_team_data[0]['stat']==1)
-{
-    echo '通过审核';
-}
-elseif ($user_team_data[0]['stat']==2)
-{
-    echo '审核中';
-}
-elseif ($user_team_data[0]['stat']==3)
-{
-    echo '未通过审核';
-}else{
-    echo '新建';
+if($user_team_data!=null) {
+    if ($user_team_data[0]['stat'] == 1) {
+        echo '通过审核';
+    } elseif ($user_team_data[0]['stat'] == 2) {
+        echo '审核中';
+    } elseif ($user_team_data[0]['stat'] == 3) {
+        echo '未通过审核';
+    } elseif ($user_team_data[0]['stat'] == 0) {
+        echo '新建';
+    }
 }
 echo $html_B;
 
