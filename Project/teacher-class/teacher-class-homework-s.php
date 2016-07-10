@@ -216,7 +216,7 @@ require_once '../database.php';
 
 $conn = new database();
 
-$sql = "SELECT kind,title,content,end_time,attachment FROM work WHERE id=$id";
+$sql = "SELECT kind,title,content,end_time FROM work WHERE id=$id";
 
 $result = $conn->database_get($sql);
 
@@ -224,7 +224,7 @@ $kind = $result[0]['kind'];
 $title = $result[0]['title'];
 $content = $result[0]['content'];
 $end_time = $result[0]['end_time'];
-$attachment = $result[0]['attachment'];
+//$attachment = $result[0]['attachment'];
 
 echo $html_partA;
 
@@ -250,13 +250,6 @@ style=\"height:auto;min-height:100px\" name=\"content\" readonly>$content</texta
 echo $html_partD;
 echo "<input type=\"text\" class=\"form-control1 input-sm\" id=\"taskdeadline\" name=\"end_time\" placeholder=\"\" value='$end_time' readonly></div>
                                	</div>";
-echo "<div class=\"form-group\">
-                <label for=\"smallinput\" class=\"col-sm-2 control-label label-input-sm\">附件:</label>
-                <a href='./work/$attachment' class=\"col-sm-8\">$attachment</a>
-                <div id='choose_file' class=\"col-sm-8\" hidden=\"hidden\">
-                    <input type=\"file\" name=\"file\" id=\"file\">
-                </div>
-            </div>";
 
 echo $html_partE;
 echo "<input type=\"hidden\" name=\"id\" value=\"$id\"/>";
