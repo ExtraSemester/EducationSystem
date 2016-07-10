@@ -19,7 +19,7 @@ require_once '../database.php';
 		}
 		else
 		{
-			echo "无法识别的文件，仅支持xls";
+			echo "无法识别的文件，仅支持xls:".$_FILES["file"]["name"]$;
 		}
 		$PHPExcel = $reader->load($_FILES["file"]["tmp_name"]); // 载入excel文件
 		$sheet = $PHPExcel->getSheet(0); // 读取第一個工作表
