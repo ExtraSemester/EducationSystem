@@ -62,7 +62,7 @@ if(isset($_SESSION['user_id'])) {
             else {
                 $result = $db->database_get("SELECT name FROM class WHERE id=$class_id");
                 $real_route="../teacher-class/work/".$work_id."/";
-                $file_name = iconv('utf-8','gbk',$_FILES["file"]["name"]);
+                $file_name = $_FILES["file"]["name"];
                 //echo $file_name;
                 $db->database_do("update work set attachment='$file_name' where id=$work_id");
                 $title = $real_route.$file_name;
