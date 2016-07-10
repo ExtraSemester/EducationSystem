@@ -35,7 +35,7 @@ if(isset($_SESSION['user_id'])) {
             echo "<script type='text/javascript'>alert('作业修改成功！');location='teacher-class-givehomework.php';</script>";
         }
         else{
-            
+
             //将获得的作业信息插入到数据库中
             $values = array('kind' => 2, 'title' => $title, 'content' => $content, 'class_id' => $class_id,
                 'start_time' => $start_time, 'end_time' => $end_time_all, 'attachment' => $attachment);
@@ -101,7 +101,7 @@ if(isset($_SESSION['user_id'])) {
             else {
                 $result = $db->database_get("SELECT name FROM class WHERE id=$class_id");
                 $class_name = $result[0]['name'];
-                $file_name = iconv('utf-8','gbk',$_FILES["file"]["name"]);
+                $file_name = $_FILES["file"]["name"];
                 $db->database_do("update work set attachment='$file_name' where id=$work_id_");
                 $title = $real_route.$file_name;
                 move_uploaded_file($_FILES["file"]["tmp_name"],iconv('utf-8','gbk',$title));
