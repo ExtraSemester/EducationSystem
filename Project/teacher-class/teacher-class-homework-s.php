@@ -162,7 +162,7 @@ $html_partE = <<<HTML
 HTML;
 
 $html_partF = <<<HTML
-<button id='submit' type="submit" class="btn-inverse btn" disabled>确定</button>                     
+<button id='submit' type="submit" class="btn-inverse btn">确定</button>                     
               </div>
               </div>
               </div>
@@ -180,7 +180,6 @@ function change()
 	document.getElementById("taskdeadline").removeAttribute("readonly");
 	document.getElementById("homewortype").removeAttribute("disabled");
     document.getElementById("choose_file").removeAttribute("hidden");
-    document.getElementById("submit").removeAttribute("disabled");
 }
 </script>  
         
