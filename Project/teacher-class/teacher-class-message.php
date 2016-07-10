@@ -227,17 +227,25 @@ echo $class_data[0]['name'];
 echo $html_02;
 echo $class_teacher_data[0]['name'];
 echo $html_03;
-echo $class_data[0]['state'];
+$class_state=$class_data[0]['state'];
+if($class_state==1)
+{
+    echo"可用";
+}
+else
+{
+    echo"不可用";
+}
 echo $html_B;
 
 //团队信息
 $class_data_id=$class_data[0]['id'];
 $team_data=$my_db->database_get("select * from team where class_id=$class_data_id");
-$team_admin_id=$team_data[0]['admin_id'];
-$team_lead_name=$my_db->database_get("select name from student where id=$team_admin_id");
 $count=count($team_data);
 for($i=0;$i<$count;$i++)
 {
+    $team_admin_id=$team_data[$i]['admin_id'];
+    $team_lead_name=$my_db->database_get("select name from student where id=$team_admin_id");
     echo $html_1;
     echo $team_data[$i]['id'];
     echo $html_2;
@@ -245,7 +253,7 @@ for($i=0;$i<$count;$i++)
     echo $html_3;
     echo $team_data[$i]['number'];
     echo $html_4;
-    echo $team_lead_name[$i]['name'];
+    echo $team_lead_name[0]['name'];
     echo $html_5;
 }
 echo $html_C;
