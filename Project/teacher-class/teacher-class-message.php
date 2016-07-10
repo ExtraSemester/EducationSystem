@@ -160,7 +160,7 @@ $html_B=<<<HTML
 HTML;
 
 $html_1=<<<HTML
-        <tr>
+<tr>
           <th>
 HTML;
 
@@ -176,7 +176,7 @@ HTML;
 
 $html_4=<<<HTML
 </td>
-          <td
+          <td>
 HTML;
 
 $html_5=<<<HTML
