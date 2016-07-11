@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
           if(data > 0){
           alert("移交成功")
-          location.reload();
+          window.location.href='course_team.php';
           }
         })
         //window.location.href();

@@ -57,7 +57,7 @@ if(isset($_SESSION['user_id'])) {
     elseif ($kind == '个人作业') {
         if ($id!=null) {
             //$sql = "UPDATE work set kind=2,title=$title,content=$content,end_time=$end_time WHERE id=$id";
-            $db->database_do("UPDATE work set kind=2,title='$title',content='$content',end_time='$end_time' WHERE id=$id");
+            $db->database_do("UPDATE work set kind=1,title='$title',content='$content',end_time='$end_time' WHERE id=$id");
             echo "<script type='text/javascript'>alert('作业修改成功！');location='teacher-class-givehomework.php';</script>";
         }
         else{

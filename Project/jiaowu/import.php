@@ -11,6 +11,9 @@ require_once '../database.php';
     }
 	else
     {
+		session_start();
+		$term_id = $_SESSION['term_id'];
+
 		$succeed=true;
 		$choose=$_POST['choose'];
 		if($_FILES["file"]["name"][strlen($_FILES["file"]["name"])-1]=='s')
@@ -46,7 +49,7 @@ require_once '../database.php';
 		{
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
-				$mdb->database_do('insert into class(name,start_week,end_week,time,place,state,term_id)values("'.$sheet->getCell('A'.$row)->getValue().'",'.$sheet->getCell('B'.$row)->getValue().','.$sheet->getCell('C'.$row)->getValue().',"'.$sheet->getCell('D'.$row)->getValue().'","'.$sheet->getCell('E'.$row)->getValue().'","'.$sheet->getCell('F'.$row)->getValue().'","'.$sheet->getCell('G'.$row)->getValue().'")');
+				$mdb->database_do('insert into class(name,start_week,end_week,time,place,state,term_id)values("'.$sheet->getCell('A'.$row)->getValue().'",'.$sheet->getCell('B'.$row)->getValue().','.$sheet->getCell('C'.$row)->getValue().',"'.$sheet->getCell('D'.$row)->getValue().'","'.$sheet->getCell('E'.$row)->getValue().'","'.$sheet->getCell('F'.$row)->getValue().'","'.$term_id.'")');
 			}
 		}
 		else if($choose=="class_teacher")
