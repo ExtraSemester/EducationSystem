@@ -58,9 +58,7 @@ function cookie_jump()
             <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
-	        		<ul class="dropdown-menu">
-						
-	        		</ul>
+	        		
 	      		</li>
 			    <li class="dropdown">
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
