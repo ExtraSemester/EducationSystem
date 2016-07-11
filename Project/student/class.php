@@ -111,43 +111,7 @@ function cookie_jump()
                         </li>
                         <li>
                             <a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
-                        </li>
-                         <!--<li>
-                            <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="forms.html">Basic Forms</a>
-                                </li>
-                                <li>
-                                    <a href="validation.html">Validation</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-table nav_icon"></i>Tables<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="basic_tables.html">Basic Tables</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>Css<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="media.html">Media</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                            </ul>
-
-                        </li>-->
+                        </li> 
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

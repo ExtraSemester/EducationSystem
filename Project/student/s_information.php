@@ -88,9 +88,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <!-- /.nav-second-level -->
                         </li>
                         
-                        <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
