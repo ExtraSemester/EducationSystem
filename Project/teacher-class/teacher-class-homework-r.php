@@ -68,8 +68,8 @@ if(isset($_SESSION['user_id'])) {
             //发布作业后将work_student表更新，将state设为2
             $resulut1 = $db->database_get("select student_id from class_student where class_id=$class_id");
             for ($i=0;$i<count($resulut1);$i++) {
-                $student_id[$i] = $resulut1[$i]['student_id'];
-                $db->database_do("insert into work_student(work_id, student_id, state) values ('$work_id_','$student_id[$i]',2)");
+                $student_id_r = $resulut1[$i]['student_id'];
+                $db->database_do("insert into work_student(work_id, student_id, state) values ('$work_id_','$student_id_r',2)");
             }
             
             echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.php';</script>";

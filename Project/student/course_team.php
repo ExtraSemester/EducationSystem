@@ -285,8 +285,8 @@ if($user_team_data!=null) {
 echo $html_B;
 
 //判断是不是团队管理员
-$is_manager=$my_db->database_get("select status from student where id = $user_id");
-if($is_manager[0]['status']==2)
+//$is_manager=$my_db->database_get("select status from student where id = $user_id");
+if($admin_id == $user_id)
 {
     echo $html_C;
 }

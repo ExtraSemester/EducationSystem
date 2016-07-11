@@ -52,15 +52,9 @@ create table class
 	    end_week int,
 	    time varchar(100),
 	    place varchar(100),
-	    state int
-);
-
-create table class_term
-(
-      class_id int,
-      term_id int,
-      foreign key(class_id) references class(id),
-      foreign key(term_id)references terms(id)
+	    state int,
+	    term_id int,
+	    FOREIGN key(term_id) REFERENCES terms(id)
 );
 
 create table class_student

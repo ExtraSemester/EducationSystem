@@ -74,39 +74,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="dropdown">
 	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header">
-						  <strong>消息</strong>
-							<div class="progress thin">
-							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-							    <span class="sr-only">40% Complete (success)</span>
-							  </div>
-							</div>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/1.png" alt=""/>
-								<div>新消息</div>
-								<small>一分钟前</small>
-								<span class="label label-info">新</span>
-							</a>
-						</li>
-						
-						<li class="dropdown-menu-footer text-center">
-							<a href="#">查看所有消息</a>
-						</li>	
+							
 	        		</ul>
 	      		</li>
 			    <li class="dropdown">
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header text-center">
-						  <strong>账户</strong>
-						</li>
-						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> 更新 <span class="label label-info"></span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> 消息 <span class="label label-success"></span></a></li>
-						<li class="dropdown-menu-header text-center">
-						  <strong>设置</strong>
-						</li>
+					
+						<li class="m_2"><a href="#"><i class="fa fa-home"></i> 首页<span class="label label-info"></span></a></li>
+						
 						<li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
                     <script>

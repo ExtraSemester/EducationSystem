@@ -58,74 +58,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="dropdown">
 	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header">
-						  <strong>消息</strong>
-							<div class="progress thin">
-							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-							    <span class="sr-only">40% Complete (success)</span>
-							  </div>
-							</div>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/1.png" alt=""/>
-								<div>新消息</div>
-								<small>一分钟前</small>
-								<span class="label label-info">新</span>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/2.png" alt=""/>
-								<div>新消息</div>
-								<small>一分钟前</small>
-								<span class="label label-info">新</span>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/3.png" alt=""/>
-								<div>新消息</div>
-								<small>一分钟前</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/4.png" alt=""/>
-								<div>新消息</div>
-								<small>一分钟前</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/5.png" alt=""/>
-								<div>新消息</div>
-								<small>一分钟前</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/pic1.png" alt=""/>
-								<div>新消息</div>
-								<small>一分钟前</small>
-							</a>
-						</li>
-						<li class="dropdown-menu-footer text-center">
-							<a href="#">查看所有消息</a>
-						</li>	
+						
 	        		</ul>
 	      		</li>
 			    <li class="dropdown">
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header text-center">
-						  <strong>账户</strong>
-						</li>
-						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> 更新 <span class="label label-info"></span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> 消息 <span class="label label-success"></span></a></li>
-						<li class="dropdown-menu-header text-center">
-						  <strong>设置</strong>
-						</li>
+						<li class="m_2"><a href="administrator.php"><i class="fa fa-home"></i> 首页<span class="label label-info"></span></a></li>
+						
 						<li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
                     <script>
@@ -150,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                   	<ul class="nav" id="side-menu">
                     	<li>
-                        	<a href="terminfo.html"><i class="fa fa-laptop nav_icon"></i>学期信息</a>
+                        	<a href="#"><i class="fa fa-laptop nav_icon"></i>学期信息</a>
                      	</li>
                         <li>
                             <a href="setterms.html"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
@@ -158,9 +98,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li>
                             <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
                         </li>
-                    	<li>
-                            <a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>
-                        </li>
+                    	<!--<li>-->
+                            <!--<a href="mainten_info.html"><i class="fa fa-flask nav_icon"></i>信息维护</a>-->
+                        <!--</li>-->
                     </ul>
                 </div>
             </div>
@@ -233,25 +173,29 @@ $term_id = $_GET['id'];
 
 $_SESSION['term_id']=$term_id;
 
-$class_ids=$my_db->database_get("select class_id from class_term where term_id=$term_id");
+$class_ids=$my_db->database_get("select id,name from class where term_id=$term_id");
 echo $html_A;
 $count=count($class_ids);
+//echo $count;
 for($i=0;$i<$count;$i++)
 {
-    $class_id = $class_ids[$i]['class_id'];
-    $class_name=$my_db->database_get("select name from class where id=$class_id");
+    $class_id = $class_ids[$i]['id'];
+    $class_name=$class_ids[$i]['name'];
+
     $teacher_ids=$my_db->database_get("select teacher_id from class_teacher where class_id=$class_id");
 
     $teacher_id = $teacher_ids[0]['teacher_id'];
-    $teacher_name=$my_db->database_get("select name from teacher where id=$teacher_id");
+    $teacher_name=$my_db->database_get("select employee_id,name from teacher where id=$teacher_id");
     echo $html_01;
-    echo $class_id[$i]['class_id'];
+    echo $class_id;
     echo $html_02;
-    echo $class_name[0]['name'];
+    echo $class_name;
     echo $html_03;
-    echo $teacher_id[0]['teacher_id'];
+    echo $teacher_name[0]['employee_id'];
     echo $html_04;
+
     echo $teacher_name[0]['name'];
+
     echo $html_05;
 }
 echo $html_B;

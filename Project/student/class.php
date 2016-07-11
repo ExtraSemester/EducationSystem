@@ -59,57 +59,7 @@ function cookie_jump()
 				<li class="dropdown">
 	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
-						<li class="dropdown-menu-header">
-							<strong>Messages</strong>
-
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/1.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-								<span class="label label-info">NEW</span>
-							</a>
-						</li>
-						<!--<li class="avatar">
-							<a href="#">
-								<img src="../images/2.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-								<span class="label label-info">NEW</span>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/3.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/4.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/5.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="avatar">
-							<a href="#">
-								<img src="../images/pic1.png" alt=""/>
-								<div>New message</div>
-								<small>1 minute ago</small>
-							</a>
-						</li>
-						<li class="dropdown-menu-footer text-center">
-							<a href="#">View all messages</a>
-						</li>	-->
+						
 	        		</ul>
 	      		</li>
 			    <li class="dropdown">
