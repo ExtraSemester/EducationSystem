@@ -56,22 +56,27 @@ if(isset($_SESSION['user_id'])) {
     //判断是否为个人作业
     elseif ($kind == '个人作业') {
         if ($id!=null) {
-            $db->database_do("UPDATE work set kind=1,title='$title',content='$content',end_time='$end_time' WHERE id=$id");
-            echo "<script type='text/javascript'>alert('作业修改成功');location='teacher-class-givehomework.php';</script>";
+            //$sql = "UPDATE work set kind=2,title=$title,content=$content,end_time=$end_time WHERE id=$id";
+            $db->database_do("UPDATE work set kind=2,title='$title',content='$content',end_time='$end_time' WHERE id=$id");
+            echo "<script type='text/javascript'>alert('作业修改成功！');location='teacher-class-givehomework.php';</script>";
         }
         else{
+
+            //将获得的作业信息插入到数据库中
             $values = array('kind' => 1, 'title' => $title, 'content' => $content, 'class_id' => $class_id,
                 'start_time' => $start_time, 'end_time' => $end_time_all);
             $db->insert_to_db('work', $values);
-            $value_ = $db->database_get("select id from work where kind=1 and title=$title and content=$content and class_id=$class_id and end_time='$end_time_all'");
-            $work_id_ = $value_[0]['id'];
+            //获得发布的作业id
+            $value = $db->database_get("select id from work where kind=1 and title='$title' and content='$content' and class_id=$class_id and end_time='$end_time_all'");
+            $work_id = $value[0]['id'];
             //发布作业后将work_student表更新，将state设为2
-            $resulut1 = $db->database_get("select student_id from class_student where class_id=$class_id");
-            for ($i=0;$i<count($resulut1);$i++) {
-                $student_id_r = $resulut1[$i]['student_id'];
-                $db->database_do("insert into work_student(work_id, student_id, state) values ('$work_id_','$student_id_r',2)");
+            $resuluts = $db->database_get("select student_id from class_student where class_id=$class_id");
+            for ($i=0;$i<count($resuluts);$i++) {
+                $stu_id[$i] = $resuluts[$i]['student_id'];
+                $db->database_do("insert into work_student(work_id, student_id, state) values ('$work_id','$stu_id[$i]',2)");
             }
-            
+            //$db->database_do("update work_student set state=2 where work_id=$work_id and student_id in (select student_id from class_student where class_id=$class_id)");
+
             echo "<script type='text/javascript'>alert('作业发布成功！');location='teacher-class-givehomework.php';</script>";
         }
     }

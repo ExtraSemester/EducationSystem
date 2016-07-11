@@ -1,17 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: MSI
- * Date: 2016/7/9
- * Time: 14:28
+ * User: whx
+ * Date: 2016/7/11
+ * Time: 16:00
  */
-require_once '../database.php';
 
-$html_A=<<<HTML
+$html_partA = <<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>学期课程信息</title>
+<title>学期管理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -34,7 +33,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Graph JavaScript -->
 <script src="../js/d3.v3.js"></script>
 <script src="../js/rickshaw.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -63,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"><span class="badge"></span></a>
 	        		<ul class="dropdown-menu">
 						<li class="m_2"><a href="administrator.php"><i class="fa fa-home"></i> 首页<span class="label label-info"></span></a></li>
-						
+
 						<li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
 	        		</ul>
                     <script>
@@ -88,10 +86,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                   	<ul class="nav" id="side-menu">
                     	<li>
-                        	<a href="#"><i class="fa fa-laptop nav_icon"></i>学期信息</a>
+                        	<a href="terminfo.php"><i class="fa fa-laptop nav_icon"></i>学期信息</a>
                      	</li>
                         <li>
-                            <a href="setterms.php"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
+                            <a href="#"><i class="fa fa-indent nav_icon"></i>学期信息管理</a>
                         </li>
                         <li>
                             <a href="import_term.html"><i class="fa fa-envelope nav_icon"></i>信息导入</a>
@@ -105,99 +103,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </nav>
   
         
-<!-----------------------------------------------------侧边栏---------------------------------------------------------------->
+
+
+
 
 
 <!-----------------------------------------------------学期管理--------------------------------------------------------------->
-  <div id="page-wrapper">
-     <div class="graphs">
-	   <div class="xs">
-  	 <h3>课程信息</h3>
-   <div class="panel-body1">
-   <table class="table">
-     <thead>
-        <tr>
-          <th>课程编号</th>
-          <th>课程名称</th>
-          <th>教师工号</th>
-          <th>代课教师<th>
-        </tr>
-      </thead>
-      <tbody>
-        
-HTML;
-$html_01=<<<HTML
-        <tr>
-          <th scope="row">
-HTML;
-$html_02=<<<HTML
-</p></th>
-          <td>
-HTML;
-$html_03=<<<HTML
-</td>
-          <td>
-HTML;
-$html_04=<<<HTML
-</td>
-          <td>
-HTML;
-$html_05=<<<HTML
-<td>
-        </tr>
+        <div id="page-wrapper">
+        <div class="graphs">
+   <div class="grid_3 grid_5">
+     <h2><strong>设置学期信息和周次</strong></h2>
 HTML;
 
-
-$html_B=<<<HTML
-      </tbody>
-    </table>
-
-    </div>
-    </div>
-	</div>
-    </div>
-
-
+$html_partB = <<<HTML
+</div>     
+     </div>
+    
+   <div class="graphs">
+   <div class="grid_3 grid_5">
+     <h3><strong>设置学期信息</strong></h3>
+      <div class="bs-example2">
+		<div class="modal-dialog">
+			<div class="modal-content">
+            <form method="get" action="set_term_date.php">
+				<div class="modal-header">
+					<p class="modal-title">开始时间</p>
+                    <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" id="start-time" name="start_date">
+				</div>
+				<div class="modal-body">
+					<p>结束时间</p>
+                    <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" id="close-time" name="end_date">
+				</div>
+				<div class="modal-footer">
+					<button type="sumbit"  class="btn btn-primary">保存修改</button>
+				</div>
+               </form> 
+			</div>
+		</div>
+	   </div>
+      </div>
+   </div>  
+   
+   
+<script src="../js/bootstrap.min.js"></script>
 <!-----------------------------------------------------学期管理--------------------------------------------------------------->
 </body>
 </html>
-
-
 HTML;
+
 require_once '../database.php';
+
 session_start();
-$my_db=new database();
-$term_id = $_GET['id'];
+$term_id = $_SESSION['term_id'];
 
-if($term_id == null){
-    $term_id = $_SESSION['term_id'];
+$conn = new database();
+
+echo $html_partA;
+
+$sql = "select start_date,end_date from terms where id=$term_id";
+
+$result = $conn->database_get($sql);
+
+if($result) {
+    echo "<div class=\"but_list\">
+       <div class=\"alert alert-success\" role=\"alert\">
+     开始时间：" . $result[0]['start_date'] . "  结束时间：" . $result[0]['end_date'] . "</div>
+     </div>";
 }else{
-    $_SESSION['term_id']=$term_id;
+    echo "<div class=\"but_list\">
+       <div class=\"alert alert-danger\" role=\"alert\">
+     请在开学前设置本学期的具体信息及周次</div>
+     </div>";
 }
 
-$class_ids=$my_db->database_get("select id,name from class where term_id=$term_id");
-echo $html_A;
-$count=count($class_ids);
-//echo $count;
-for($i=0;$i<$count;$i++)
-{
-    $class_id = $class_ids[$i]['id'];
-    $class_name=$class_ids[$i]['name'];
-
-    $teacher_ids=$my_db->database_get("select teacher_id from class_teacher where class_id=$class_id");
-
-    $teacher_id = $teacher_ids[0]['teacher_id'];
-    $teacher_name=$my_db->database_get("select employee_id,name from teacher where id=$teacher_id");
-    echo $html_01;
-    echo $class_id;
-    echo $html_02;
-    echo $class_name;
-    echo $html_03;
-    echo $teacher_name[0]['employee_id'];
-    echo $html_04;
-
-    echo $teacher_name[0]['name'];
-
-    echo $html_05;
-}
-echo $html_B;
+echo $html_partB;

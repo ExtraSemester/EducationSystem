@@ -24,4 +24,4 @@ $sql = "update terms set start_date = '$start_date',end_date = '$end_date' where
 $conn->database_do($sql);
 //echo $sql;
 echo "<script>alert('设置成功')
-location='setterms.html'</script>";
+location='setterms.php'</script>";
