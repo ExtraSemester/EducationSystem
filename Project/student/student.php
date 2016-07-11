@@ -89,62 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li>
                             <a href="#" onclick="show('course_list');"><i class="fa fa-indent nav_icon"></i>已选课程<span class="fa arrow"></span></a>
-                            <!--<ul class="nav nav-second-level">
-                                <li>
-                                    <a href="grids.html">离散数学</a>
-                                </li>
-                            </ul>-->
-                            <!-- /.nav-second-level -->
                         </li>
-                        
-                        <!--<li>
-                            <a href="#"><i class="fa fa-envelope nav_icon"></i>Mailbox<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="inbox.html">Inbox</a>
-                                </li>
-                                <li>
-                                    <a href="compose.html">Compose email</a>
-                                </li>
-                            </ul>
-                           
-                        </li>-->
-                        <li>
-                            <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
-                        </li>
-                         <!--<li>
-                            <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="forms.html">Basic Forms</a>
-                                </li>
-                                <li>
-                                    <a href="validation.html">Validation</a>
-                                </li>
-                            </ul>
-                            
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-table nav_icon"></i>Tables<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="basic_tables.html">Basic Tables</a>
-                                </li>
-                            </ul>
-                            
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>Css<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="media.html">Media</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                            </ul>
-                           
-                        </li>-->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -155,45 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div id="page-wrapper">
         <div class="graphs">
         
-     	<!--<div class="col_3">
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>45%</strong></h5>
-                      <span>New Orders</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-users user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>1019</strong></h5>
-                      <span>New Visitors</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-comment user2 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>1012</strong></h5>
-                      <span>New Users</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-dollar dollar1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>$450</strong></h5>
-                      <span>Profit Today</span>
-                    </div>
-                </div>
-        	 </div>
-        	<div class="clearfix"> </div>
-      </div>-->
+     	
 <script>
 	function class_jump(nam)
 	{
