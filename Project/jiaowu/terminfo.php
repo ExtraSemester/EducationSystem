@@ -169,7 +169,11 @@ session_start();
 $my_db=new database();
 $term_id = $_GET['id'];
 
-$_SESSION['term_id']=$term_id;
+if($term_id == null){
+    $term_id = $_SESSION['term_id'];
+}else{
+    $_SESSION['term_id']=$term_id;
+}
 
 $class_ids=$my_db->database_get("select id,name from class where term_id=$term_id");
 echo $html_A;
