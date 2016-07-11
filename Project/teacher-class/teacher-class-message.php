@@ -241,7 +241,7 @@ else
 echo $html_B;
 
 //团队信息
-$team_data=$my_db->database_get("select * from team where class_id=$class_id");
+$team_data=$my_db->database_get("select * from team where class_id=$class_id and stat=1");
 
 $count=count($team_data);
 for($i=0;$i<$count;$i++)
