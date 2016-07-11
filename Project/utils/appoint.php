@@ -18,9 +18,9 @@ $pre_admin_id = $result[0]['admin_id'];
 //var_dump($result);
 //echo $pre_admin_id;
 
-$sql1 = "update student set status=2 where id=$stu_id;";
-//更新student表
-$db->database_do($sql1);
+//$sql1 = "update student set status=2 where id=$stu_id;";
+////更新student表
+//$db->database_do($sql1);
 
 //echo $sql1;
 //更新team表
@@ -28,8 +28,8 @@ $db->database_do("update team set admin_id=$stu_id where admin_id=$pre_admin_id;
 //echo "update team set admin_id=$stu_id where admin_id=$pre_admin_id;";
 
 
-$sql2 = "update student set status=1 where id=$pre_admin_id";
-//echo $sql2;
-$db->database_do($sql2);
+//$sql2 = "update student set status=1 where id=$pre_admin_id";
+////echo $sql2;
+//$db->database_do($sql2);
 
 echo 1;

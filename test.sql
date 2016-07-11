@@ -125,6 +125,33 @@ INSERT INTO `class_teacher` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `class_term`
+--
+
+DROP TABLE IF EXISTS `class_term`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `class_term` (
+  `class_id` int(11) DEFAULT NULL,
+  `term_id` int(11) DEFAULT NULL,
+  KEY `class_id` (`class_id`),
+  KEY `term_id` (`term_id`),
+  CONSTRAINT `class_term_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
+  CONSTRAINT `class_term_ibfk_2` FOREIGN KEY (`term_id`) REFERENCES `terms` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `class_term`
+--
+
+LOCK TABLES `class_term` WRITE;
+/*!40000 ALTER TABLE `class_term` DISABLE KEYS */;
+INSERT INTO `class_term` VALUES (17,1),(17,2),(17,3),(17,4);
+/*!40000 ALTER TABLE `class_term` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `student`
 --
 
@@ -149,7 +176,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (2,'Marry','123456','1321','女',2013,2),(3,'陈娟儿','123456','13212000','男',2013,1),(4,'陈日天','123456','13212001','中',2013,1),(5,'郑霸天','123456','13212002','中',2013,1),(6,'卫日天','123456','13212003','男',2013,1),(7,'王狗剩','123456','13212004','男',2013,1),(8,'楚美丽','123456','13212005','中',2013,1),(9,'韩爱国','123456','13212006','中',2013,1),(10,'王二蛋','123456','13212007','女',2013,1),(11,'蒋琪','123456','13212008','中',2013,1),(12,'孙爱国','123456','13212009','中',2013,1),(13,'楚狗剩','123456','13212010','男',2013,1),(14,'吴美丽','123456','13212011','中',2013,1),(15,'楚鲜花','123456','13212012','中',2013,1),(16,'韩霸天','123456','13212013','中',2013,1),(17,'楚琪','123456','13212014','中',2013,1),(18,'卫日天','123456','13212015','男',2013,1),(19,'沈鲜花','123456','13212016','女',2013,1),(20,'卫霸天','123456','13212017','男',2013,1),(21,'楚二狗','123456','13212018','中',2013,1),(22,'李爱国','123456','13212019','中',2013,1),(23,'郑二狗','123456','13212020','中',2013,1),(24,'陈日天','123456','13212021','中',2013,1),(25,'钱二蛋','123456','13212022','男',2013,1),(26,'孙霸天','123456','13212023','中',2013,1),(27,'吴琪','123456','13212024','中',2013,1),(28,'楚鲜花','123456','13212025','中',2013,1),(29,'杨日天','123456','13212026','男',2013,1),(30,'蒋娟儿','123456','13212027','男',2013,1),(31,'郑二狗','123456','13212028','女',2013,1),(32,'赵娟儿','123456','13212029','男',2013,1);
+INSERT INTO `student` VALUES (2,'Marry','123456','1321','女',2013,1),(3,'陈娟儿','123456','13212000','男',2013,2),(4,'陈日天','123456','13212001','中',2013,1),(5,'郑霸天','123456','13212002','中',2013,1),(6,'卫日天','123456','13212003','男',2013,1),(7,'王狗剩','123456','13212004','男',2013,2),(8,'楚美丽','123456','13212005','中',2013,1),(9,'韩爱国','123456','13212006','中',2013,1),(10,'王二蛋','123456','13212007','女',2013,1),(11,'蒋琪','123456','13212008','中',2013,1),(12,'孙爱国','123456','13212009','中',2013,1),(13,'楚狗剩','123456','13212010','男',2013,1),(14,'吴美丽','123456','13212011','中',2013,1),(15,'楚鲜花','123456','13212012','中',2013,1),(16,'韩霸天','123456','13212013','中',2013,1),(17,'楚琪','123456','13212014','中',2013,1),(18,'卫日天','123456','13212015','男',2013,1),(19,'沈鲜花','123456','13212016','女',2013,1),(20,'卫霸天','123456','13212017','男',2013,1),(21,'楚二狗','123456','13212018','中',2013,1),(22,'李爱国','123456','13212019','中',2013,1),(23,'郑二狗','123456','13212020','中',2013,1),(24,'陈日天','123456','13212021','中',2013,1),(25,'钱二蛋','123456','13212022','男',2013,1),(26,'孙霸天','123456','13212023','中',2013,1),(27,'吴琪','123456','13212024','中',2013,1),(28,'楚鲜花','123456','13212025','中',2013,1),(29,'杨日天','123456','13212026','男',2013,1),(30,'蒋娟儿','123456','13212027','男',2013,1),(31,'郑二狗','123456','13212028','女',2013,1),(32,'赵娟儿','123456','13212029','男',2013,1);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +228,7 @@ CREATE TABLE `talk` (
 
 LOCK TABLES `talk` WRITE;
 /*!40000 ALTER TABLE `talk` DISABLE KEYS */;
-INSERT INTO `talk` VALUES (17,'林老师:test','2016-07-08 16:11:23'),(17,'林老师:发放','2016-07-08 16:12:23');
+INSERT INTO `talk` VALUES (17,'林老师:test','2016-07-08 16:11:23'),(17,'林老师:发放','2016-07-08 16:12:23'),(1,'林老师:哈哈哈','2016-07-09 17:12:59'),(1,'林老师:666','2016-07-09 17:17:59'),(17,'Marry:多岁的方式的','2016-07-10 09:10:52');
 /*!40000 ALTER TABLE `talk` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +278,7 @@ CREATE TABLE `team` (
   KEY `admin_id` (`admin_id`),
   CONSTRAINT `team_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
   CONSTRAINT `team_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +287,7 @@ CREATE TABLE `team` (
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
-INSERT INTO `team` VALUES (1,'日渐消瘦',8,10,15,1,NULL),(2,'沉迷学习',5,2,10,2,NULL),(3,'测试',NULL,NULL,10,NULL,NULL),(4,'哈哈哈',NULL,NULL,10,NULL,NULL),(5,'测试',2,17,10,2,2);
+INSERT INTO `team` VALUES (1,'日渐消瘦',8,10,15,0,1),(2,'沉迷学习',5,2,10,0,1),(3,'测试',3,3,10,0,1),(4,'哈哈哈',3,4,10,0,1),(5,'测试',3,17,10,0,1),(6,'团队',3,1,10,0,1),(7,'不爱啊',7,17,10,3,2);
 /*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +315,7 @@ CREATE TABLE `team_student` (
 
 LOCK TABLES `team_student` WRITE;
 /*!40000 ALTER TABLE `team_student` DISABLE KEYS */;
-INSERT INTO `team_student` VALUES (1,2,1),(2,2,1),(5,2,1),(5,3,1),(5,5,2),(5,9,1);
+INSERT INTO `team_student` VALUES (1,2,1),(2,2,1),(5,2,1),(5,3,1),(5,5,2),(5,8,2),(5,9,1),(7,7,1);
 /*!40000 ALTER TABLE `team_student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,7 +370,7 @@ CREATE TABLE `terms` (
 
 LOCK TABLES `terms` WRITE;
 /*!40000 ALTER TABLE `terms` DISABLE KEYS */;
-INSERT INTO `terms` VALUES (1,'2015-2016学年秋季学期','2015-09-01','2016-01-20',1),(2,'2015-2016学年春季学期','2016-03-01','2016-07-15',2),(3,'2016-2017学年秋季学期','2016-09-01','2017-01-20',2),(4,'2016-2017学年春季学期','2016-03-01','2017-07-15',2);
+INSERT INTO `terms` VALUES (1,'2015-2016学年秋季学期','2016-03-01','2016-07-12',1),(2,'2015-2016学年春季学期','2016-03-01','2016-07-15',2),(3,'2016-2017学年秋季学期','2016-09-01','2017-01-20',2),(4,'2016-2017学年春季学期','2016-03-01','2017-07-15',2);
 /*!40000 ALTER TABLE `terms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -362,6 +389,7 @@ CREATE TABLE `work` (
   `kind` int(11) DEFAULT NULL,
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
+  `attachment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `class_id` (`class_id`),
   CONSTRAINT `work_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`)
@@ -374,7 +402,7 @@ CREATE TABLE `work` (
 
 LOCK TABLES `work` WRITE;
 /*!40000 ALTER TABLE `work` DISABLE KEYS */;
-INSERT INTO `work` VALUES (1,'抄课本','抄十遍',3,1,NULL,NULL),(2,'测试','还是抄课本',1,1,'2016-07-05 16:11:20','2016-06-01 00:00:00'),(3,'哈哈哈','又是抄课本',1,1,'2016-07-05 16:11:20','2016-06-01 00:00:00'),(4,'test','抄课本100遍',8,1,'2016-07-05 16:11:20','2016-06-01 00:00:00'),(5,'测试','抄写软件工程过程课本100遍',17,1,'2016-07-05 16:11:20','2016-07-15 00:00:00'),(6,'这是团队作业','只有负责人能提交',17,2,'2016-07-05 16:11:20','2016-07-09 00:00:00');
+INSERT INTO `work` VALUES (1,'抄课本','抄十遍',3,1,NULL,NULL,NULL),(2,'测试','还是抄课本',1,1,'2016-07-05 16:11:20','2016-06-01 00:00:00',NULL),(3,'哈哈哈','又是抄课本',1,1,'2016-07-05 16:11:20','2016-06-01 00:00:00',NULL),(4,'test','抄课本100遍',8,1,'2016-07-05 16:11:20','2016-06-01 00:00:00',NULL),(5,'测试','抄写软件工程过程课本100遍',17,1,'2016-07-05 16:11:20','2016-07-15 00:00:00',NULL),(6,'这是团队作业','只有负责人能提交',17,2,'2016-07-05 16:11:20','2016-07-09 00:00:00',NULL);
 /*!40000 ALTER TABLE `work` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,7 +428,7 @@ CREATE TABLE `work_file` (
   CONSTRAINT `FK_ID` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
   CONSTRAINT `work_file_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
   CONSTRAINT `work_file_ibfk_2` FOREIGN KEY (`work_id`) REFERENCES `work` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -409,7 +437,7 @@ CREATE TABLE `work_file` (
 
 LOCK TABLES `work_file` WRITE;
 /*!40000 ALTER TABLE `work_file` DISABLE KEYS */;
-INSERT INTO `work_file` VALUES (1,2,'',5,'23333333333333333333',59,17);
+INSERT INTO `work_file` VALUES (1,2,'',5,'23333333333333333333',59,17),(2,2,'Iteration+Planning.doc',6,'hhh',59,17),(3,2,'Iteration+Planning.doc',2,'233333',59,1);
 /*!40000 ALTER TABLE `work_file` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -422,4 +450,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-09 14:32:19
+-- Dump completed on 2016-07-10 11:30:31

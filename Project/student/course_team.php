@@ -197,7 +197,6 @@ $html_B=<<<HTML
                              <div class="panel-footer">
 HTML;
 $html_C=<<<HTML
-                                 <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-2" style="margin-left:60px">
                                     	 <input type=button class="btn-inverse btn" style="width:150px" onclick="location='s_team_manage.php'" value="管理团队">
@@ -272,23 +271,22 @@ echo $html_02;
 echo $lead_data[0]['name'];
 echo $html_03;
 
-if ($user_team_data[0]['stat']==1)
-{
-    echo '通过审核';
-}
-elseif ($user_team_data[0]['stat']==2)
-{
-    echo '审核中';
-}
-elseif ($user_team_data[0]['stat']==3)
-{
-    echo '未通过审核';
+if($user_team_data!=null) {
+    if ($user_team_data[0]['stat'] == 1) {
+        echo '通过审核';
+    } elseif ($user_team_data[0]['stat'] == 2) {
+        echo '审核中';
+    } elseif ($user_team_data[0]['stat'] == 3) {
+        echo '未通过审核';
+    } elseif ($user_team_data[0]['stat'] == 0) {
+        echo '新建';
+    }
 }
 echo $html_B;
 
 //判断是不是团队管理员
-$is_manager=$my_db->database_get("select status from student where id = $user_id");
-if($is_manager[0]['status']==2)
+//$is_manager=$my_db->database_get("select status from student where id = $user_id");
+if($admin_id == $user_id)
 {
     echo $html_C;
 }

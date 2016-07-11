@@ -223,9 +223,9 @@ $my_db=new database();
 $user_id = $_SESSION['user_id'];
 $class_id=$_SESSION['class_id'];
 echo $html_A;
-$all_team_data=$my_db->database_get("select * from team where class_id=$class_id");
+$all_team_data=$my_db->database_get("select * from team where class_id=$class_id and status!=2");
 //计算可申请团队
-$count_available_team=0;
+
 for($i=0;$i<count($all_team_data);$i++)
 {
     //显示申请团队信息
@@ -248,6 +248,8 @@ for($i=0;$i<count($all_team_data);$i++)
         echo $html_04;
         $state = "";
         switch ($all_team_data[$i]['stat']){
+            case 0:
+                $state="新建";break;
             case 1:
                 $state="已通过";break;
             case 2:
@@ -264,7 +266,6 @@ for($i=0;$i<count($all_team_data);$i++)
     }
     else
     {
-        $count_available_team=$count_available_team+0;
         echo "无可申请团队";
     }
 }

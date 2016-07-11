@@ -79,6 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
     
     function submit_team(id) {
+    //alert(id)
         $.get("../utils/submit_team.php?id="+id,function(data,status) {
           if(data>0){
           alert("已提交申请");
@@ -264,8 +265,8 @@ $admin_id = $_SESSION['user_id'];
 
 require_once '../database.php';
 $db = new database();
-$stu_info = $db->database_get("select * from student where id=(select student_id from team_student where state=0 and team_id=(select id from team where admin_id=$admin_id))");
-$team_id = $db->database_get("select id from team where admin_id=$admin_id");
+$stu_info = $db->database_get("select * from student where id in (select student_id from team_student where state=0 and team_id=(select id from team where admin_id=$admin_id and class_id=$class_id))");
+$team_id = $db->database_get("select id from team where admin_id=$admin_id and class_id=$class_id");
 echo $html_a;
 
 $team_id1 = $team_id[0]['id'];
@@ -295,7 +296,7 @@ else {
 }
 
 echo $html_b;
-$student_info = $db->database_get("select * from student where id in (select student_id from team_student where state=1 and team_id=(select id from team where admin_id=$admin_id))");
+$student_info = $db->database_get("select * from student where id in (select student_id from team_student where state=1 and team_id=(select id from team where admin_id=$admin_id and class_id=$class_id))");
 $pre_admin_id = $admin_id;
 for ($i=0;$i<count($student_info);$i++) {
     $stu_id = $student_info[$i]['id'];

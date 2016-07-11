@@ -99,18 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>-->
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-comments nav_icon"></i>我的团队<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">沉迷学习小组</a>
-                                </li>
-                                <li>
-                                    <a href="#">红星闪闪</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                         <li>
                             <a href=""><i class="fa fa-question nav_icon"></i>帮助</a>
                         </li>

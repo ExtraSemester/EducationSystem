@@ -46,7 +46,7 @@ require_once '../database.php';
 		{
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
-				$mdb->database_do('insert into class(name,start_week,end_week,time,place)values("'.$sheet->getCell('A'.$row)->getValue().'",'.$sheet->getCell('B'.$row)->getValue().','.$sheet->getCell('C'.$row)->getValue().',"'.$sheet->getCell('D'.$row)->getValue().'","'.$sheet->getCell('E'.$row)->getValue().'")');
+				$mdb->database_do('insert into class(name,start_week,end_week,time,place,state,term_id)values("'.$sheet->getCell('A'.$row)->getValue().'",'.$sheet->getCell('B'.$row)->getValue().','.$sheet->getCell('C'.$row)->getValue().',"'.$sheet->getCell('D'.$row)->getValue().'","'.$sheet->getCell('E'.$row)->getValue().'","'.$sheet->getCell('F'.$row)->getValue().'","'.$sheet->getCell('G'.$row)->getValue().'")');
 			}
 		}
 		else if($choose=="class_teacher")
@@ -99,6 +99,7 @@ require_once '../database.php';
 		{
 			$num=$highestRow-1;
 			echo "信息导入成功，共:".$num."条";
+			echo "<script>location='import_term.html'</script>";
 		}
 		else
 		{

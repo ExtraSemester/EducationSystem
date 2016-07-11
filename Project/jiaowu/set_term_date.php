@@ -19,3 +19,5 @@ $end_date = $_GET['end_date'];
 $sql = "update terms set start_date = '$start_date',end_date = '$end_date' where id = $term_id";
 
 $conn->database_do($sql);
+echo "<script>alert('设置成功')
+location='setterms.html</script>";

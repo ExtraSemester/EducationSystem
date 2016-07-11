@@ -52,15 +52,9 @@ create table class
 	    end_week int,
 	    time varchar(100),
 	    place varchar(100),
-	    state int
-);
-
-create table class_term
-(
-      class_id int,
-      term_id int,
-      foreign key(class_id) references class(id),
-      foreign key(term_id)references terms(id)
+	    state int,
+	    term_id int,
+	    FOREIGN key(term_id) REFERENCES terms(id)
 );
 
 create table class_student
@@ -106,6 +100,15 @@ create table work
 	end_time datetime,
 	attachment varchar(255),
     foreign key(class_id) references class(id)
+);
+
+create table work_student
+(
+    work_id int,
+    student_id int,
+    state int,
+    foreign key(work_id) references work(id),
+    foreign key(student_id) references student(id)
 );
 
 create table work_file

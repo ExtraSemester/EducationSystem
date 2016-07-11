@@ -35,13 +35,14 @@ $html_part_a = <<<HTML
 <script>
 
     function agree(id) {
-      alert(id);
+      //alert(id);
       $.get("../utils/deal_team_request.php?op=1&id="+id,function(data,status) {
           if(data > 0)alert("已通过团队申请");
           location.reload();
         })
     }
     function reject(id) {
+    //alert(id);
        $.get("../utils/deal_team_request.php?op=3&id="+id,function(data,status) {
           if(data > 0)alert("已拒绝团队申请");
           location.reload();
@@ -185,7 +186,7 @@ HTML;
     $conn = new database();
 
     $team_info = $conn->database_get("SELECT id,name,stat,admin_id FROM team ".
-        "WHERE team.class_id = $class_id;");
+        "WHERE class_id = $class_id and stat != 0;");
 
     echo $html_part_a;
 
@@ -219,7 +220,7 @@ HTML;
 
             if($team_info[$i]['stat'] == 2){
 
-                echo "<td align='centre'><button id='agree' onclick='agree(". $team_info[$i]['id'] .")'>通过</button>					          <button id='reject' onclick='reject(".$team_info[$i]['id']."'>拒绝</button><td>
+                echo "<td align='centre'><button id='agree' onclick='agree(". $team_info[$i]['id'] .")'>通过</button>					          <button id='reject' onclick='reject(".$team_info[$i]['id'].")'>拒绝</button><td>
           <td>".$admin_name."</td>
         </tr>";
             }else {
