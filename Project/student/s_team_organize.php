@@ -16,25 +16,33 @@ $team_number=$_GET["team_number"];
 $admin_id = $_GET['admin_id'];
 $class_id = $_GET['class_id'];
 
-$search_team_name=$db->database_get("select id from team where name='$team_name'");
-if(count($search_team_name)==0) {
+$result = $db->database_get("select admin_id from team where class_id=$class_id and id in (select team_id from team_student where student_id=$admin_id)");
 
-    $sql = "insert into team(name,number,admin_id,class_id,stat,status) values('$team_name',$team_number,$admin_id,$class_id,0,1)";
-    //将新team插入
-    $db->database_do($sql);
-    $team = $db->database_get("select id from team where admin_id=$admin_id");
+if($result){
+    echo "<script>alert('本门课你已有团队')
+location='s_team_join.php'</script>";
 
-    $team_id = $team[0]['id'];
-    //将团队负责人插入到team_student表
-    $db->database_do("insert into team_student VALUES($team_id,$admin_id,1)");
+}else {
 
-    //将创建者身份改为团队负责人
-    $db->database_do("update student set status=2 where id=$admin_id");
+    $search_team_name = $db->database_get("select id from team where name='$team_name'");
+    if (count($search_team_name) == 0) {
 
-    echo "<script type='text/javascript'>alert('团队创建成功,请等待审核！')</script>";
-    echo "<script type='text/javascript'>location='course_team.php';</script>";
-}
-else{
-    echo "<script type='text/javascript'>alert('该团队名字已有人使用，请重新输入！')
+        $sql = "insert into team(name,number,admin_id,class_id,stat,status) values('$team_name',$team_number,$admin_id,$class_id,0,1)";
+        //将新team插入
+        $db->database_do($sql);
+        $team = $db->database_get("select id from team where admin_id=$admin_id");
+
+        $team_id = $team[0]['id'];
+        //将团队负责人插入到team_student表
+        $db->database_do("insert into team_student VALUES($team_id,$admin_id,1)");
+
+        //将创建者身份改为团队负责人
+        $db->database_do("update student set status=2 where id=$admin_id");
+
+        echo "<script type='text/javascript'>alert('团队创建成功,请等待审核！')</script>";
+        echo "<script type='text/javascript'>location='course_team.php';</script>";
+    } else {
+        echo "<script type='text/javascript'>alert('该团队名字已有人使用，请重新输入！')
     location='s_team_join.php'</script>";
+    }
 }
