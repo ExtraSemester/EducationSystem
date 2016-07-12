@@ -2,15 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: whx
- * Date: 2016/7/4
- * Time: 21:16
+ * Date: 2016/7/12
+ * Time: 9:17
  */
 
-$html_part_a = <<<HTML
+$html_partA = <<<HTML
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>团队审核</title>
+<title>团队成员</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -32,24 +32,6 @@ $html_part_a = <<<HTML
 
 
 <body>
-<script>
-
-    function agree(id) {
-      //alert(id);
-      $.get("../utils/deal_team_request.php?op=1&id="+id,function(data,status) {
-          if(data > 0)alert("已通过团队申请");
-          location.reload();
-        })
-    }
-    function reject(id) {
-    //alert(id);
-       $.get("../utils/deal_team_request.php?op=3&id="+id,function(data,status) {
-          if(data > 0)alert("已拒绝团队申请");
-          location.reload();
-        })
-    }
-    
-</script>
 <div class="total">
  <!------------ 顶边栏 ------------->
  <div id="wrapper">
@@ -61,20 +43,22 @@ $html_part_a = <<<HTML
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-               <p class="navbar-brand" href="" style="font-family:'华文行楷'">北航协同教学平台</p>
+                <p class="navbar-brand" href="" style="font-family:'华文行楷'">北航协同教学平台</p>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge"></span></a>
-	        		
+	        		<ul class="dropdown-menu">
+						
+	        		</ul>
 	      		</li>
 			    <li class="dropdown">
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="../images/1.png"></a>
 	        		<ul class="dropdown-menu">
-						<li class="m_2"><a href="../teacher/teacher.php"><i class="fa fa-lock"></i> 个人资料</a></li>	
+						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> 个人资料</a></li>	
                         <li class="m_2"><a href="#"><i class="fa fa-lock"></i> 设置</a></li>	
-                        <li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>	
+                        <li class="m_2"><a href="#" onclick="logout()"><i class="fa fa-lock"></i> 退出</a></li>
 	        		</ul>
                     <script>
 						function logout(){
@@ -90,6 +74,7 @@ $html_part_a = <<<HTML
             
 <!------------侧边栏-----------------> 
 			<div class="navbar-default sidebar" role="navigation">
+            
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -107,36 +92,35 @@ $html_part_a = <<<HTML
                         <li>
                             <a href="teacher-class-homework.php"><i class="fa fa-dashboard fa-fw nav_icon"></i>已交作业</a>
                         </li>
-						<li>
+                        <li>
 						<a href="talk.php"><i class="fa fa-comments nav_icon"></i>课程讨论</a>
 					</li>
                             </ul>
                 </div>
             </div>
         </nav>
-<!------------侧边栏-----------------> 
+<!------------侧边栏----------------->
 
 <!---------课程信息表格----------->
 <div id="page-wrapper">
 <div class="tablegraphs">
    <div class="col-md-12 graphs">
 	   <div class="xs">
-  	 <h3>团队申请</h3>
+  	 <h3>团队成员</h3>
    <div class="panel-body1">
    <table class="table">
      <thead>
         <tr>
-          <th>团队编号</th>
-          <th>团队名称</th>
-          <th>团队状态</th>
-          <th>操作<th>
-          <th>团队负责人</th>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年级<th>
         </tr>
       </thead>
       <tbody>
 HTML;
 
-$html_part_b = <<<HTML
+$html_partB = <<<HTML
 </tbody>
     </table>
     </div>
@@ -166,64 +150,32 @@ $html_part_b = <<<HTML
 </html>
 HTML;
 
-    session_start();
-    $class_id = $_SESSION['class_id'];
+require_once '../database.php';
 
-    require_once '../database.php';
-    $conn = new database();
+$conn = new database();
 
-    $team_info = $conn->database_get("SELECT id,name,stat,admin_id FROM team ".
-        "WHERE class_id = $class_id and stat != 0;");
+$team_id = $_GET['id'];
 
-    echo $html_part_a;
+$students = $conn->database_get("select student_id from team_student where team_id=$team_id and state=1");
 
-    if($team_info != null) {
-        for ($i = 0; $i < count($team_info); $i++) {
+echo $html_partA;
 
-            $state = '';
+for($i=0;$i<count($students);$i++){
 
-            echo "<tr>
-          <th scope=\"row\">" . $team_info[$i]['id'] . "</th>
-          <td><a href='team_info.php?id=".$team_info[$i]['id']."'>" . $team_info[$i]['name'] . "</a></td>";
+    $student_id = $students[$i]['student_id'];
+    $info = $conn->database_get("select student_id,name,sex,grade from student where id=$student_id");
 
-            switch ($team_info[$i]['stat']) {
-                case 1:
-                    $state = '已通过';
-                    echo "<td><font color = 'green'>" . $state . "</font></td>";
-                    break;
-                case 2:
-                    $state = '待审核';
-                    echo "<td><font color = '#6495ed'>" . $state . "</font></td>";
-                    break;
-                case 3:
-                    $state = '已拒绝';
-                    echo "<td><font color = 'red'>" . $state . "</font></td>";
-                    break;
-            }
+    $id = $info[0]['student_id'];
+    $name = $info[0]['name'];
+    $sex = $info[0]['sex'];
+    $grade = $info[0]['grade'];
 
-            $admin_names = $conn->database_get("SELECT name FROM student WHERE id = ".
-                $team_info[$i]['admin_id']);
-            $admin_name = $admin_names[0]['name'];
-
-            if($team_info[$i]['stat'] == 2){
-
-                echo "<td align='centre'><button id='agree' onclick='agree(". $team_info[$i]['id'] .")'>通过</button>					          <button id='reject' onclick='reject(".$team_info[$i]['id'].")'>拒绝</button><td>
-          <td>".$admin_name."</td>
+    echo "<tr>
+          <th scope=\"row\">$id</th>
+          <td>$name</td>
+          <td>$sex</td>
+          <td>$grade</td>
         </tr>";
-            }else {
-                echo "<td align='centre'><button disabled='disabled'>通过</button>					          <button disabled='disabled'>拒绝</button><td>
-          <td>".$admin_name."</td>
-        </tr>";
-            }
+}
 
-        }
-
-
-    }else {
-
-        echo "<td>暂无团队申请</td>";
-    }
-
-    echo $html_part_b;
-
-
+echo $html_partB;

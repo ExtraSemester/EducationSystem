@@ -251,7 +251,7 @@ for($i=0;$i<$count;$i++)
     echo $html_1;
     echo $team_data[$i]['id'];
     echo $html_2;
-    echo $team_data[$i]['name'];
+    echo "<a href='team_info.php?id=".$team_data[$i]['id']."'>" . $team_data[$i]['name'] . "</a>";
     echo $html_3;
     echo $team_data[$i]['number'];
     echo $html_4;
